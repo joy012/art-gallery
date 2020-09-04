@@ -1,0 +1,21 @@
+.navbar{
+    padding-top:0;
+}
+.navbar-bg{
+    background-color: rgba(235, 233, 233, 0.7);
+}
+.logo{
+    width: 35%;
+
+}
+.nav-link{
+    color: black;
+    font-weight: 600;
+    font-size: 1.2rem!important;
+    padding: 1rem!important;
+    text-align: center;
+}
+.fa-shopping-cart{
+    font-size: 2rem;
+    color: black;
+}
