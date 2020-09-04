@@ -6,14 +6,21 @@ import {
   Link
 } from "react-router-dom";
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 
 
 function App() {
   return (
     <Router>
-      <Route path='/'>
       <Header></Header>
-      </Route>
+      <Switch>
+        <Route path='/home'>
+          <Home />
+        </Route>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+      </Switch>
     </Router>
   );
 }
