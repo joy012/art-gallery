@@ -10,13 +10,16 @@
 
 }
 .nav-link{
-    color: black;
+    color: black!important;
     font-weight: 600;
-    font-size: 1.2rem!important;
+    font-size: 1.1rem!important;
     padding: 1rem!important;
     text-align: center;
 }
 .fa-shopping-cart{
     font-size: 2rem;
     color: black;
+}
+.dropdown-item:hover{
+    background-color: #eee;
 }

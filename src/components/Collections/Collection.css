@@ -1,0 +1,18 @@
+.card{
+    border: none!important;
+}
+.card-footer{
+    border: none;
+    background-color: #fff!important;
+    border-radius: 20px!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+.collection-card:hover{
+    box-shadow: 8px 8px 15px gray, -8px -8px 15px gray;
+    transform: scale(1.5);
+    transition: 1.5s;
+    z-index: 20;
+    border-radius: 20px!important;
+    cursor: pointer;
+}

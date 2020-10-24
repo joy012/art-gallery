@@ -1,0 +1,17 @@
+.carousel-bg{
+    background-color: #111430;
+}
+.slick-dots li button:before {
+    color: grey;
+    font-size: 0.6rem!important;
+}
+.slick-dots li.slick-active button:before {
+    color:orange !important;
+}
+.img-container img{
+    border-radius: 20px;
+}
+.img-container:focus{
+    border: none;
+    outline: none!important;
+}

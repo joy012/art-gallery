@@ -1,10 +1,14 @@
 import React from 'react';
-import Carousel from '../Carousel/Carousel';
+import Collection from '../Collections/Collection';
+import ImageSlider from '../ImageSlider/ImageSlider';
+import Subscribe from '../Subscribe/Subscribe';
 
 const Home = () => {
     return (
         <div>
-            <Carousel></Carousel>
+            <ImageSlider/>
+            <Collection/>
+            <Subscribe/>
         </div>
     );
 };
