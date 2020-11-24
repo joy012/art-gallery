@@ -1,7 +1,6 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebase.config";
-
 
 
 export const initializeLogInFrameWork = () => {
@@ -69,13 +68,6 @@ export const signInWithEmailAndPassword = (email, password) => {
         .catch(error => handleError(error));
 }
 
-export const storeAuthToken = () => {
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-       sessionStorage.setItem('token', idToken);
-      }).catch(function(error) {
-       
-      });
-}
 
 export const handleSignOut = () => {
     return firebase.auth().signOut()
@@ -120,4 +112,12 @@ export const resetPassword = email => {
     }).catch(error => {
         
     });
+}
+
+export const storeAuthToken = () => {
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+       sessionStorage.setItem('token', idToken);
+      }).catch(function(error) {
+       
+      });
 }

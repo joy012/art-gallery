@@ -47,7 +47,7 @@ const ImageSlider = () => {
     return (
         <div className="px-5 py-3 container carousel-bg rounded my-5">
             <div className="pb-4" >
-                <h2 className="text-center text-white pb-5">Here are some of our <span style={{ color: '#7AB259' }}>Works</span></h2>
+                <h1 className="text-center pb-5">Here are some of our <span style={{ color: '#7AB259' }}>Works</span></h1>
                 <Slider {...settings}>
                     {
                         data.map(product =>

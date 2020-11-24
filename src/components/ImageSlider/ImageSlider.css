@@ -1,6 +1,6 @@
-.carousel-bg{
+/* .carousel-bg{
     background-color: #111430;
-}
+} */
 .slick-dots li button:before {
     color: grey;
     font-size: 0.6rem!important;
@@ -14,4 +14,9 @@
 .img-container:focus{
     border: none;
     outline: none!important;
+}
+.slick-arrow::before{
+    color:#eee!important;
+    font-size: 1.8rem!important;
+    
 }

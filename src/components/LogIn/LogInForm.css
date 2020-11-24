@@ -35,16 +35,16 @@
     z-index: 1;
 }   
 .orange-text{
-    color: #F9A51A;
+    color: #275a53;
 }
 .orange-text:hover{
     text-decoration: underline;
     cursor: pointer;
-    color: blue;
+    color: black;
 }
 .submit-btn{
-    background-color: #F9A51A!important;
-    color: #000000!important;
+    background-color: #275a53!important;
+    color: #fff!important;
     border: none!important;
 }
 .social-login{

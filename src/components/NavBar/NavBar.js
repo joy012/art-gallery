@@ -37,7 +37,7 @@ const NavBar = () => {
 
     return (
         <nav className={`navbar navbar-expand-md navbar-light ${!isLocation? 'navbar-bg' : ''} text-dark`}>
-            <div className="container">
+            <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img className="logo rounded-circle" src={logo} alt="" />
                 </Link>
@@ -69,9 +69,11 @@ const NavBar = () => {
                         {
                             sessionStorage.getItem('name') ? <Link title="Click to LogOut" className="btn" onClick={signOut}>{sessionStorage.getItem('name')}</Link>
                                 :
+                                location.pathname !== '/login' ?
                                 <Link className="nav-link" to='/login'>
                                     <button className="btn btn-primary rounded-pill px-4">LogIn</button>
                                 </Link>
+                                : ''
                         }
 
                     </div>

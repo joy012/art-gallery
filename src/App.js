@@ -4,7 +4,6 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
@@ -20,7 +19,7 @@ function App() {
     isSignedIn: false,
     firstName: '',
     lastName: '',
-    name : '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -29,12 +28,13 @@ function App() {
     newUser: false
   })
 
-  if(user.firstName && user.lastName){
+  if (user.firstName && user.lastName) {
     user.name = user.firstName + ' ' + user.lastName;
   }
 
-  if(loggedInUser.name){
+  if (loggedInUser.name) {
     sessionStorage.setItem('name', loggedInUser.name);
+    sessionStorage.setItem('email', loggedInUser.email);
   }
 
 
@@ -47,13 +47,12 @@ function App() {
             <Home />
           </Route>
           <Route path='/login'>
-            <LogIn/>
+            <LogIn />
           </Route>
           <Route exact path='/'>
             <Home />
           </Route>
         </Switch>
-        <Footer/>
       </Router>
     </UserContext.Provider>
   );
