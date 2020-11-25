@@ -73,7 +73,7 @@ const LogInForm = () => {
     }
 
     return (
-        <div className="container">
+        <section className="container">
             <div className="login-form">
                 {
                     user.error && <div className="alert alert-danger alert-dismissible fade show" role="alert">
@@ -157,7 +157,7 @@ const LogInForm = () => {
                     </>
                 }
             </div>
-        </div>
+        </section>
     );
 };
 export default LogInForm;

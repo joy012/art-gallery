@@ -1,39 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { UserContext } from '../../App';
 import logo from '../../images/logo.png'
 import './Navbar.css';
 
 const NavBar = () => {
-    const [loggedInUser, setLoggedInUser, user, setUser] = useContext(UserContext);
     const location = useLocation();
-    const history = useHistory();
-
     const isLocation = location.pathname === '/login' || location.hash === '#/reset';
-
-    const signOut = () => {
-        const logout = window.confirm('Are you sure you want to Log Out?');
-        if (logout) {
-            const updateUser = {
-                isSignedIn: false,
-                firstName: '',
-                lastName: '',
-                name: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-                success: false,
-                error: '',
-                newUser: false
-            }
-            setLoggedInUser(updateUser);
-            setUser(updateUser);
-            sessionStorage.setItem('name', '')
-            sessionStorage.clear();
-            history.push('/');
-        }
-    }
-
 
     return (
         <nav className={`navbar navbar-expand-md navbar-light ${!isLocation? 'navbar-bg' : ''} text-dark`}>
@@ -50,11 +22,11 @@ const NavBar = () => {
                         <div className="nav-item dropdown" >
                             <Link className="nav-link dropdown-toggle" id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Creations</Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownLink">
-                                <Link className="nav-link dropdown-item text-center" to='/arabic'>Arabic Calligraphy</Link>
-                                <Link className="nav-link dropdown-item text-center" to='/illustration'>Illustration</Link>
-                                <Link className="nav-link dropdown-item text-center" to='/landscape'>Landscape</Link>
-                                <Link className="nav-link dropdown-item text-center" to='/quote'>Quote Card</Link>
-                                <Link className="nav-link dropdown-item text-center" to='/quote'>Lyric Card</Link>
+                                <Link className="nav-link dropdown-item text-center" to='/products/arabic caligraphy'>Arabic Calligraphy</Link>
+                                <Link className="nav-link dropdown-item text-center" to='/products/illustration'>Illustration</Link>
+                                <Link className="nav-link dropdown-item text-center" to='/products/landscape'>Landscape</Link>
+                                <Link className="nav-link dropdown-item text-center" to='/products/quote card'>Quote Card</Link>
+                                <Link className="nav-link dropdown-item text-center" to='/products/lyric card'>Lyric Card</Link>
                             </div>
                         </div>
                         <Link className="nav-link" to='/about'>About</Link>
@@ -67,11 +39,11 @@ const NavBar = () => {
                             <Link className="nav-link" to='/dashBoard'>DashBoard</Link>
                         }
                         {
-                            sessionStorage.getItem('name') ? <Link title="Click to LogOut" className="btn" onClick={signOut}>{sessionStorage.getItem('name')}</Link>
+                            sessionStorage.getItem('name') ? <Link className="btn">{sessionStorage.getItem('name')}</Link>
                                 :
                                 location.pathname !== '/login' ?
                                 <Link className="nav-link" to='/login'>
-                                    <button className="btn btn-primary rounded-pill px-4">LogIn</button>
+                                    <button className="btn btn-dark rounded-pill px-4">LogIn</button>
                                 </Link>
                                 : ''
                         }

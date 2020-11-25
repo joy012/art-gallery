@@ -1,14 +1,16 @@
 import React from 'react';
-import Collection from '../Collections/Collection';
-import Contact from '../Contact/Contact';
-import ImageSlider from '../ImageSlider/ImageSlider';
+import Collection from './Collections/Collection';
+import Contact from './Contact/Contact';
+import ImageSlider from './ImageSlider/ImageSlider';
+import Services from './Services/Services';
 
 const Home = () => {
     return (
         <div>
-            <ImageSlider/>
-            <Collection/>
-            <Contact/>
+            <ImageSlider />
+            <Services />
+            <Collection />
+            <Contact />
         </div>
     );
 };

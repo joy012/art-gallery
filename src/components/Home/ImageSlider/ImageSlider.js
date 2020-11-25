@@ -1,6 +1,6 @@
 import React from 'react';
 import './ImageSlider.css';
-import data from '../../DataBase';
+import data from '../../../DataBase/index';
 import Slider from "react-slick";
 
 const ImageSlider = () => {
@@ -45,9 +45,9 @@ const ImageSlider = () => {
     };
 
     return (
-        <div className="px-5 py-3 container carousel-bg rounded my-5">
+        <section className="px-5 py-3 container carousel-bg rounded my-5">
             <div className="pb-4" >
-                <h1 className="text-center pb-5">Here are some of our <span style={{ color: '#7AB259' }}>Works</span></h1>
+                <h1 className="text-center pb-5">Welcome To <span style={{ color: '#7AB259' }}>Tonu's Creation</span></h1>
                 <Slider {...settings}>
                     {
                         data.map(product =>
@@ -59,7 +59,7 @@ const ImageSlider = () => {
 
                 </Slider>
             </div>
-        </div>
+        </section>
     );
 };
 

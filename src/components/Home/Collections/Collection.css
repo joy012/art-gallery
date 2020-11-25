@@ -4,6 +4,7 @@
 .card-footer{
     border: none;
     background-color: #fff!important;
+    color: black!important;
     padding-top: 0!important;
     padding-bottom: 0!important;
 }
@@ -11,4 +12,7 @@
     transform: scale(1.1)!important;
     border-radius: 20px!important;
     cursor: pointer;
+}
+a:hover{
+    text-decoration: none!important;
 }
