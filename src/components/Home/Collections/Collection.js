@@ -9,7 +9,7 @@ const Collection = () => {
 
     return (
         <main className='container pt-5 mb-5'>
-            <h1 className='text-center mb-2 pb-4'>Trending Now</h1>
+            <h2 className='text-center mb-2 pb-4'>Trending Now</h2>
             <div className="row align-items-center justify-content-center">
                 {
                     data.map(collection =>
