@@ -1,0 +1,39 @@
+.background{
+    background-color: #2e3251;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    min-width: 100vw!important;
+    min-height: 100vh!important;
+}
+.tsparticles-canvas-el{
+    min-width: 100vw!important;
+    height: 130vh!important;
+}
+ .dp{
+     width: 30%;
+}
+
+
+@media screen and (max-width:991px){
+    .tsparticles-canvas-el{
+        height: 100vh!important;
+    }
+}
+
+@media screen and (max-width:575px){
+    .tsparticles-canvas-el{
+        height: 103vh!important;
+    }
+    .dp{
+        width: 38%;
+   }
+}
+@media screen and (max-width:360px){
+    .tsparticles-canvas-el{
+        height: 122vh!important;
+    }
+    .dp{
+        width: 45%;
+   }
+}

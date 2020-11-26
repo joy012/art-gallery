@@ -2,10 +2,10 @@
     padding-top:0;
     padding-bottom: 0;
 }
-.navbar-bg{
+/* .navbar-bg{
     background-color: rgba(235, 233, 233, 0.7);
-}
-.logo{
+} */
+.nav-logo{
     width: 35%;
 
 }

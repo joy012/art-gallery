@@ -4,11 +4,13 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import NavBar from './components/NavBar/NavBar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 import Products from './components/Products/Products';
 
 
@@ -57,8 +59,6 @@ function App() {
 
   }
 
-
-
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser]}>
       <Router>
@@ -70,11 +70,14 @@ function App() {
           <Route path='/login'>
             <LogIn />
           </Route>
+          <Route path='/about'>
+            <About />
+          </Route>
           <Route exact path='/products/:name'>
             <Products />
           </Route>
           <Route exact path='/productDetail/:key'>
-
+            <ProductDetail />
           </Route>
           <Route exact path='/'>
             <Home />

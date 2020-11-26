@@ -1,9 +1,9 @@
 const uuidv4 = require("uuid/v4")
 
-let portrait = [
+let illustration = [
     {
         key: `${uuidv4()}`,
-        category: 'portrait',
+        category: 'illustration',
         name: '',
         image: '',
         price: 0,
@@ -14,4 +14,4 @@ let portrait = [
     }
 ]
 
-export default portrait;
+export default illustration;

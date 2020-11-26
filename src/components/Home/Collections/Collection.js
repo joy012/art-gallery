@@ -13,7 +13,7 @@ const Collection = () => {
             <div className="row align-items-center justify-content-center">
                 {
                     data.map(collection =>
-                        <Bounce right duration={3000}>
+                        <Bounce left duration={3000}>
                             <div className="col-lg-3 col-md-4 col-6 mb-4 collection-card">
                                 <Link to={`/productDetail/${collection.key}`}>
                                         <div className="card w-100">

@@ -21,7 +21,8 @@ const Products = () => {
                                                 <img className="card-img-top" src={product.image} alt="" />
                                             </div>
                                             <div className="card-footer">
-                                                <h6 className='text-center card-title'>{product.name || 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}</h6>
+                                                <h6 className='text-center card-title'>{product.name}</h6>
+                                                <p className='text-center font-weight-bold text-muted'>BDT {product.price}</p>
                                             </div>
                                         </div>
                                     </Link>
