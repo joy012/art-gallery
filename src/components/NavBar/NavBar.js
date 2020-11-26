@@ -20,7 +20,7 @@ const NavBar = () => {
                     <div className="navbar-nav ml-auto">
                         <Link className="nav-link" to='/'>Home</Link>
                         <div className="nav-item dropdown" >
-                            <Link className="nav-link dropdown-toggle" id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</Link>
+                            <Link className="nav-link dropdown-toggle" id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Art Works</Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownLink">
                                 <Link className="nav-link dropdown-item text-center" to='/products/arabic caligraphy'>Arabic Calligraphy</Link>
                                 <Link className="nav-link dropdown-item text-center" to='/products/illustration'>Illustration</Link>

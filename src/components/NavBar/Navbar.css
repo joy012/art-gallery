@@ -23,3 +23,6 @@
 .dropdown-item:hover{
     background-color: #eee;
 }
+.dropdown-menu{
+    border: none!important;
+}
