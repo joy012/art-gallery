@@ -18,6 +18,7 @@ export const UserContext = createContext();
 
 function App() {
   const [role, setRole] = useState('');
+  const [cart, setCart] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [user, setUser] = useState({
     isSignedIn: false,
@@ -60,7 +61,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser]}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart]}>
       <Router>
         < NavBar />
         <Switch>

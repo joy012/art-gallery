@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.png'
 import './Navbar.css';
 
 const NavBar = () => {
     const location = useLocation();
-    const isLocation = location.pathname === '/login' || location.hash === '#/reset';
-
+    const isLocation = location.pathname === '/about';
     return (
-        <nav className={`navbar navbar-expand-md navbar-light text-dark`}>
+        <nav className={`navbar navbar-expand-md fixed-top ${isLocation? 'navbar-dark' : 'navbar-light'}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img className="nav-logo rounded-circle" src={logo} alt="" />
@@ -32,7 +31,7 @@ const NavBar = () => {
                         <Link className="nav-link" to='/about'>About</Link>
                         <Link className="nav-link" to='/review'>Reviews</Link>
                         <Link className="nav-link d-flex flex-row align-items-center justify-content-center" to='/cart'>
-                            <i className="fas fa-shopping-cart"></i>
+                            <i className={`fas fa-shopping-cart ${isLocation? 'text-white' : ''}`}></i>
                             <span className="badge badge-danger">9</span>
                         </Link>
                         {
@@ -44,7 +43,7 @@ const NavBar = () => {
                                 :
                                 location.pathname !== '/login' ?
                                 <Link className="nav-link" to='/login'>
-                                    <button className="btn btn-dark rounded-pill px-4">LogIn</button>
+                                    <button className="btn btn-primary rounded-pill px-4">LogIn</button>
                                 </Link>
                                 : ''
                         }

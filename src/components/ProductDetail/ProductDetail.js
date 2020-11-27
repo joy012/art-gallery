@@ -1,14 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { UserContext } from '../../App';
 import data from '../../DataBase';
 
 const ProductDetail = () => {
     const { key } = useParams()
     const [product, setProduct] = useState({});
+    const [,,,,cart, setCart] = useContext(UserContext);
+    const [showAdd, setShowAdd] = useState(true);
 
     useEffect(() => {
         setProduct(data.find(pd => pd.key === key))
     }, [key])
+
+    // if(product.key){
+    //     const isAdded = cart.find(pd => pd.key === product.key);
+    //     if(isAdded.key){
+    //         setShowAdd(false);
+    //     }
+    //     else{
+    //         setShowAdd(false);
+    //     }
+    // }
+
+    const addProduct = (e,key) => {
+        const updatedCart = [...cart, product];
+        sessionStorage.setItem('cart', updatedCart);
+        setCart(updatedCart);
+    }
 
     return (
         <main className='container py-5 my-5'>
@@ -34,7 +53,10 @@ const ProductDetail = () => {
                     <div class="alert alert-danger" role="alert">
                         <h6>Price may vary depending on Frame size</h6>
                     </div>
-                    <button className='btn btn-success'>Add To Cart</button>
+                    {
+                        showAdd? <button onClick={(e) => addProduct(e,product.key)} className='btn btn-success'>Add To Cart</button>
+                        : <button className='btn btn-secondary disabled'>Add To Cart</button>
+                    }
                 </div>
             </div>
         </main>

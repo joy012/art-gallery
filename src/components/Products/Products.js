@@ -6,7 +6,7 @@ import Bounce from 'react-reveal/Bounce';
 const Products = () => {
     const param = useParams();
     return (
-        <main>
+        <main className='margin-top'>
             <h1 className='text-capitalize text-center py-5'>{param.name}</h1>
             <div className="container">
                 <div className="row">
