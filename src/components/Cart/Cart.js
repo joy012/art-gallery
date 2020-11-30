@@ -38,6 +38,7 @@ const Cart = () => {
                     </tbody>
                 </table>
             </div>
+            <button className='d-block mx-auto btn btn-warning my-4'>Proceed To Checkout</button>
         </div>
     );
 };
