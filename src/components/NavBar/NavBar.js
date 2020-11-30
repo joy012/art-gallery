@@ -6,8 +6,12 @@ import './Navbar.css';
 const NavBar = () => {
     const location = useLocation();
     const isLocation = location.pathname === '/about';
+   
+    const cart = JSON.parse(sessionStorage.getItem('cart'));
+    
+
     return (
-        <nav className={`navbar navbar-expand-md fixed-top ${isLocation? 'navbar-dark' : 'navbar-light'}`}>
+        <nav className={`navbar navbar-expand-md fixed-top navbar-light  ${isLocation? 'bg-light' : ''}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img className="nav-logo rounded-circle" src={logo} alt="" />
@@ -17,7 +21,7 @@ const NavBar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav ml-auto">
-                        <Link className="nav-link" to='/'>Home</Link>
+                        <Link className="nav-link " to='/'>Home</Link>
                         <div className="nav-item dropdown" >
                             <Link className="nav-link dropdown-toggle" id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Art Works</Link>
                             <div className="dropdown-menu" aria-labelledby="dropDownLink">
@@ -29,10 +33,10 @@ const NavBar = () => {
                             </div>
                         </div>
                         <Link className="nav-link" to='/about'>About</Link>
-                        <Link className="nav-link" to='/review'>Reviews</Link>
+                        {/* <Link className="nav-link" to='/review'>Reviews</Link> */}
                         <Link className="nav-link d-flex flex-row align-items-center justify-content-center" to='/cart'>
-                            <i className={`fas fa-shopping-cart ${isLocation? 'text-white' : ''}`}></i>
-                            <span className="badge badge-danger">9</span>
+                            <i className='fas fa-shopping-cart'></i>
+                            <span className="badge badge-danger">{cart? `${cart.length}`: '0'}</span>
                         </Link>
                         {
                             sessionStorage.getItem('name') && 

@@ -1,32 +1,48 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import data from '../../DataBase';
 
 const ProductDetail = () => {
     const { key } = useParams()
+    const history = useHistory();
     const [product, setProduct] = useState({});
-    const [,,,,cart, setCart] = useContext(UserContext);
+    const [, , , , cart, setCart] = useContext(UserContext);
     const [showAdd, setShowAdd] = useState(true);
 
     useEffect(() => {
         setProduct(data.find(pd => pd.key === key))
     }, [key])
 
-    // if(product.key){
-    //     const isAdded = cart.find(pd => pd.key === product.key);
-    //     if(isAdded.key){
-    //         setShowAdd(false);
-    //     }
-    //     else{
-    //         setShowAdd(false);
-    //     }
-    // }
+    useEffect(() => {
+        const savedCart = JSON.parse(sessionStorage.getItem('cart'));
+        let isAdded;
+        if (savedCart) {
+            isAdded = savedCart.find(pd => pd.key === product.key);
+            console.log(isAdded)
+            if (isAdded !== undefined) {
+                setShowAdd(false);
+            }
+            else {
+                setShowAdd(true);
+            }
+        }
 
-    const addProduct = (e,key) => {
+    }, [product.key,showAdd])
+
+
+    const addProduct = (key) => {
         const updatedCart = [...cart, product];
-        sessionStorage.setItem('cart', updatedCart);
+        sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
+        alert('You have add a produt in cart');
+        history.goBack();
+    }
+
+    const warning = () => {
+        alert('You have already added this in your cart');
+        window.location.reload();
+        history.goBack();
     }
 
     return (
@@ -48,14 +64,14 @@ const ProductDetail = () => {
                         <h5 className='mb-2'>Frame Details:</h5>
                         <p className='mb-2'>Material: </p>
                         <p>Color: </p>
-                        
+
                     </div>
                     <div class="alert alert-danger" role="alert">
                         <h6>Price may vary depending on Frame size</h6>
                     </div>
                     {
-                        showAdd? <button onClick={(e) => addProduct(e,product.key)} className='btn btn-success'>Add To Cart</button>
-                        : <button className='btn btn-secondary disabled'>Add To Cart</button>
+                        showAdd ? <button onClick={() => addProduct(product.key)} className='btn btn-success'>Add To Cart</button>
+                            : <button onClick={warning} className='btn btn-secondary disabled'>Add To Cart</button>
                     }
                 </div>
             </div>

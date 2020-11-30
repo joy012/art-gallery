@@ -7,14 +7,19 @@
     background-color: rgba(235, 233, 233, 0.7);
 } */
 .nav-logo{
-    width: 35%;
+    width: 25%;
 
 }
 .nav-link{
     font-weight: 600;
+    color: rgb(0, 0, 0)!important;
     font-size: 1.1rem!important;
     padding: 1rem!important;
     text-align: center;
+}
+
+.white-color{
+    color: !important;
 }
 .fa-shopping-cart{
     font-size: 2rem;

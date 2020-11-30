@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import About from './components/About/About';
+import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
@@ -79,6 +80,9 @@ function App() {
           </Route>
           <Route exact path='/productDetail/:key'>
             <ProductDetail />
+          </Route>
+          <Route path='/cart'>
+            <Cart />
           </Route>
           <Route exact path='/'>
             <Home />

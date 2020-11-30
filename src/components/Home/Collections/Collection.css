@@ -9,7 +9,7 @@
     padding-bottom: 0!important;
 }
 .collection-card:hover{
-    transform: scale(1.1)!important;
+    transform: scale(1.2)!important;
     border-radius: 20px!important;
     cursor: pointer;
 }

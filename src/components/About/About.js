@@ -50,7 +50,7 @@ const About = () => {
                 loop={Infinity}
                 wrapper="p"
             />
-            <p className="text-white text-center p-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dignissimos sunt suscipit enim animi velit repudiandae dolores optio soluta iste cum cupiditate ipsam ex, ea, fugiat aperiam illum debitis incidunt. Exercitationem veniam obcaecati perferendis repudiandae dolor sint eaque a mollitia, dolorum voluptatibus tenetur natus, ipsam praesentium officia cumque? Quas?</p>
+            <p className="text-white text-center pt-3 w-75 mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium minus dignissimos sunt suscipit enim animi velit repudiandae dolores optio soluta iste cum cupiditate ipsam ex, ea, fugiat aperiam illum debitis incidunt. Exercitationem veniam obcaecati perferendis repudiandae dolor sint eaque a mollitia, dolorum voluptatibus tenetur natus, ipsam praesentium officia cumque? Quas?</p>
         </section>
     );
 };
