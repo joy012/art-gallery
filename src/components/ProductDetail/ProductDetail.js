@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import data from '../../DataBase';
 
 const ProductDetail = () => {
@@ -19,7 +21,6 @@ const ProductDetail = () => {
         let isAdded;
         if (savedCart) {
             isAdded = savedCart.find(pd => pd.key === product.key);
-            console.log(isAdded)
             if (isAdded !== undefined) {
                 setShowAdd(false);
             }
@@ -27,26 +28,21 @@ const ProductDetail = () => {
                 setShowAdd(true);
             }
         }
+    }, [product.key])
 
-    }, [product.key,showAdd])
 
-
-    const addProduct = (key) => {
+    const addProduct = (e, key) => {
         const updatedCart = [...cart, product];
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-        alert('You have add a produt in cart');
-        history.goBack();
+        NotificationManager.success('You have added a artwork to your cart', 'Success!', 3000);
+        e.target.style.display = 'none';
     }
 
-    const warning = () => {
-        alert('You have already added this in your cart');
-        window.location.reload();
-        history.goBack();
-    }
 
     return (
         <main className='container py-5 my-5'>
+            <NotificationContainer />
             <div className="row align-items-center justify-content-center">
                 <div class="col-md-6 col-md-offset">
                     <img src={product.image} className='w-75 d-block mx-auto' alt="" />
@@ -66,12 +62,9 @@ const ProductDetail = () => {
                         <p>Color: </p>
 
                     </div>
-                    <div class="alert alert-danger" role="alert">
-                        <h6>Price may vary depending on Frame size</h6>
-                    </div>
                     {
-                        showAdd ? <button onClick={() => addProduct(product.key)} className='btn btn-success'>Add To Cart</button>
-                            : <button onClick={warning} className='btn btn-secondary disabled'>Add To Cart</button>
+                        showAdd ? <button onClick={(e) => addProduct(e, product.key)} className='btn btn-success'>Add To Cart</button>
+                            : <button onClick={() => history.goBack()} className='btn btn-secondary disabled'>Already Added</button>
                     }
                 </div>
             </div>

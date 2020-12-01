@@ -18,12 +18,9 @@
     text-align: center;
 }
 
-.white-color{
-    color: !important;
-}
 .fa-shopping-cart{
     font-size: 2rem;
-    color: black;
+    color: black!important;
 }
 .dropdown-item{
     color: black!important;

@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import About from './components/About/About';
 import Cart from './components/Cart/Cart';
-import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import NavBar from './components/NavBar/NavBar';
@@ -88,7 +87,6 @@ function App() {
             <Home />
           </Route>
         </Switch>
-        <Footer />
       </Router>
     </UserContext.Provider>
   );

@@ -7,8 +7,8 @@ const Products = () => {
     const param = useParams();
     return (
         <main className='margin-top'>
-            <h1 className='text-capitalize text-center py-5'>{param.name}</h1>
-            <div className="container">
+            <h1 className='text-capitalize text-center py-4'>{param.name}</h1>
+            <div className="container pb-5">
                 <div className="row">
                     {
                         data.map(product =>

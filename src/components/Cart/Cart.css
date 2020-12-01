@@ -1,3 +1,18 @@
 table td{
     vertical-align: middle!important;
 }
+.img-td{
+    width: 20%!important;
+}
+
+
+@media screen and (max-width: 767px){
+    .img-td{
+        width: 35%!important;
+    }
+}
+@media screen and (max-width: 575px){
+    .img-td{
+        min-width: 35vw!important;
+    }
+}
