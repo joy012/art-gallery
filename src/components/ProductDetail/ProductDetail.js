@@ -14,15 +14,15 @@ const ProductDetail = () => {
     const [showAdd, setShowAdd] = useState(true);
 
     useEffect(() => {
-        setProduct(data.find(pd => pd.name === key))
+        setProduct(data.find(pd => pd.key === key))
     }, [key])
+
 
     useEffect(() => {
         const savedCart = JSON.parse(sessionStorage.getItem('cart'));
         let isAdded;
-        console.log(savedCart)
         if (savedCart) {
-            isAdded = savedCart.find(pd => pd.name === product.name);
+            isAdded = savedCart.find(pd => pd.name === product?.name);
             if (isAdded) {
                 setShowAdd(false);
             }
@@ -33,7 +33,7 @@ const ProductDetail = () => {
         else {
             setShowAdd(true);
         }
-    }, [product.name])
+    }, [product])
 
     const handleChange = (e) => {
         const updatedDetail = {...orderDetail};
@@ -45,23 +45,23 @@ const ProductDetail = () => {
         const updatedCart = [...cart, product];
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-        store.addNotification({
-            title: "Success!",
-            message: "Artwork successfully added to your cart",
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 3000,
-                onScreen: true
-            }
-        });
         e.target.style.display = 'none';
         setTimeout(() => {
+            store.addNotification({
+                title: "Success!",
+                message: "Artwork successfully added to your cart",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 3000,
+                    onScreen: true
+                }
+            });
             history.push('/')
-        }, 3500)
+        }, 3000)
     }
 
 
@@ -72,12 +72,12 @@ const ProductDetail = () => {
                 <div className="row align-items-center justify-content-center">
 
                     <div class="col-md-6 col-md-offset">
-                        <img src={product.image} className='w-75 d-block mx-auto' alt="" />
+                        <img src={product?.image} className='w-75 d-block mx-auto' alt="" />
                     </div>
 
                     <div class="col-md-5">
-                        <h2 className='my-3'>{product.name}</h2>
-                        <h3>BDT {product.price}</h3>
+                        <h2 className='my-3'>{product?.name}</h2>
+                        <h3>BDT {product?.price}</h3>
 
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label for="exampleFormControlSelect0" className='h4 font-weight-bold'>Paper:</label>
