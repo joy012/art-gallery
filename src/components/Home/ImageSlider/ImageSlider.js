@@ -45,13 +45,13 @@ const ImageSlider = () => {
     };
 
     return (
-        <section className="px-5 py-3 container margin-top rounded my-5">
+        <section className="px-5 container margin-top rounded my-5">
             <div className="pb-4" >
                 <h1 className="text-center pb-5">Welcome To <span style={{ color: '#7AB259' }}>Tonu's Creation</span></h1>
                 <Slider {...settings}>
                     {
                         data.map(product =>
-                            <div className='px-3 img-container'>
+                            <div key={product.name} className='px-3 img-container'>
                                 <img className='w-100' src={product.image} alt="" />
                             </div>
                         )

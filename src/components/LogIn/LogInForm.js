@@ -11,12 +11,11 @@ import { UserContext } from '../../App';
 const LogInForm = () => {
     const [loggedInUser, setLoggedInUser, user, setUser] = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
-    initializeLogInFrameWork();
-
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+    initializeLogInFrameWork();
     const handleResponse = (response) => {
         setUser(response);
         setLoggedInUser(response);
@@ -31,7 +30,7 @@ const LogInForm = () => {
         handleFbSignIn()
             .then(res => handleResponse(res))
     }
-    const handleBlur = (e) => {
+    const handleChange = (e) => {
         let isFieldValid = true;
         if (e.target.name === 'email') {
             isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
@@ -73,7 +72,7 @@ const LogInForm = () => {
     }
 
     return (
-        <section className="container">
+        <section className="container my-5">
             <div className="login-form">
                 {
                     user.error && <div className="alert alert-danger alert-dismissible fade show" role="alert">
@@ -100,28 +99,28 @@ const LogInForm = () => {
                         newUser && <>
                             <div className="form-group">
                                 <div className="input-group">
-                                    <input onBlur={handleBlur} type="text" className="form-control" name="firstName" placeholder="First Name" required />
+                                    <input onChange={handleChange} type="text" className="form-control" name="firstName" placeholder="First Name" required />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="input-group">
-                                    <input onBlur={handleBlur} type="text" className="form-control" name="lastName" placeholder="Last Name" required />
+                                    <input onChange={handleChange} type="text" className="form-control" name="lastName" placeholder="Last Name" required />
                                 </div>
                             </div>
                         </>
                     }
                     <div className="form-group">
-                        <input onBlur={handleBlur} type="email" className="form-control" name="email" placeholder="Email Address" required />
+                        <input onChange={handleChange} type="email" className="form-control" name="email" placeholder="Email Address" required />
                     </div>
                     {
                         !(location.hash === '#/reset') &&
                         <div className="form-group">
-                            <input onBlur={handleBlur} type="password" className="form-control" name="password" placeholder="Password" required />
+                            <input onChange={handleChange} type="password" className="form-control" name="password" placeholder="Password" required />
                         </div>
                     }
                     {
                         newUser && <div className="form-group">
-                            <input onBlur={handleBlur} type="password" className="form-control" name="confirmPassword" placeholder="Confirm Password" required />
+                            <input onChange={handleChange} type="password" className="form-control" name="confirmPassword" placeholder="Confirm Password" required />
                         </div>
                     }
                     <div className="form-group">

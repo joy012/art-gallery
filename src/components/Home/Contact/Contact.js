@@ -3,7 +3,7 @@ import ContactForm from './ContactForm/ContactForm';
 
 const Contact = () => {
     return (
-        <section style={{ backgroundColor: '#eee' }} className='px-5'>
+        <section style={{ background: '#ebf3fd' }} className='px-5'>
             <div className="container py-4">
                 <div className="row justify-content-center">
                     <div className="col-md-5 mb-2">

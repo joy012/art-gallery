@@ -1,12 +1,14 @@
+#service{
+    background-color: #ebf3fd;
+}
+.card-bg{
+    background: #ebf3fd;
+}
 .service-card{
-    border-radius: 38% 0 38% 0;
+    box-shadow: -6px -6px 20px rgba(255,255,255,1), 6px 6px 20px rgba(0,0,0,0.1);
+    border-radius: 25%;
     height:100%!important;
     text-align: center!important;
-}
-.service-card:hover{
-    background-color: #fafffd;
-    cursor: pointer;
-    box-shadow: 8px 8px 15px lightgray, -8px -8px 15px lightgray;
 }
 .service-logo{
     width: 26%!important;
@@ -14,8 +16,9 @@
 
 .service-card:hover {
     border: none;
-    background: linear-gradient(135deg, #02a2f8 0%, #28f29c 100%);
-    color:white;
+    background: #ebf3fd;
+    box-shadow: inset -6px -6px 10px rgba(255,255,255,0.5), inset 6px 6px 10px rgba(0,0,0,0.1);
+    color:black;
     cursor: pointer;
 }
 
@@ -33,6 +36,9 @@
 @media screen and (max-width:575px){
     .service-logo{
         width: 48%!important;
+    }
+    .service-card h4{
+        font-size: 1.3rem;
     }
 }
 @media screen and (max-width:400px){

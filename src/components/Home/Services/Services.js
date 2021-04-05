@@ -1,26 +1,29 @@
 import React from 'react';
 import services from '../../../DataBase/services';
 import Zoom from 'react-reveal/Zoom';
+import Bounce from 'react-reveal/Bounce';
 import './Services.css';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
     return (
-        <section className='py-5 my-5'>
-            <h2 className='text-center py-5'>Our Services</h2>
+        <section id='service' className='py-5 my-5'>
+            <Bounce right duration={1500}>
+                <h2 className='text-center pt-4'>Services</h2>
+            </Bounce>
             <div className="container">
-                <div className="row justify-content-center align-items-center">
+                <div className="row justify-content-center align-items-center py-4">
                     {
                         services.map(service =>
-                            <div className="col-md-4 col-6 my-3">
-                                <Zoom right duration={2600}>
-                                <Link to={`/products/${service.name.toLocaleLowerCase()}`}>
-                                    <div className="card">
-                                        <div className="card-body service-card">
-                                            <img src={service.image} className='rounded-circle d-block service-logo mx-auto my-3' alt="" />
-                                            <h4 className="card-title">{service.name}</h4>  
+                            <div key={service.name} className="col-md-4 col-6 my-4">
+                                <Zoom right duration={2000}>
+                                    <Link to={`/products/${service.name.toLocaleLowerCase()}`}>
+                                        <div className="card h-100 card-bg">
+                                            <div className="card-body service-card">
+                                                <img src={service.image} className='rounded-circle d-block service-logo mx-auto my-3' alt="" />
+                                                <h4 className="card-title">{service.name}</h4>
+                                            </div>
                                         </div>
-                                    </div>
                                     </Link>
                                 </Zoom>
                             </div>

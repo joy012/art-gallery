@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,8 +17,10 @@ import Products from './components/Products/Products';
 export const UserContext = createContext();
 
 function App() {
+  const [deliveryFee, setDeliveryFee] = useState(0);
   const [role, setRole] = useState('');
   const [cart, setCart] = useState([]);
+  const [orderDetail, setOrderDetail] = useState({})
   const [loggedInUser, setLoggedInUser] = useState({});
   const [user, setUser] = useState({
     isSignedIn: false,
@@ -33,9 +35,13 @@ function App() {
     newUser: false
   })
 
-  if (user.firstName && user.lastName) {
-    user.name = user.firstName + ' ' + user.lastName;
-  }
+  useEffect(() => {
+    if (user.firstName && user.lastName) {
+      user.name = user.firstName + ' ' + user.lastName;
+    }
+  }, [user])
+
+
 
 
   const data = async () => {
@@ -44,24 +50,9 @@ function App() {
     return response;
   }
 
-  if (loggedInUser.email && loggedInUser.name && !loggedInUser.role) {
-    sessionStorage.setItem('name', loggedInUser.name);
-    sessionStorage.setItem('email', loggedInUser.email);
-    data().then(data => {
-      if (data.length !== 0) {
-        setRole('admin');
-        sessionStorage.setItem('role', role);
-      }
-      else {
-        setRole('user');
-        sessionStorage.setItem('role', role);
-      }
-    })
-
-  }
 
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart]}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, deliveryFee, setDeliveryFee]}>
       <Router>
         < NavBar />
         <Switch>
