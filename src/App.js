@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import About from './components/About/About';
 import Cart from './components/Cart/Cart';
+import CheckOut from './components/CheckOut/CheckOut';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import NavBar from './components/NavBar/NavBar';
@@ -73,6 +74,9 @@ function App() {
           </Route>
           <Route path='/cart'>
             <Cart />
+          </Route>
+          <Route path='/checkout'>
+            <CheckOut />
           </Route>
           <Route exact path='/'>
             <Home />

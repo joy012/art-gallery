@@ -15,13 +15,13 @@ const Collection = () => {
                     data.map(collection =>
                         <Bounce key={collection.name} left duration={3000}>
                             <div className="col-lg-3 col-md-4 col-6 mb-4 collection-card">
-                                <Link to={`/productDetail/${collection.key}`}>
+                                <Link to={`/productDetail/${collection?.key}`}>
                                         <div className="card">
                                             <div className="card-body">
-                                                <img className="card-img-top w-100" src={collection.image} alt="" />
+                                                <img className="card-img-top w-100" src={collection?.image} alt="" />
                                             </div>
                                             <div className="card-footer">
-                                                <h6 className='text-center card-title'>{collection.name || 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}</h6>
+                                                <h6 className='text-center card-title'>{collection?.name}</h6>
                                             </div>
                                         </div>
                                 </Link>

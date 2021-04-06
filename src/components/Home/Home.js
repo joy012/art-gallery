@@ -1,9 +1,9 @@
 import React from 'react';
 import Collection from './Collections/Collection';
 import Contact from './Contact/Contact';
+import Footer from './Footer/Footer';
 import ImageSlider from './ImageSlider/ImageSlider';
 import Services from './Services/Services';
-import Footer from './Footer/Footer'
 
 const Home = () => {
     return (
@@ -12,7 +12,7 @@ const Home = () => {
             <Services />
             <Collection />
             <Contact />
-            <Footer />
+            <Footer/>
         </div>
     );
 };

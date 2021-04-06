@@ -14,15 +14,25 @@ const ProductDetail = () => {
     const [showAdd, setShowAdd] = useState(true);
 
     useEffect(() => {
-        setProduct(data.find(pd => pd.key === key))
-    }, [key])
-
+        const productDetail = data.find(pd => pd.key === key)
+        setProduct(productDetail)
+        sessionStorage.setItem('productDetail', JSON.stringify(productDetail))
+        setCart(JSON.parse(sessionStorage.getItem('cart')))
+    }, [key, setCart])
 
     useEffect(() => {
         const savedCart = JSON.parse(sessionStorage.getItem('cart'));
         let isAdded;
-        if (savedCart) {
-            isAdded = savedCart.find(pd => pd.name === product?.name);
+        if (savedCart?.length) {
+            isAdded = savedCart.find(pd => {
+                if (pd.name === product?.name) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+
             if (isAdded) {
                 setShowAdd(false);
             }
@@ -36,31 +46,38 @@ const ProductDetail = () => {
     }, [product])
 
     const handleChange = (e) => {
-        const updatedDetail = {...orderDetail};
+        const updatedDetail = { ...orderDetail };
         updatedDetail[e.target.name] = e.target.value;
         setOrderDetail(updatedDetail)
     }
 
     const addProduct = e => {
-        const updatedCart = [...cart, product];
+        let updatedCart;
+        if (cart?.length) {
+            updatedCart = [...cart, product];
+        }
+        else {
+            updatedCart = [product]
+        }
+
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
         e.target.style.display = 'none';
+        store.addNotification({
+            title: "Success!",
+            message: "Artwork successfully added to your cart",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 3000,
+                onScreen: true
+            }
+        });
         setTimeout(() => {
-            store.addNotification({
-                title: "Success!",
-                message: "Artwork successfully added to your cart",
-                type: "success",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 3000,
-                    onScreen: true
-                }
-            });
-            history.push('/')
+            history.push('/');
         }, 3000)
     }
 
