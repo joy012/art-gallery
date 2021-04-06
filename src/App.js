@@ -21,7 +21,7 @@ function App() {
   const [deliveryFee, setDeliveryFee] = useState(0);
   const [role, setRole] = useState('');
   const [cart, setCart] = useState([]);
-  const [orderDetail, setOrderDetail] = useState([])
+  const [orderDetail, setOrderDetail] = useState({})
   const [loggedInUser, setLoggedInUser] = useState({});
   const [user, setUser] = useState({
     isSignedIn: false,

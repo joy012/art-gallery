@@ -47,18 +47,20 @@ const ProductDetail = () => {
     }, [product])
 
     const handleChange = (e) => {
-        const updatedDetail = {...detail}
+        const updatedDetail = { ...detail }
         updatedDetail[e.target.name] = e.target.value;
         setDetail(updatedDetail)
     }
 
+    console.log(detail)
+
     const addProduct = e => {
         let updatedCart;
         if (cart?.length) {
-            updatedCart = [...cart, {...detail, ...product}];
+            updatedCart = [...cart, { ...detail, ...product }];
         }
         else {
-            updatedCart = [{...detail, ...product}]
+            updatedCart = [{ ...detail, ...product }]
         }
 
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -100,8 +102,9 @@ const ProductDetail = () => {
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label for="exampleFormControlSelect0" className='h4 font-weight-bold'>Paper:</label>
                             <select onChange={handleChange} name='paper' class="form-control w-50" id="exampleFormControlSelect0" required>
-                                <option>Art Paper</option>
-                                <option>Canvas Paper</option>
+                                <option value='' disabled selected></option>
+                                <option value='Art Paper'>Art Paper</option>
+                                <option value='Canvas Paper'>Canvas Paper</option>
                             </select>
                         </div>
 
@@ -115,9 +118,10 @@ const ProductDetail = () => {
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect1" className='h6 font-weight-bold'>Size: </label>
                                 <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1" required>
-                                    <option>12 inch X 16 inch</option>
-                                    <option>10 inch X 14 inch</option>
-                                    <option>8 inch X 12 inch</option>
+                                    <option value='' disabled selected></option>
+                                    <option value='12 inch X 16 inch'>12 inch X 16 inch</option>
+                                    <option value='10 inch X 14 inch'>10 inch X 14 inch</option>
+                                    <option value='8 inch X 12 inch'>8 inch X 12 inch</option>
                                 </select>
                             </div>
                         </div>
@@ -128,17 +132,19 @@ const ProductDetail = () => {
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect2" className='h6 font-weight-bold'>Color: </label>
                                 <select onChange={handleChange} name='borderColor' class="form-control w-50" id="exampleFormControlSelect2" required>
-                                    <option>Black</option>
-                                    <option>White</option>
+                                    <option value='' disabled selected></option>
+                                    <option value='Black'>Black</option>
+                                    <option value='White'>White</option>
                                 </select>
                             </div>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect3" className='h6 font-weight-bold'>Size: </label>
                                 <select onChange={handleChange} name='borderSize' class="form-control w-50" id="exampleFormControlSelect3" required>
-                                    <option>No border</option>
-                                    <option>0.5 inch</option>
-                                    <option>1 inch</option>
+                                    <option value='' disabled selected></option>
+                                    <option value='NO border'>No border</option>
+                                    <option value='0.5 inch'>0.5 inch</option>
+                                    <option value='1 inch'>1 inch</option>
                                 </select>
                             </div>
                         </div>
@@ -146,8 +152,8 @@ const ProductDetail = () => {
                         {
                             showAdd && detail.frameSize && detail.borderSize && detail.borderColor ? <button onClick={addProduct} className='btn btn-success'>Add To Cart</button>
                                 : !showAdd ?
-                                <button onClick={() => history.goBack()} className='btn btn-outline-secondary disabled'>Already Added</button>
-                                : <button className='btn btn-secondary disabled'>Select Details</button>
+                                    <button onClick={() => history.goBack()} className='btn btn-outline-danger disabled'>Already Added</button>
+                                    : <button className='btn btn-secondary disabled'>Select Details</button>
                         }
                     </div>
                 </div>
