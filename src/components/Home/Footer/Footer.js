@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './Footer.css';

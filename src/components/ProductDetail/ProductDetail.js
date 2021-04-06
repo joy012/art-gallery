@@ -10,7 +10,8 @@ const ProductDetail = () => {
     const { key } = useParams()
     const history = useHistory();
     const [product, setProduct] = useState({});
-    const [, , , , cart, setCart, orderDetail, setOrderDetail] = useContext(UserContext);
+    const [detail, setDetail] = useState({})
+    const [, , , , cart, setCart] = useContext(UserContext);
     const [showAdd, setShowAdd] = useState(true);
 
     useEffect(() => {
@@ -46,18 +47,18 @@ const ProductDetail = () => {
     }, [product])
 
     const handleChange = (e) => {
-        const updatedDetail = { ...orderDetail };
+        const updatedDetail = {...detail}
         updatedDetail[e.target.name] = e.target.value;
-        setOrderDetail(updatedDetail)
+        setDetail(updatedDetail)
     }
 
     const addProduct = e => {
         let updatedCart;
         if (cart?.length) {
-            updatedCart = [...cart, product];
+            updatedCart = [...cart, {...detail, ...product}];
         }
         else {
-            updatedCart = [product]
+            updatedCart = [{...detail, ...product}]
         }
 
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -93,19 +94,19 @@ const ProductDetail = () => {
                     </div>
 
                     <div class="col-md-5">
-                        <h2 className='my-3'>{product?.name}</h2>
-                        <h3>BDT {product?.price}</h3>
+                        <h2 className='my-3 text-success'>{product?.name}</h2>
+                        <h3 className='text-danger'>BDT {product?.price}</h3>
 
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label for="exampleFormControlSelect0" className='h4 font-weight-bold'>Paper:</label>
-                            <select onChange={handleChange} name='paper' class="form-control w-50" id="exampleFormControlSelect0">
+                            <select onChange={handleChange} name='paper' class="form-control w-50" id="exampleFormControlSelect0" required>
                                 <option>Art Paper</option>
                                 <option>Canvas Paper</option>
                             </select>
                         </div>
 
                         <div className='my-4'>
-                            <h4 className='mb-2 font-weight-bold'>Frame Details</h4>
+                            <h4 className='mb-3 font-weight-bold'>Frame Details</h4>
 
                             <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Material:</span> Fiber Stick</h6>
 
@@ -113,7 +114,7 @@ const ProductDetail = () => {
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect1" className='h6 font-weight-bold'>Size: </label>
-                                <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1">
+                                <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1" required>
                                     <option>12 inch X 16 inch</option>
                                     <option>10 inch X 14 inch</option>
                                     <option>8 inch X 12 inch</option>
@@ -126,7 +127,7 @@ const ProductDetail = () => {
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect2" className='h6 font-weight-bold'>Color: </label>
-                                <select onChange={handleChange} name='borderColor' class="form-control w-50" id="exampleFormControlSelect2">
+                                <select onChange={handleChange} name='borderColor' class="form-control w-50" id="exampleFormControlSelect2" required>
                                     <option>Black</option>
                                     <option>White</option>
                                 </select>
@@ -134,7 +135,7 @@ const ProductDetail = () => {
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label for="exampleFormControlSelect3" className='h6 font-weight-bold'>Size: </label>
-                                <select onChange={handleChange} name='borderSize' class="form-control w-50" id="exampleFormControlSelect3">
+                                <select onChange={handleChange} name='borderSize' class="form-control w-50" id="exampleFormControlSelect3" required>
                                     <option>No border</option>
                                     <option>0.5 inch</option>
                                     <option>1 inch</option>
@@ -143,8 +144,10 @@ const ProductDetail = () => {
                         </div>
 
                         {
-                            showAdd ? <button onClick={addProduct} className='btn btn-success'>Add To Cart</button>
-                                : <button onClick={() => history.goBack()} className='btn btn-secondary disabled'>Already Added</button>
+                            showAdd && detail.frameSize && detail.borderSize && detail.borderColor ? <button onClick={addProduct} className='btn btn-success'>Add To Cart</button>
+                                : !showAdd ?
+                                <button onClick={() => history.goBack()} className='btn btn-outline-secondary disabled'>Already Added</button>
+                                : <button className='btn btn-secondary disabled'>Select Details</button>
                         }
                     </div>
                 </div>

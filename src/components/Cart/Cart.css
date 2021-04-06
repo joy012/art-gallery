@@ -15,4 +15,7 @@ table td{
     .img-td{
         min-width: 35vw!important;
     }
+    .productName{
+        font-size: 1rem!important;
+    }
 }

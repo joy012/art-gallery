@@ -4,7 +4,7 @@ import { UserContext } from '../../App';
 import './Cart.css';
 
 const Cart = () => {
-    const [, , , , cart, setCart, orderDetail ] = useContext(UserContext);
+    const [, , , , cart, setCart ] = useContext(UserContext);
 
     useEffect(() => {
         setCart(JSON.parse(sessionStorage.getItem('cart')));
@@ -36,10 +36,13 @@ const Cart = () => {
                                     cart?.map(pd =>
                                         <tr>
                                             <td className='img-td '><img src={pd?.image} className='w-100' alt="" /></td>
-                                            <td className='h5 w-50 text-center'>{pd?.name}</td>
-                                            <td className='h6 text-center'>BDT {pd?.price}</td>
+                                            <td className='w-50 text-center'>
+                                                <h4 className='productName'>{pd?.name}</h4>
+                                                <p>{pd?.frameSize}</p>
+                                            </td>
+                                            <td className='h5 text-center text-danger'>BDT {pd?.price}</td>
                                             <td >
-                                                <button onClick={() => removeItem(pd?.key)} className="btn btn-danger d-block mx-auto">Remove</button>
+                                                <button onClick={() => removeItem(pd?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                             </td>
                                         </tr>
                                     )
