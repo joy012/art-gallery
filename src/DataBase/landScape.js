@@ -2,7 +2,7 @@ const uuidv4 = require("uuid/v4")
 
 let landScape = [
     {
-        key: `${uuidv4()}`,
+        key: 't01',
         category: 'landscape',
         name: '',
         image: '',

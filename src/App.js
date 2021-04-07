@@ -78,6 +78,9 @@ function App() {
           <Route path='/checkout'>
             <CheckOut />
           </Route>
+          <Route path='/payment'>
+            <CheckOut />
+          </Route>
           <Route exact path='/'>
             <Home />
           </Route>

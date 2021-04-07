@@ -21,7 +21,7 @@ const Cart = () => {
         <div className='px-md-3 px-0 pt-5 mt-5'>
             {
                 cart?.length ?
-                    <h1 className='text-center px-3 display-5 text-success'>Total Item in Cart: <span className='text-danger'>{cart.length}</span></h1>
+                    <h1 className='text-center px-3 display-5 text-success'>Total ArtWork in Cart: <span className='text-danger'>{cart.length}</span></h1>
                     : <h1 className='text-center px-3 display-5 text-danger'>Your Cart is Empty!</h1>
 
             }
@@ -47,15 +47,11 @@ const Cart = () => {
                                         </tr>
                                     )
                                 }
-                                <tr>
-                                    <td colspan='2' className='h3 text-center'>Total Cost: </td>
-                                    <td colspan='2' className='h4 text-center'>BDT {cart.reduce((total, current) => total + current?.price, 0)}</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <Link to='/checkout'>
-                        <button className='d-block ml-md-auto mx-auto mx-md-0 btn-lg btn-primary mb-5'>Proceed To Checkout</button>
+                        <button className='d-block mx-auto btn-lg btn-primary mb-5'>Proceed To Checkout</button>
                     </Link>
                 </>
                 :

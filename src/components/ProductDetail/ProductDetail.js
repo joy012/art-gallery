@@ -14,17 +14,18 @@ const ProductDetail = () => {
     const [, , , , cart, setCart] = useContext(UserContext);
     const [showAdd, setShowAdd] = useState(true);
 
+
     useEffect(() => {
         const productDetail = data.find(pd => pd.key === key)
-        setProduct(productDetail)
         sessionStorage.setItem('productDetail', JSON.stringify(productDetail))
-        setCart(JSON.parse(sessionStorage.getItem('cart')))
-    }, [key, setCart])
+        setProduct(JSON.parse(sessionStorage.getItem('productDetail')));
+    }, [key])
 
     useEffect(() => {
         const savedCart = JSON.parse(sessionStorage.getItem('cart'));
         let isAdded;
         if (savedCart?.length) {
+            setCart(savedCart);
             isAdded = savedCart.find(pd => {
                 if (pd.name === product?.name) {
                     return true;
@@ -44,7 +45,7 @@ const ProductDetail = () => {
         else {
             setShowAdd(true);
         }
-    }, [product])
+    }, [product, setCart])
 
     const handleChange = (e) => {
         const updatedDetail = { ...detail }
@@ -52,9 +53,9 @@ const ProductDetail = () => {
         setDetail(updatedDetail)
     }
 
-    console.log(detail)
 
     const addProduct = e => {
+        sessionStorage.removeItem('productDetail')
         let updatedCart;
         if (cart?.length) {
             updatedCart = [...cart, { ...detail, ...product }];
