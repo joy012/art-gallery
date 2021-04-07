@@ -40,7 +40,7 @@ const ContactForm = () => {
             <div className="form-group">
                 <textarea onBlur={handleBlur} className="form-control"  rows="8" placeholder="Your message..."></textarea>
             </div>
-            <input type='submit' className='btn btn-dark px-5 d-block ml-md-auto mx-auto mx-md-0' value='Send'/>
+            <input type='submit' className='btn btn-success px-5 d-block ml-md-auto mx-auto mx-md-0' value='Send'/>
         </form>
     );
 };

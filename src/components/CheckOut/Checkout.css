@@ -1,0 +1,21 @@
+.payment-card{
+    background-color: #ebf3fd;
+    box-shadow: -5px -5px 10px rgba(255,255,255,1), 5px 5px 10px gray;
+    border-radius: 16px;
+    padding: 1rem;
+}
+.payment-card:focus-within{
+    border: none;
+    box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5), inset 5px 5px 10px gray;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 575px){
+    .pay{
+        width: 75%!important;
+        margin: 0rem!important;
+    }
+    .payment-card{
+        min-height: 200px!important;
+    }
+}

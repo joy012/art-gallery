@@ -2,19 +2,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { UserContext } from '../../../App';
+import money from '../../../images/money.png';
+import bkash from '../../../images/bkash.png';
+import '../Checkout.css'
 
 const CheckoutForm = () => {
     const [, , , , cart, setCart, orderDetail, setOrderDetail] = useContext(UserContext);
     const [districts, setDistricts] = useState([]);
     const location = useLocation();
     const history = useHistory();
+    const subtotal = cart.reduce((total, current) => total + current?.price, 0);
+    const shippingCost = orderDetail?.city === 'Sylhet' ? 60 : 150
 
     useEffect(() => {
         fetch('https://bdapis.herokuapp.com/api/v1.0/districts')
             .then(res => res.json())
             .then(data => setDistricts(data.data))
         setCart(JSON.parse(sessionStorage.getItem('cart')))
-    }, [setCart])
+        sessionStorage.getItem('orderDetail') !== null &&
+            setOrderDetail(JSON.parse(sessionStorage.getItem('orderDetail')))
+    }, [setCart, setOrderDetail])
 
     const handleOnChange = e => {
         let isFieldValid = true;
@@ -29,12 +36,18 @@ const CheckoutForm = () => {
             const updatedOrderDetail = { ...orderDetail };
             updatedOrderDetail[e.target.name] = e.target.value;
             setOrderDetail(updatedOrderDetail);
+            sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetail))
         }
     }
 
     const handleSubmit = e => {
         e.preventDefault();
+        getOrderDetail();
         history.push('/payment')
+    }
+
+    const getOrderDetail = () => {
+        setOrderDetail(JSON.parse(sessionStorage.getItem('orderDetail')))
     }
 
     return (
@@ -59,31 +72,45 @@ const CheckoutForm = () => {
                         {
                             cart.map(pd =>
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <p class="font-wight-bold">{pd?.name}</p>
-                                        <small class="font-weight-bold">Details:</small>
+                                    <div className='row w-75'>
+                                        <h5 class="font-weight-bold col-12">{pd?.name}</h5>
                                         <br />
-                                        <small class="font-weight-bold">Paper Type:  </small>
-                                        <small>{pd?.paper}</small>
+                                        <small class="font-weight-bold col-6">Paper Type:  </small>
+                                        <small className='col-6'>{pd?.paper}</small>
                                         <br />
-                                        <small class="font-weight-bold">Size:  </small>
-                                        <small>{pd?.frameSize}</small>
+                                        <small class="font-weight-bold col-6">Size:  </small>
+                                        <small className='col-6'>{pd?.frameSize}</small>
                                         <br />
-                                        <small class="font-weight-bold">Border Size:  </small>
-                                        <small>{pd?.borderSize}</small>
+                                        <small class="font-weight-bold col-6">Border Size:  </small>
+                                        <small className='col-6'>{pd?.borderSize}</small>
                                         <br />
-                                        <small class="font-weight-bold">Border Color:  </small>
-                                        <small>{pd?.borderColor}</small>
+                                        <small class="font-weight-bold col-6">Border Color:  </small>
+                                        <small className='col-6'>{pd?.borderColor}</small>
                                     </div>
-                                    <span >BDT{pd?.price}</span>
+                                    <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {pd?.price}</h5>
                                 </li>
                             )
                         }
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                            <h5>Subtotal: </h5>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>Subtotal: </h5>
+                                <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {subtotal}</h5>
                             </div>
-                            <span className='font-weight-bold'>BDT{cart.reduce((total,current) => total + current?.price, 0)}</span>
+                            {
+                                location.pathname === '/payment' &&
+                                <>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5>Sipping Cost: </h5>
+                                        <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {shippingCost}</h5>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5>Total: </h5>
+                                        <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {subtotal + shippingCost}</h5>
+                                    </div>
+                                </>
+                            }
+
                         </li>
                     </ul>
 
@@ -120,8 +147,8 @@ const CheckoutForm = () => {
 
                                     <div className='col-md-6'>
                                         <div class="from-group mb-4">
-                                            <label for="district">City</label>
-                                            <select class="form-control" onChange={handleOnChange} name='district' id="district">
+                                            <label for="city">City</label>
+                                            <select class="form-control" onChange={handleOnChange} name='city' id="city">
                                                 <option selected disabled>Select Your City</option>
                                                 {
                                                     districts.map(districtData =>
@@ -139,7 +166,13 @@ const CheckoutForm = () => {
                                 </div>
 
                                 <hr class="mb-4" />
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to Payment</button>
+                                {
+                                    orderDetail.name && orderDetail.email && orderDetail.city && orderDetail.address && orderDetail.mobile ?
+                                        <button class="btn btn-success btn-lg d-block mx-auto" type="submit">Continue to Payment</button>
+                                        :
+                                        <button class="btn btn-secondary btn-lg d-block mx-auto disabled">Continue to Payment</button>
+                                }
+
                             </form>
                         </>
                     }
@@ -148,6 +181,30 @@ const CheckoutForm = () => {
                         location.pathname === '/payment' &&
                         <>
                             <h4 class="mb-4">Select Your Payment Option</h4>
+                            <div className={`row align-items-center justify-content-between`}>
+                                {
+                                    orderDetail?.city === 'Sylhet' &&
+                                    <div className="card h-100 col-6">
+                                        <div className="payment-card card-body text-center">
+                                            <div>
+                                                <img className="w-25 my-4 pay" src={money} alt="" />
+                                            </div>
+                                            <h5 className="card-title">Cash On Delivery</h5>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div className={`card h-100 col-6 ${orderDetail?.city === 'Sylhet' ? '' : 'd-block mx-auto'}`}>
+                                    <div className="payment-card card-body text-center">
+                                        <div>
+                                            <img className="w-25 my-4 pay" src={bkash} alt="" />
+                                        </div>
+                                        <h5 className="card-title">Bkash</h5>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </>
                     }
                 </div>

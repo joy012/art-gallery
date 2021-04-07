@@ -66,7 +66,6 @@ const ProductDetail = () => {
 
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-        e.target.style.display = 'none';
         store.addNotification({
             title: "Success!",
             message: "Artwork successfully added to your cart",
@@ -80,9 +79,6 @@ const ProductDetail = () => {
                 onScreen: true
             }
         });
-        setTimeout(() => {
-            history.push('/');
-        }, 3000)
     }
 
 
@@ -93,7 +89,7 @@ const ProductDetail = () => {
                 <div className="row align-items-center justify-content-center">
 
                     <div class="col-md-6 col-md-offset">
-                        <img src={product?.image} className='w-75 d-block mx-auto' alt="" />
+                        <img src={product?.image} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
                     </div>
 
                     <div class="col-md-5">
@@ -120,9 +116,9 @@ const ProductDetail = () => {
                                 <label for="exampleFormControlSelect1" className='h6 font-weight-bold'>Size: </label>
                                 <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1" required>
                                     <option value='' disabled selected></option>
-                                    <option value='12 inch X 16 inch'>12 inch X 16 inch</option>
-                                    <option value='10 inch X 14 inch'>10 inch X 14 inch</option>
-                                    <option value='8 inch X 12 inch'>8 inch X 12 inch</option>
+                                    <option value='12 inch X 16 inch'>12 X 16 inch</option>
+                                    <option value='10 inch X 14 inch'>10 X 14 inch</option>
+                                    <option value='8 inch X 12 inch'>8 X 12 inch</option>
                                 </select>
                             </div>
                         </div>
@@ -151,10 +147,10 @@ const ProductDetail = () => {
                         </div>
 
                         {
-                            showAdd && detail.frameSize && detail.borderSize && detail.borderColor ? <button onClick={addProduct} className='btn btn-success'>Add To Cart</button>
+                            showAdd && detail.frameSize && detail.borderSize && detail.borderColor ? <button onClick={addProduct} className='btn btn-success  w-50'>Add To Cart</button>
                                 : !showAdd ?
-                                    <button onClick={() => history.goBack()} className='btn btn-outline-danger disabled'>Already Added</button>
-                                    : <button className='btn btn-secondary disabled'>Select Details</button>
+                                    <button onClick={() => history.push('/cart')} className='btn btn-dark w-50'>Go To Cart</button>
+                                    : <h5 className='text-warning'>Please Select All Details Carefully</h5>
                         }
                     </div>
                 </div>

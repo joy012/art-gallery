@@ -9,7 +9,7 @@ const Services = () => {
     return (
         <section id='service' className='py-5 my-5'>
             <Bounce right duration={1500}>
-                <h2 className='text-center pt-4'>Services</h2>
+                <h2 className='text-center pt-4'>ArtWork Type</h2>
             </Bounce>
             <div className="container">
                 <div className="row justify-content-center align-items-center py-4">

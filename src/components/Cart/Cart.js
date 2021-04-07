@@ -35,7 +35,7 @@ const Cart = () => {
                                 {
                                     cart?.map(pd =>
                                         <tr>
-                                            <td className='img-td '><img src={pd?.image} className='w-100' alt="" /></td>
+                                            <td className='img-td '><img src={pd?.image} draggable="false" className='w-100' alt="" /></td>
                                             <td className='w-50 text-center'>
                                                 <h4 className='productName'>{pd?.name}</h4>
                                                 <p>{pd?.frameSize}</p>
@@ -51,7 +51,7 @@ const Cart = () => {
                         </table>
                     </div>
                     <Link to='/checkout'>
-                        <button className='d-block mx-auto btn-lg btn-primary mb-5'>Proceed To Checkout</button>
+                        <button className='d-block mx-auto btn-lg btn-success mb-5'>Proceed To Checkout</button>
                     </Link>
                 </>
                 :

@@ -27,25 +27,25 @@
     background-repeat: no-repeat;
     width: 50px;
     height: 50px;
-    border: 1px solid black;
+    border: 1px solid ;
     border-radius: 50%;
     display: inline-block;
 }
 .icons ul li:nth-child(1) a{
-    background-position: -128px -505px;
+    background-position: -128px -764px;
 }
-.icons ul li:hover:nth-child(1) a{
+/* .icons ul li:hover:nth-child(1) a{
     background-position: -128px -764px;
 
-}
+} */
 
 .icons ul li:nth-child(2) a{
-    background-position: -372px -505px;
+    background-position: -372px -765px;
 }
 
 
-.icons ul li:hover:nth-child(2) a{
+/* .icons ul li:hover:nth-child(2) a{
     background-position: -372px -765px;
 
-}
+} */
 

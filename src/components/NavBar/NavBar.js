@@ -19,7 +19,7 @@ const NavBar = () => {
         <nav className={`navbar navbar-expand-md navbar-light ${isLocation ? '' : 'bg-light'}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
-                    <img className="nav-logo rounded-circle" src={logo} alt="" />
+                    <img draggable="false" className="nav-logo rounded-circle" src={logo} alt="" />
                 </Link>
                 <button className="navbar-toggler" type="button" onClick={handleExpand} data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
