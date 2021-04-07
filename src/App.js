@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import About from './components/About/About';
 import Cart from './components/Cart/Cart';
-import CheckOut from './components/CheckOut/CheckOut';
+import CheckOut from './components/CheckOut/Checkout';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import NavBar from './components/NavBar/NavBar';
@@ -22,6 +22,7 @@ function App() {
   const [role, setRole] = useState('');
   const [cart, setCart] = useState([]);
   const [orderDetail, setOrderDetail] = useState({})
+  const [paymentOption, setPaymentOption] = useState('');
   const [loggedInUser, setLoggedInUser] = useState({});
   const [user, setUser] = useState({
     isSignedIn: false,
@@ -53,7 +54,7 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, deliveryFee, setDeliveryFee]}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, paymentOption, setPaymentOption]}>
       <Router>
         < NavBar />
         <Switch>

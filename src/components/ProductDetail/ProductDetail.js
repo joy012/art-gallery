@@ -66,6 +66,7 @@ const ProductDetail = () => {
 
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
+        setShowAdd(false);
         store.addNotification({
             title: "Success!",
             message: "Artwork successfully added to your cart",
@@ -116,9 +117,9 @@ const ProductDetail = () => {
                                 <label for="exampleFormControlSelect1" className='h6 font-weight-bold'>Size: </label>
                                 <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1" required>
                                     <option value='' disabled selected></option>
-                                    <option value='12 inch X 16 inch'>12 X 16 inch</option>
-                                    <option value='10 inch X 14 inch'>10 X 14 inch</option>
-                                    <option value='8 inch X 12 inch'>8 X 12 inch</option>
+                                    <option value='12 X 16 inch'>12 X 16 inch</option>
+                                    <option value='10 X 14 inch'>10 X 14 inch</option>
+                                    <option value='8 X 12 inch'>8 X 12 inch</option>
                                 </select>
                             </div>
                         </div>

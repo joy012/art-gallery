@@ -1,11 +1,14 @@
-.payment-card{
+.payment-card-before{
     background-color: #ebf3fd;
     box-shadow: -5px -5px 10px rgba(255,255,255,1), 5px 5px 10px gray;
     border-radius: 16px;
     padding: 1rem;
 }
-.payment-card:focus-within{
+.payment-card-after{
     border: none;
+    background-color: #ebf3fd;
+    border-radius: 16px;
+    padding: 1rem;
     box-shadow: inset -5px -5px 10px rgba(255,255,255,0.5), inset 5px 5px 10px gray;
     cursor: pointer;
 }
@@ -15,7 +18,10 @@
         width: 75%!important;
         margin: 0rem!important;
     }
-    .payment-card{
+    .payment-card-after{
+        min-height: 200px!important;
+    }
+    .payment-card-before{
         min-height: 200px!important;
     }
 }
