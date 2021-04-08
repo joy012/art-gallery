@@ -16,7 +16,7 @@ const NavBar = () => {
     const isLocation = location.pathname === '/about';
 
     return (
-        <nav className={`navbar navbar-expand-md navbar-light ${isLocation ? '' : 'bg-light'}`}>
+        <nav className={`navbar navbar-expand-md navbar-light ${isLocation ? '' : 'nav-bg'}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img draggable="false" className="nav-logo rounded-circle" src={logo} alt="" />

@@ -13,12 +13,12 @@ import NavBar from './components/NavBar/NavBar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Products from './components/Products/Products';
+import DashBoard from './components/DashBoard/DashBoard'
 
 
 export const UserContext = createContext();
 
 function App() {
-  const [deliveryFee, setDeliveryFee] = useState(0);
   const [role, setRole] = useState('');
   const [cart, setCart] = useState([]);
   const [orderDetail, setOrderDetail] = useState({})
@@ -52,6 +52,25 @@ function App() {
     return response;
   }
 
+  useEffect(() => {
+    sessionStorage.getItem('login') === null &&
+    setLoggedInUser(JSON.parse(sessionStorage.getItem('login')));
+    data().then(data => {
+      if (data.length !== 0) {
+        setRole('admin');
+        const updateUser = { ...loggedInUser };
+        updateUser.role = role;
+        setLoggedInUser(updateUser);
+      }
+      else {
+        setRole('user');
+        const updateUser = { ...loggedInUser };
+        updateUser.role = role;
+        setLoggedInUser(updateUser);
+      }
+    })
+  },[])
+
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, paymentOption, setPaymentOption]}>
@@ -81,6 +100,12 @@ function App() {
           </Route>
           <Route path='/payment'>
             <CheckOut />
+          </Route>
+          <Route path='/dashBoard'>
+            <DashBoard />
+          </Route>
+          <Route path='/admin/addAdmin'>
+            <DashBoard />
           </Route>
           <Route exact path='/'>
             <Home />

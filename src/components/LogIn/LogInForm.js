@@ -17,8 +17,10 @@ const LogInForm = () => {
 
     initializeLogInFrameWork();
     const handleResponse = (response) => {
+        const updatedLoggedInUser = {...loggedInUser, ...response}
         setUser(response);
-        setLoggedInUser(response);
+        sessionStorage.setItem('login', JSON.stringify(updatedLoggedInUser));
+        setLoggedInUser(updatedLoggedInUser);
         !newUser && storeAuthToken();
         !response.error && history.replace(from);
     }

@@ -5,6 +5,7 @@ import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
 import data from '../../DataBase';
+import Footer from '../Home/Footer/Footer';
 
 const ProductDetail = () => {
     const { key } = useParams()
@@ -156,6 +157,7 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </main>
+            <Footer/>
         </>
     );
 };
