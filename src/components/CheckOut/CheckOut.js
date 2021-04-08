@@ -25,20 +25,10 @@ const Checkout = () => {
     }, [setCart, setOrderDetail])
 
     const handleOnChange = e => {
-        let isFieldValid = true;
-        if (e.target.name === 'email') {
-            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-            if (!isFieldValid) {
-                alert('Enter a valid email address');
-                e.target.value = '';
-            }
-        }
-        if (isFieldValid) {
-            const updatedOrderDetail = { ...orderDetail };
-            updatedOrderDetail[e.target.name] = e.target.value;
-            setOrderDetail(updatedOrderDetail);
-            sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetail))
-        }
+        const updatedOrderDetail = { ...orderDetail };
+        updatedOrderDetail[e.target.name] = e.target.value;
+        setOrderDetail(updatedOrderDetail);
+        sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetail))
     }
 
     const handleSubmit = e => {
