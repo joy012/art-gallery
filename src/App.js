@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -19,7 +20,7 @@ import DashBoard from './components/DashBoard/DashBoard'
 export const UserContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('');
+  const [databaseData, setDatabaseData] = useState(JSON.parse(sessionStorage.getItem('databaseProduct')) || []);
   const [cart, setCart] = useState([]);
   const [orderDetail, setOrderDetail] = useState({})
   const [paymentOption, setPaymentOption] = useState('');
@@ -38,41 +39,24 @@ function App() {
   })
 
   useEffect(() => {
+    fetch('http://localhost:1812/products')
+        .then(res => res.json())
+        .then(data => {
+            sessionStorage.setItem('databaseProduct', JSON.stringify(data))
+            setDatabaseData(data)
+        })
+}, [])
+
+  useEffect(() => {
+    sessionStorage.getItem('login') &&
+    setLoggedInUser(JSON.parse(sessionStorage.getItem('login')))
     if (user.firstName && user.lastName) {
       user.name = user.firstName + ' ' + user.lastName;
     }
   }, [user])
 
-  const data = async () => {
-    const fetchData = await fetch('https://creative-agency-spa.herokuapp.com/getAdmin?email=' + loggedInUser.email);
-    const response = await fetchData.json();
-    return response;
-  }
-
-  useEffect(() => {
-    sessionStorage.getItem('login') !== null &&
-    setLoggedInUser(JSON.parse(sessionStorage.getItem('login')));
-    data().then(data => {
-      if (data.length !== 0) {
-        sessionStorage.setItem('role', JSON.stringify('admin'));
-        setRole('admin');
-        const updateUser = { ...loggedInUser };
-        updateUser.role = role;
-        setLoggedInUser(updateUser);
-      }
-      else {
-        sessionStorage.setItem('role', JSON.stringify('user'));
-        setRole('user');
-        const updateUser = { ...loggedInUser };
-        updateUser.role = role;
-        setLoggedInUser(updateUser);
-      }
-    })
-  },[])
-
-
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, paymentOption, setPaymentOption]}>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser, user, setUser, cart, setCart, orderDetail, setOrderDetail, paymentOption, setPaymentOption, databaseData, setDatabaseData]}>
       <Router>
         < NavBar />
         <Switch>
@@ -88,24 +72,30 @@ function App() {
           <Route exact path='/products/:name'>
             <Products />
           </Route>
-          <Route exact path='/productDetail/:key'>
+          <Route exact path='/productDetail/:id'>
             <ProductDetail />
           </Route>
           <Route path='/cart'>
             <Cart />
           </Route>
-          <Route path='/checkout'>
+          <PrivateRoute path='/checkout'>
             <CheckOut />
-          </Route>
-          <Route path='/payment'>
+          </PrivateRoute>
+          <PrivateRoute path='/payment'>
             <CheckOut />
-          </Route>
-          <Route path='/dashBoard'>
+          </PrivateRoute>
+          <PrivateRoute path='/dashBoard'>
             <DashBoard />
-          </Route>
-          <Route path='/admin/addAdmin'>
+          </PrivateRoute>
+          <PrivateRoute path='/admin/addAdmin'>
             <DashBoard />
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute path='/admin/addProduct'>
+            <DashBoard />
+          </PrivateRoute>
+          <PrivateRoute path='/admin/allProduct'>
+            <DashBoard />
+          </PrivateRoute>
           <Route exact path='/'>
             <Home />
           </Route>

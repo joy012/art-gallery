@@ -37,12 +37,12 @@ const Cart = () => {
                                         {
                                             cart?.map(pd =>
                                                 <tr>
-                                                    <td className='img-td '><img src={pd?.image} draggable="false" className='w-100' alt="" /></td>
+                                                    <td className='img-td '><img src={`data:image/png;base64,${pd?.image?.img}`} draggable="false" className='w-100' alt="" /></td>
                                                     <td className='w-50 text-center'>
                                                         <h4 className='productName'>{pd?.name}</h4>
                                                         <p>{pd?.frameSize}</p>
                                                     </td>
-                                                    <td className='h5 text-center text-danger'>BDT {pd?.price}</td>
+                                                    <td className='h5 text-center text-danger'><span className='h2 font-weight-bold text-danger'>৳</span>{pd?.price}</td>
                                                     <td >
                                                         <button onClick={() => removeItem(pd?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                                     </td>

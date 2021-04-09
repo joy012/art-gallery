@@ -3,19 +3,25 @@ import React, { useEffect, useState } from 'react';
 const AllProducts = () => {
     const [allProduct, setAllProduct] = useState([]);
     useEffect(() => {
-        fetch('https://creative-agency-spa.herokuapp.com/orders')
+        fetch('http://localhost:1812/products')
             .then(res => res.json())
             .then(data => {
-                sessionStorage.setItem('allProduct', JSON.stringify(data));
                 setAllProduct(data);
             })
     }, [])
 
-    const removeItem = key => {
-        const savedCart = JSON.parse(sessionStorage.getItem('allProduct'));
-        const updateStore = savedCart.filter(product => product.key !== key);
-        sessionStorage.setItem('allProduct', JSON.stringify(updateStore));
-        setAllProduct(updateStore);
+    const removeItem = id => {
+        fetch(`http://localhost:1812/deleteTask/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result) {
+                    alert('One Product removed')
+                }
+            })
+            const updatedList = allProduct.filter(product => product._id !== id)
+            setAllProduct(updatedList);
     }
     return (
         <>
@@ -35,7 +41,7 @@ const AllProducts = () => {
                                             </td>
                                             <td className='h5 text-center text-danger'>BDT {pd?.price}</td>
                                             <td >
-                                                <button onClick={() => removeItem(pd?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
+                                                <button onClick={() => removeItem(pd?._id)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                             </td>
                                         </tr>
                                     )

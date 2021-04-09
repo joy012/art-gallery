@@ -10,7 +10,7 @@ const AddAdmin = () => {
     }
     const handleService = e => {
 
-        fetch('https://creative-agency-spa.herokuapp.com/addAdmin', {
+        fetch('http://localhost:1812/addAdmin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(admin)

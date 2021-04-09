@@ -13,7 +13,7 @@ const Checkout = () => {
     const [showStep, setShowStep] = useState(false);
     const location = useLocation();
     const history = useHistory();
-    const subtotal = cart.reduce((total, current) => total + current?.price, 0);
+    const subtotal = cart.reduce((total, current) => total + parseInt(current?.price), 0);
     const shippingCost = orderDetail?.city === 'Sylhet' ? 60 : 150
 
     useEffect(() => {
@@ -233,7 +233,7 @@ const Checkout = () => {
                                                             <h6><span className='font-weight-bold'>Step 1: </span> Dial *247#</h6>
                                                             <h6><span className='font-weight-bold'>Step 2: </span> Select Send Money.</h6>
                                                             <h6><span className='font-weight-bold'>Step 3: </span> Enter <span className='h5 text-danger'>01756463229</span> as Receiver account number.</h6>
-                                                            <h6><span className='font-weight-bold'>Step 4: </span> Enter BDT <span className='h5 text-danger'>{subtotal + shippingCost}</span> to pay.</h6>
+                                                            <h6><span className='font-weight-bold'>Step 4: </span> Enter <span className='h2 text-danger'>৳</span><span className='h5 text-danger'>{subtotal + shippingCost}</span> to pay.</h6>
                                                             <h6><span className='font-weight-bold'>Step 5: </span> Enter <span className='h5 text-danger'>{orderDetail?.mobile.slice(7, 11)}</span> as reference.</h6>
                                                             <h6><span className='font-weight-bold'>Step 6: </span>Enter your PIN Number and pay.</h6>
                                                         </div>

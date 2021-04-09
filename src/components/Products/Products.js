@@ -17,7 +17,7 @@ const Products = () => {
                                 <Bounce top duration={3000}>
 
                                     <div className="col-lg-3 col-md-4 col-6 mb-5 collection-card">
-                                        <Link to={`/productDetail/${product.key}`}>
+                                        <Link to={`/productDetail/${product?._id}`}>
                                             <div className="card w-100">
                                                 <div className="card-body">
                                                     <img className="card-img-top" src={product.image} alt="" />

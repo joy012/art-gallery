@@ -14,7 +14,7 @@ const Customer = () => {
     const location = useLocation();
 
     return (
-        <div className='container px-0 mx-auto'>
+        <div className='container px-0 mx-auto mt-md-5 mt-0'>
             {
                 !loggedInUser?.role &&
                 <div class="text-center mt-5 pt-5">
@@ -26,7 +26,7 @@ const Customer = () => {
                 loggedInUser?.role &&
                 <div className="row full-height">
                     <div className="col-md-3">
-                        <nav className="nav flex-column justify-content-center my-5 ml-auto">
+                        <nav className="nav flex-column justify-content-center align-items-md-start align-items-center my-5 ml-auto">
 
                             {
                                 loggedInUser?.role === 'admin' &&
@@ -34,18 +34,18 @@ const Customer = () => {
                                     <Link to='/dashBoard' className="my-4 text-dark"><i class="fas fa-suitcase"></i> All Order</Link>
                                     <Link to='/admin/addProduct' className="mb-4 text-dark"><i class="fas fa-plus"></i> Add Product</Link>
                                     <Link to='/admin/addAdmin' className="mb-4 text-dark"><i class="fas fa-user-plus"></i> Make Admin</Link>
-                                    <Link to='/admin/allProduct' className="mb-4 text-dark"><i class="fas fa-shopping-cart"></i> All Product</Link>
+                                    <Link to='/admin/allProduct' className="mb-4 text-dark"><i class="fas fa-cart-arrow-down"></i> All Product</Link>
                                 </>
                             }
                             {
                                 loggedInUser?.role === 'user' &&
-                                <Link to='/dashboard/nyOrder' className="mb-4 text-dark"><i class="fas fa-shopping-cart"></i> My Order</Link>
+                                <Link to='/dashboard/nyOrder' className="mb-4 text-dark"><i class="fas fa-cart-arrow-down"></i> My Order</Link>
                             }
                             <Link to='/' className="text-dark"><i class="fas fa-home"></i> Home</Link>
                         </nav>
                     </div>
 
-                    <div className="col-sm-9 p-0 p-md-5" style={{ backgroundColor: "#F4F7FC", borderRadius: '16px' }}>
+                    <div className="col-md-9 p-0 p-md-5" style={{ backgroundColor: "#F4F7FC", borderRadius: '16px' }}>
                         {
                             loggedInUser?.role === 'admin' && location.pathname === '/dashBoard' &&
                             <AllOrder />

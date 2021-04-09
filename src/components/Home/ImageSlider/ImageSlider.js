@@ -1,9 +1,26 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
 import './ImageSlider.css';
-import data from '../../../DataBase/index';
 import Slider from "react-slick";
+import { UserContext } from '../../../App';
 
 const ImageSlider = () => {
+    // const [products, setProducts] = useState([]);
+    
+    // useEffect(() => {
+    //     fetch('http://localhost:1812/products')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             sessionStorage.setItem('databaseProduct', JSON.parse(data))
+    //             setProducts(data)
+    //         })
+    // }, [])
+
+    // if (sessionStorage.getItem('databaseProduct') !== null) {
+    //     setProducts(JSON.parse(sessionStorage.getItem('databaseProduct')))
+    // }
+
+    const [, , , , , , , , , , databaseData ] = useContext(UserContext);
 
     const settings = {
         className: "center",
@@ -50,9 +67,9 @@ const ImageSlider = () => {
                 <h1 className="text-center pb-5">Welcome To <span style={{ color: '#7AB259' }}>Tonu's Creation</span></h1>
                 <Slider {...settings}>
                     {
-                        data.map(product =>
-                            <div key={product.name} className='px-3 img-container'>
-                                <img className='w-100' src={product.image} alt="" />
+                        databaseData.map(product =>
+                            <div key={product?._id} className='px-3 img-container'>
+                                <img className='w-100' src={`data:image/png;base64,${product?.image.img}`} alt="" />
                             </div>
                         )
                     }

@@ -16,10 +16,29 @@ const LogInForm = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     initializeLogInFrameWork();
-    const handleResponse = (response) => {
-        const updatedLoggedInUser = {...loggedInUser, ...response}
-        setUser(response);
+
+    const handleResponse = async (response) => {
+        const fetchData = await fetch('http://localhost:1812/getAdmin?email=' + response.email);
+        const responseData = await fetchData.json();
+        const isEmail = responseData.find(res => {
+            if(res.email === response.email){
+                return true
+            }
+            else{
+                return false;
+            }
+        })
+        if (isEmail){
+            sessionStorage.setItem('role', JSON.stringify('admin'));
+        }
+        else {
+            sessionStorage.setItem('role', JSON.stringify('user'));
+        }
+
+        const updatedLoggedInUser = { ...loggedInUser, ...response }
+        updatedLoggedInUser['role'] = JSON.parse(sessionStorage.getItem('role'));
         sessionStorage.setItem('login', JSON.stringify(updatedLoggedInUser));
+        setUser(response);
         setLoggedInUser(updatedLoggedInUser);
         !newUser && storeAuthToken();
         !response.error && history.replace(from);
@@ -72,6 +91,7 @@ const LogInForm = () => {
             history.push('/login');
         }
     }
+
 
     return (
         <section className="container my-5">

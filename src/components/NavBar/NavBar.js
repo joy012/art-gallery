@@ -39,12 +39,17 @@ const NavBar = () => {
                         </div>
                         <Link className={`nav-link ${isLocation ? 'color-white' : ''}`} to='/about'>About</Link>
                         {/* <Link className="nav-link" to='/review'>Reviews</Link> */}
-                        <Link className={`nav-link d-flex flex-row align-items-center justify-content-center ${isLocation ? 'color-white' : ''}`} to='/cart'>
-                            <i className={`fas fa-shopping-cart ${isLocation ? 'fa-shopping-cart-dark' : ''}`}></i>
-                            <span className="badge badge-danger">{cart ? `${cart.length}` : '0'}</span>
-                        </Link>
                         {
-                            user?.email ? <Link className="btn">{user?.name}</Link>
+                            user?.role !== 'admin' &&
+                            <Link className={`nav-link d-flex flex-row align-items-center justify-content-center ${isLocation ? 'color-white' : ''}`} to='/cart'>
+                                <i className={`fas fa-shopping-cart ${isLocation ? 'fa-shopping-cart-dark' : ''}`}></i>
+                                <span className="badge badge-danger">{cart ? `${cart.length}` : '0'}</span>
+                            </Link>
+                        }
+                        {
+                            user?.email ? <Link className="nav-link" to='/dashboard'>
+                                <button className="btn btn-success rounded-pill px-4">{user.name}</button>
+                            </Link>
                                 :
                                 location.pathname !== '/login' ?
                                     <Link className="nav-link" to='/login'>

@@ -4,12 +4,12 @@ import { UserContext } from '../../App';
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
-import data from '../../DataBase';
 import Footer from '../Home/Footer/Footer';
 
 const ProductDetail = () => {
-    const { key } = useParams()
+    const { id } = useParams()
     const history = useHistory();
+    const [, , , , , , , , , , databaseData] = useContext(UserContext);
     const [product, setProduct] = useState({});
     const [detail, setDetail] = useState({})
     const [, , , , cart, setCart] = useContext(UserContext);
@@ -17,10 +17,12 @@ const ProductDetail = () => {
 
 
     useEffect(() => {
-        const productDetail = data.find(pd => pd.key === key)
+        console.log(id);
+        const productDetail = databaseData.find(pd => pd?._id === id)
+        console.log(productDetail)
         sessionStorage.setItem('productDetail', JSON.stringify(productDetail))
         setProduct(JSON.parse(sessionStorage.getItem('productDetail')));
-    }, [key])
+    }, [databaseData, id])
 
     useEffect(() => {
         const savedCart = JSON.parse(sessionStorage.getItem('cart'));
@@ -28,7 +30,7 @@ const ProductDetail = () => {
         if (savedCart?.length) {
             setCart(savedCart);
             isAdded = savedCart.find(pd => {
-                if (pd.name === product?.name) {
+                if (pd?._id === product?._id) {
                     return true;
                 }
                 else {
@@ -48,11 +50,11 @@ const ProductDetail = () => {
         }
     }, [product, setCart])
 
-    const handleChange = (e) => {
-        const updatedDetail = { ...detail }
-        updatedDetail[e.target.name] = e.target.value;
-        setDetail(updatedDetail)
-    }
+    // const handleChange = (e) => {
+    //     const updatedDetail = { ...detail }
+    //     updatedDetail[e.target.name] = e.target.value;
+    //     setDetail(updatedDetail)
+    // }
 
 
     const addProduct = e => {
@@ -91,73 +93,60 @@ const ProductDetail = () => {
                 <div className="row align-items-center justify-content-center">
 
                     <div class="col-md-6 col-md-offset">
-                        <img src={product?.image} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
+                        <img src={`data:image/png;base64,${product?.image?.img}`} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
                     </div>
 
                     <div class="col-md-5">
                         <h2 className='my-3 text-success'>{product?.name}</h2>
-                        <h3 className='text-danger'>BDT {product?.price}</h3>
+                        <h3 className='text-danger'><span className='h1 font-weight-bold text-danger'>৳</span>{product?.price}</h3>
 
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
-                            <label for="exampleFormControlSelect0" className='h4 font-weight-bold'>Paper:</label>
-                            <select onChange={handleChange} name='paper' class="form-control w-50" id="exampleFormControlSelect0" required>
-                                <option value='' disabled selected></option>
-                                <option value='Art Paper'>Art Paper</option>
-                                <option value='Canvas Paper'>Canvas Paper</option>
-                            </select>
+                            <label className='h5'>ArtWork:</label>
+                            <h6>{product?.artType}</h6>
+                        </div>
+
+                        <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
+                            <label className='h5'>Paper:</label>
+                            <h6>{product?.paper}</h6>
                         </div>
 
                         <div className='my-4'>
-                            <h4 className='mb-3 font-weight-bold'>Frame Details</h4>
+                            <h4 className='mb-3'>Frame Details</h4>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Material:</span> Fiber Stick</h6>
+                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold h5'>Material:</span> Fiber Stick</h6>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Color:</span> Black</h6>
+                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold h5'>Color:</span> Black</h6>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect1" className='h6 font-weight-bold'>Size: </label>
-                                <select onChange={handleChange} name='frameSize' class="form-control w-50" id="exampleFormControlSelect1" required>
-                                    <option value='' disabled selected></option>
-                                    <option value='12 X 16 inch'>12 X 16 inch</option>
-                                    <option value='10 X 14 inch'>10 X 14 inch</option>
-                                    <option value='8 X 12 inch'>8 X 12 inch</option>
-                                </select>
+                                <label for="exampleFormControlSelect1" className='h5 font-weight-bold'>Size: </label>
+                                <h6>{product?.size}</h6>
                             </div>
                         </div>
 
                         <div className='my-4'>
-                            <h4>Inside Border:</h4>
+                            <h4 className='mb-3'>Inside Border:</h4>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect2" className='h6 font-weight-bold'>Color: </label>
-                                <select onChange={handleChange} name='borderColor' class="form-control w-50" id="exampleFormControlSelect2" required>
-                                    <option value='' disabled selected></option>
-                                    <option value='Black'>Black</option>
-                                    <option value='White'>White</option>
-                                </select>
+                                <label for="exampleFormControlSelect2" className='h5 font-weight-bold'>Color: </label>
+                                <h6>{product?.borderSize}</h6>
                             </div>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect3" className='h6 font-weight-bold'>Size: </label>
-                                <select onChange={handleChange} name='borderSize' class="form-control w-50" id="exampleFormControlSelect3" required>
-                                    <option value='' disabled selected></option>
-                                    <option value='NO border'>No border</option>
-                                    <option value='0.5 inch'>0.5 inch</option>
-                                    <option value='1 inch'>1 inch</option>
-                                </select>
+                                <label for="exampleFormControlSelect3" className='h5 font-weight-bold'>Size: </label>
+                                <h6>{product?.borderColor}</h6>
                             </div>
                         </div>
 
                         {
-                            showAdd && detail.frameSize && detail.borderSize && detail.borderColor ? <button onClick={addProduct} className='btn btn-success  w-50'>Add To Cart</button>
-                                : !showAdd ?
-                                    <button onClick={() => history.push('/cart')} className='btn btn-dark w-50'>Go To Cart</button>
-                                    : <h5 className='text-warning'>Please Select All Details Carefully</h5>
+                            showAdd ?
+                                <button onClick={addProduct} className='btn btn-success  w-50'>Add To Cart</button>
+                                :
+                                <button onClick={() => history.push('/cart')} className='btn btn-dark w-50'>Go To Cart</button>
                         }
                     </div>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </>
     );
 };
