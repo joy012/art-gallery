@@ -9,7 +9,9 @@ const AddProduct = () => {
         formData.append('name', newProduct.name);
         formData.append('price', newProduct.price);
         formData.append('size', newProduct.size);
-        formData.append('size', newProduct.paper);
+        formData.append('paper', newProduct.paper);
+        formData.append('borderSize', newProduct.borderSize);
+        formData.append('borderColor', newProduct.borderColor);
 
         fetch('https://creative-agency-spa.herokuapp.com/addService', {
             method: 'POST',
