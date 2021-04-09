@@ -6,6 +6,7 @@ import AddProduct from './AdminPanel/AddProduct';
 import AllProduct from './AdminPanel/AllProducts';
 import AddAdmin from './AdminPanel/AddAdmin';
 import './DashBoard.css';
+import UserOrder from './UserPanel/UserOrder';
 
 
 const Customer = () => {
@@ -25,15 +26,22 @@ const Customer = () => {
                 loggedInUser?.role &&
                 <div className="row full-height">
                     <div className="col-md-3">
-                        <nav className="nav flex-column align-items-center my-5 ml-auto">
+                        <nav className="nav flex-column justify-content-center my-5 ml-auto">
 
-                            <>
-                                <Link to='/dashBoard' className="my-4 text-dark"><i class="fas fa-suitcase"></i> All Order</Link>
-                                <Link to='/admin/addProduct' className="mb-4 text-dark"><i class="fas fa-plus"></i> Add Product</Link>
-                                <Link to='/admin/addAdmin' className="mb-4 text-dark"><i class="fas fa-user-plus"></i> Make Admin</Link>
-                                <Link to='/admin/allProduct' className="mb-4 text-dark"><i class="fas fa-plus"></i> All Product</Link>
-                                <Link to='/' className="text-dark"><i class="fas fa-arrow-left"></i> Home</Link>
-                            </>
+                            {
+                                loggedInUser?.role === 'admin' &&
+                                <>
+                                    <Link to='/dashBoard' className="my-4 text-dark"><i class="fas fa-suitcase"></i> All Order</Link>
+                                    <Link to='/admin/addProduct' className="mb-4 text-dark"><i class="fas fa-plus"></i> Add Product</Link>
+                                    <Link to='/admin/addAdmin' className="mb-4 text-dark"><i class="fas fa-user-plus"></i> Make Admin</Link>
+                                    <Link to='/admin/allProduct' className="mb-4 text-dark"><i class="fas fa-shopping-cart"></i> All Product</Link>
+                                </>
+                            }
+                            {
+                                loggedInUser?.role === 'user' &&
+                                <Link to='/dashboard/nyOrder' className="mb-4 text-dark"><i class="fas fa-shopping-cart"></i> My Order</Link>
+                            }
+                            <Link to='/' className="text-dark"><i class="fas fa-home"></i> Home</Link>
                         </nav>
                     </div>
 
@@ -51,8 +59,12 @@ const Customer = () => {
                             <AllProduct />
                         }
                         {
-                            location.pathname === '/admin/addAdmin' &&
+                            loggedInUser?.role === 'admin' && location.pathname === '/admin/addAdmin' &&
                             <AddAdmin />
+                        }
+                        {
+                            loggedInUser?.role === 'user' && location.pathname === '/dashboard/myOrder' &&
+                            <UserOrder/>
                         }
                     </div>
                 </div>

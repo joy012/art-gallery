@@ -43,9 +43,6 @@ function App() {
     }
   }, [user])
 
-
-
-
   const data = async () => {
     const fetchData = await fetch('https://creative-agency-spa.herokuapp.com/getAdmin?email=' + loggedInUser.email);
     const response = await fetchData.json();
@@ -53,16 +50,18 @@ function App() {
   }
 
   useEffect(() => {
-    sessionStorage.getItem('login') === null &&
+    sessionStorage.getItem('login') !== null &&
     setLoggedInUser(JSON.parse(sessionStorage.getItem('login')));
     data().then(data => {
       if (data.length !== 0) {
+        sessionStorage.setItem('role', JSON.stringify('admin'));
         setRole('admin');
         const updateUser = { ...loggedInUser };
         updateUser.role = role;
         setLoggedInUser(updateUser);
       }
       else {
+        sessionStorage.setItem('role', JSON.stringify('user'));
         setRole('user');
         const updateUser = { ...loggedInUser };
         updateUser.role = role;

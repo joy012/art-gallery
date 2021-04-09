@@ -2,11 +2,13 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = ({ children, ...rest }) => {
-    return (
-        <Route
+  const user = JSON.parse(sessionStorage.getItem('login'));
+  const email = user.email;
+  return (
+    <Route
       {...rest}
       render={({ location }) =>
-        sessionStorage.getItem('name') || sessionStorage.getItem('token') ? (
+        email ? (
           children
         ) : (
           <Redirect
@@ -18,7 +20,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         )
       }
     />
-    );
+  );
 };
 
 export default PrivateRoute;

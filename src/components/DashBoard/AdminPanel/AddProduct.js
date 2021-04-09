@@ -65,6 +65,22 @@ const AddProduct = () => {
                 </div>
             </div>
 
+            <div className="row align-items-center">
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label htmlFor="borderSize"></label>
+                        <input onChange={handleChange} type="text" name='borderSize' className="form-control" id="borderSize" placeholder="Example: 1 x 1 inch" required />
+                    </div>
+                </div>
+
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label htmlFor="borderColor"></label>
+                        <input onChange={handleChange} type="text" name='borderColor' className="form-control" id="borderColor" placeholder="Enter Paper Type" required />
+                    </div>
+                </div>
+            </div>
+
             <div className="form-group">
                 <label htmlFor="img">Image</label>
                 <input onChange={handleFileChange} type="file" name="file" className="form-control-file" id="img" />

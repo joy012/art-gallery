@@ -1,0 +1,12 @@
+.serviceList-card{
+    border: none;
+    border-radius: 20px;
+}
+.card-container{
+    border: none;
+}
+.card-footer{
+    border: none;
+    background: #fff;
+    border-radius: 20px!important;
+}

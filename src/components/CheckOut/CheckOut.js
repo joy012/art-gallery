@@ -110,7 +110,7 @@ const Checkout = () => {
                                     location.pathname === '/payment' &&
                                     <>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5>Sipping Cost: </h5>
+                                            <h5>Shipping Cost: </h5>
                                             <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {shippingCost}</h5>
                                         </div>
 
