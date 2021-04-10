@@ -20,7 +20,7 @@ const Cart = () => {
 
     return (
         <>
-            <div className='px-md-3 px-0 pt-5 mt-5'>
+            <div className='px-md-3 px-0 pt-5 mt-5 cart'>
                 {
                     cart?.length ?
                         <h1 className='text-center px-3 display-5 text-success'>Total ArtWork in Cart: <span className='text-danger'>{cart.length}</span></h1>
@@ -40,9 +40,9 @@ const Cart = () => {
                                                     <td className='img-td '><img src={`data:image/png;base64,${pd?.image?.img}`} draggable="false" className='w-100' alt="" /></td>
                                                     <td className='w-50 text-center'>
                                                         <h4 className='productName'>{pd?.name}</h4>
-                                                        <p>{pd?.frameSize}</p>
+                                                        <p>{pd?.size}</p>
                                                     </td>
-                                                    <td className='h5 text-center text-danger'><span className='h2 font-weight-bold text-danger'>৳</span>{pd?.price}</td>
+                                                    <td className='h5 text-center text-success'><span className='h2 font-weight-bold text-success'>৳</span>{pd?.price}</td>
                                                     <td >
                                                         <button onClick={() => removeItem(pd?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                                     </td>
@@ -60,7 +60,7 @@ const Cart = () => {
                         ''
                 }
             </div>
-            <Footer />
+            <Footer className='fixed-bottom' />
         </>
     );
 };

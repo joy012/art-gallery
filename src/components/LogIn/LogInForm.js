@@ -18,7 +18,7 @@ const LogInForm = () => {
     initializeLogInFrameWork();
 
     const handleResponse = async (response) => {
-        const fetchData = await fetch('http://localhost:1812/getAdmin?email=' + response.email);
+        const fetchData = await fetch('https://tonus-creation.herokuapp.com/getAdmin?email=' + response.email);
         const responseData = await fetchData.json();
         const isEmail = responseData.find(res => {
             if(res.email === response.email){

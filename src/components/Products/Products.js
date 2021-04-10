@@ -35,7 +35,7 @@ const Products = () => {
                                                 </div>
                                                 <div className="card-footer">
                                                     <h5 className='text-center card-title'>{product?.name}</h5>
-                                                    <h6 className='text-center'><span className='h1 font-weight-bold text-danger'>৳</span> {product?.price}</h6>
+                                                    <h4 className='text-center text-success'><span className='h1 font-weight-bold text-success'>৳</span>{product?.price}</h4>
                                                 </div>
                                             </div>
                                         </Link>

@@ -3,24 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import './ImageSlider.css';
 import Slider from "react-slick";
 import { UserContext } from '../../../App';
+import { database } from 'firebase';
 
 const ImageSlider = () => {
-    // const [products, setProducts] = useState([]);
-    
-    // useEffect(() => {
-    //     fetch('http://localhost:1812/products')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             sessionStorage.setItem('databaseProduct', JSON.parse(data))
-    //             setProducts(data)
-    //         })
-    // }, [])
-
-    // if (sessionStorage.getItem('databaseProduct') !== null) {
-    //     setProducts(JSON.parse(sessionStorage.getItem('databaseProduct')))
-    // }
-
-    const [, , , , , , , , , , databaseData ] = useContext(UserContext);
+    const [, , , , , , , , , , databaseData] = useContext(UserContext);
 
     const settings = {
         className: "center",
@@ -63,19 +49,29 @@ const ImageSlider = () => {
 
     return (
         <section className="px-5 container margin-top rounded my-5">
-            <div className="pb-4" >
-                <h1 className="text-center pb-5">Welcome To <span style={{ color: '#7AB259' }}>Tonu's Creation</span></h1>
-                <Slider {...settings}>
-                    {
-                        databaseData.map(product =>
-                            <div key={product?._id} className='px-3 img-container'>
-                                <img className='w-100' src={`data:image/png;base64,${product?.image.img}`} alt="" />
-                            </div>
-                        )
-                    }
+            {
+                databaseData.length === 0 ?
+                    <div className='text-center'>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
 
-                </Slider>
-            </div>
+                    :
+                    <div className="pb-4" >
+                        <h1 className="text-center pb-5">Welcome To <span style={{ color: '#7AB259' }}>Tonu's Creation</span></h1>
+                        <Slider {...settings}>
+                            {
+                                databaseData.map(product =>
+                                    <div key={product?._id} className='px-3 img-container'>
+                                        <img className='w-100' src={`data:image/png;base64,${product?.image.img}`} alt="" />
+                                    </div>
+                                )
+                            }
+
+                        </Slider>
+                    </div>
+            }
         </section>
     );
 };

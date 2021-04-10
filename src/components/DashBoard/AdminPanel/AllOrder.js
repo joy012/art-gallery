@@ -21,6 +21,7 @@ const AllOrder = () => {
     }, [])
 
     const removeItem = key => {
+        console.log(key, typeof(key))
         const savedOrder = JSON.parse(sessionStorage.getItem('allOrder'));
         const updateStore = savedOrder.filter(order => order.key !== key);
         sessionStorage.setItem('allOrder', JSON.stringify(updateStore));
@@ -29,7 +30,7 @@ const AllOrder = () => {
 
     const handleStatusChange = (e,txId) => {
         console.log(e.value)
-        fetch(`https://creative-agency-server-f.herokuapp.com/allOrder/${txId}`, {
+        fetch(`https://tonus-creation.herokuapp.com/allOrder`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: e.value })
@@ -57,9 +58,9 @@ const AllOrder = () => {
                 <tbody>
                     {
                         !allOrder?.length &&
-                        <div class="d-flex align-items-center">
+                        <div className="d-flex align-items-center">
                             <strong>Loading...</strong>
-                            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                            <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
                         </div>
                     }
                     {

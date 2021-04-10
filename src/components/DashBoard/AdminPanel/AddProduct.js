@@ -16,7 +16,7 @@ const AddProduct = () => {
             formData.append('artType', newProduct.artType);
             formData.append('borderColor', newProduct.borderColor);
             console.log(formData)
-            fetch('http://localhost:1812/addProduct', {
+            fetch('https://tonus-creation.herokuapp.com/addProduct', {
                 method: 'POST',
                 body: formData
             })
@@ -87,7 +87,7 @@ const AddProduct = () => {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label htmlFor="artType">Artwork Type</label>
-                        <select onChange={handleChange} name='artType' class="form-control w-50" id="artType" required>
+                        <select onChange={handleChange} name='artType' className="form-control w-50" id="artType" required>
                             <option value='' disabled selected></option>
                             <option value='Illustration'>Illustration</option>
                             <option value='Arabic Calligraphy'>Arabic Calligraphy</option>

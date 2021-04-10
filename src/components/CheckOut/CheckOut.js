@@ -8,13 +8,14 @@ import './Checkout.css'
 import Footer from '../Home/Footer/Footer';
 
 const Checkout = () => {
-    const [, , , , cart, setCart, orderDetail, setOrderDetail, paymentOption, setPaymentOption] = useContext(UserContext);
+    const [, , , , cart, setCart, orderDetail, setOrderDetail] = useContext(UserContext);
     const [districts, setDistricts] = useState([]);
     const [showStep, setShowStep] = useState(false);
     const location = useLocation();
     const history = useHistory();
     const subtotal = cart.reduce((total, current) => total + parseInt(current?.price), 0);
     const shippingCost = orderDetail?.city === 'Sylhet' ? 60 : 150
+    const totalPayment = shippingCost + subtotal;
 
     useEffect(() => {
         fetch('https://bdapis.herokuapp.com/api/v1.0/districts')
@@ -26,7 +27,7 @@ const Checkout = () => {
     }, [setCart, setOrderDetail])
 
     const handleOnChange = e => {
-        const updatedOrderDetail = { ...orderDetail };
+        const updatedOrderDetail = { ...orderDetail, "cart": cart, "paymentAmount": totalPayment, "status": 'PENDING' };
         updatedOrderDetail[e.target.name] = e.target.value;
         setOrderDetail(updatedOrderDetail);
         sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetail))
@@ -35,7 +36,6 @@ const Checkout = () => {
     const handleSubmit = e => {
         e.preventDefault();
         getOrderDetail();
-        getPaymentOption();
         history.push('/payment')
     }
 
@@ -43,25 +43,44 @@ const Checkout = () => {
         setOrderDetail(JSON.parse(sessionStorage.getItem('orderDetail')))
     }
 
-    const getPaymentOption = () => {
-        setPaymentOption(JSON.parse(sessionStorage.getItem('paymentOption')))
-    }
     const setBkash = () => {
-        sessionStorage.setItem('paymentOption', JSON.stringify('bkash'))
-        setPaymentOption('bkash');
-        setShowStep(true);
+        const updatedOrderDetails = { ...orderDetail, "paymentMethod": 'Bkash' };
+        setOrderDetail(updatedOrderDetails);
+        sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetails))
+        setShowStep(true)
     }
 
     const setCash = () => {
-        sessionStorage.setItem('paymentOption', JSON.stringify('cash'))
-        setPaymentOption('cash');
+        const updatedOrderDetails = { ...orderDetail, "paymentMethod": 'Cash On' };
+        setOrderDetail(updatedOrderDetails);
+        sessionStorage.setItem('orderDetail', JSON.stringify(updatedOrderDetails))
         setShowStep(true);
+    }
+
+    const placeOrder = () => {
+        console.log(orderDetail);
+        fetch('http://localhost:2152/addOrder', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderDetail)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result) {
+                    alert('one new service added successfully!');
+                    setCart({});
+                    setOrderDetail({});
+                    sessionStorage.removeItem('cart');
+                    sessionStorage.removeItem('orderDetail')
+                    history.replace('/dashboard/myOrder')
+                }
+            })
     }
 
 
     return (
         <>
-            <div class="container">
+            <div className="container">
 
                 {
                     location.pathname === '/checkout' ?
@@ -72,51 +91,51 @@ const Checkout = () => {
                             : ''
                 }
 
-                <div class="row my-5">
-                    <div class="col-md-4 order-md-2 mb-4">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-primary">Artwork</span>
-                            <span class="badge badge-danger badge-pill">{cart.length}</span>
+                <div className="row my-5">
+                    <div className="col-md-4 order-md-2 mb-4">
+                        <h4 className="d-flex justify-content-between align-items-center mb-3">
+                            <span className="text-primary">Artwork</span>
+                            <span className="badge badge-danger badge-pill">{cart.length}</span>
                         </h4>
-                        <ul class="list-group mb-3">
+                        <ul className="list-group mb-3">
                             {
                                 cart.map(pd =>
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <li className="list-group-item d-flex justify-content-between lh-condensed">
                                         <div className='row w-75'>
-                                            <h5 class="font-weight-bold col-12">{pd?.name}</h5>
+                                            <h5 className="font-weight-bold col-12">{pd?.name}</h5>
                                             <br />
-                                            <small class="font-weight-bold col-6">Paper Type:  </small>
+                                            <small className="font-weight-bold col-6">Paper Type:  </small>
                                             <small className='col-6'>{pd?.paper}</small>
                                             <br />
-                                            <small class="font-weight-bold col-6">Size:  </small>
+                                            <small className="font-weight-bold col-6">Size:  </small>
                                             <small className='col-6'>{pd?.frameSize}</small>
                                             <br />
-                                            <small class="font-weight-bold col-6">Border Size:  </small>
+                                            <small className="font-weight-bold col-6">Border Size:  </small>
                                             <small className='col-6'>{pd?.borderSize}</small>
                                             <br />
-                                            <small class="font-weight-bold col-6">Border Color:  </small>
+                                            <small className="font-weight-bold col-6">Border Color:  </small>
                                             <small className='col-6'>{pd?.borderColor}</small>
                                         </div>
                                         <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {pd?.price}</h5>
                                     </li>
                                 )
                             }
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-center">
+                            <li className="list-group-item">
+                                <div className="d-flex justify-content-between align-items-center">
                                     <h5>Subtotal: </h5>
                                     <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {subtotal}</h5>
                                 </div>
                                 {
                                     location.pathname === '/payment' &&
                                     <>
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div className="d-flex justify-content-between align-items-center">
                                             <h5>Shipping Cost: </h5>
                                             <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {shippingCost}</h5>
                                         </div>
 
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div className="d-flex justify-content-between align-items-center">
                                             <h5>Total: </h5>
-                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {subtotal + shippingCost}</h5>
+                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {totalPayment}</h5>
                                         </div>
                                     </>
                                 }
@@ -125,40 +144,40 @@ const Checkout = () => {
                         </ul>
 
                     </div>
-                    <div class="col-md-8 order-md-1">
+                    <div className="col-md-8 order-md-1">
                         {
                             location.pathname === '/checkout' &&
                             <>
-                                <h4 class="mb-4">Billing address</h4>
-                                <form onSubmit={handleSubmit} class="needs-validation" novalidate autocomplete="off">
+                                <h4 className="mb-4">Billing address</h4>
+                                <form onSubmit={handleSubmit} className="needs-validation" novalidate autocomplete="off">
                                     <div className='row justify-content-between'>
                                         <div className='col-md-6'>
-                                            <div class="from-group mb-4">
+                                            <div className="from-group mb-4">
                                                 <label for="lastName">Name</label>
-                                                <input type="text" onChange={handleOnChange} class="form-control" id="lastName" name='name' placeholder="Enter Your Name" autocomplete="off" required />
+                                                <input type="text" onChange={handleOnChange} className="form-control" id="lastName" name='name' placeholder="Enter Your Name" autocomplete="off" required />
                                             </div>
                                         </div>
 
                                         <div className='col-md-6'>
-                                            <div class="from-group mb-4">
+                                            <div className="from-group mb-4">
                                                 <label for="email">Email</label>
-                                                <input type="email"  onChange={handleOnChange} class="form-control" id="email" name='email' placeholder="you@example.com" autocomplete="off" required />
+                                                <input type="email" onChange={handleOnChange} className="form-control" id="email" name='email' placeholder="you@example.com" autocomplete="off" required />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className='row justify-content-between'>
                                         <div className='col-md-6'>
-                                            <div class="from-group mb-4">
+                                            <div className="from-group mb-4">
                                                 <label for="phone">Mobile Number</label>
-                                                <input type="text" onChange={handleOnChange} class="form-control" id="phone" name='mobile' placeholder="Enter Your Mobile Number" autocomplete="off" required />
+                                                <input type="text" onChange={handleOnChange} className="form-control" id="phone" name='mobile' placeholder="Enter Your Mobile Number" autocomplete="off" required />
                                             </div>
                                         </div>
 
                                         <div className='col-md-6'>
-                                            <div class="from-group mb-4">
+                                            <div className="from-group mb-4">
                                                 <label for="city">City</label>
-                                                <select class="form-control" onChange={handleOnChange} name='city' id="city">
+                                                <select className="form-control" onChange={handleOnChange} name='city' id="city">
                                                     <option selected disabled>Select Your City</option>
                                                     {
                                                         districts.map(districtData =>
@@ -170,17 +189,17 @@ const Checkout = () => {
                                         </div>
                                     </div>
 
-                                    <div class="from-group mb-4">
+                                    <div className="from-group mb-4">
                                         <label for="address">Address</label>
-                                        <input type="text" onChange={handleOnChange} class="form-control" id="address" name='address' placeholder="Enter Your Full Address" autocomplete="off" required />
+                                        <input type="text" onChange={handleOnChange} className="form-control" id="address" name='address' placeholder="Enter Your Full Address" autocomplete="off" required />
                                     </div>
 
-                                    <hr class="mb-4" />
+                                    <hr className="mb-4" />
                                     {
                                         orderDetail.name && orderDetail.email && orderDetail.city && orderDetail.address && orderDetail.mobile ?
-                                            <button class="btn btn-success btn-lg d-block mx-auto" type="submit">Continue to Payment</button>
+                                            <button className="btn btn-success btn-lg d-block mx-auto" type="submit">Continue to Payment</button>
                                             :
-                                            <button class="btn btn-secondary btn-lg d-block mx-auto disabled">Continue to Payment</button>
+                                            <button className="btn btn-secondary btn-lg d-block mx-auto disabled">Continue to Payment</button>
                                     }
 
                                 </form>
@@ -190,26 +209,28 @@ const Checkout = () => {
                         {
                             location.pathname === '/payment' &&
                             <>
-                                <h4 class="mb-4">Select Your Payment Option</h4>
+                                <h4 className="mb-4">Select Your Payment Option</h4>
                                 <div className={`row align-items-center justify-content-between mb-4`}>
                                     {
                                         orderDetail?.city === 'Sylhet' &&
-                                        <div onClick={setCash} className="card h-100 col-6">
-                                            <div className={`${paymentOption === 'cash' ? 'payment-card-after' : 'payment-card-before'} card-body text-center`}>
+                                        <div className="card h-100 col-6">
+                                            <div className={`${orderDetail?.paymentMethod === 'Cash On' ? 'payment-card-after' : 'payment-card-before'} card-body text-center`}>
                                                 <div>
                                                     <img className="w-25 my-4 pay" src={money} alt="" />
                                                 </div>
                                                 <h5 className="card-title">Cash On Delivery</h5>
+                                                <button onClick={setCash} className='w-75 d-block mx-auto btn btn-danger'>Pay</button>
                                             </div>
                                         </div>
                                     }
 
-                                    <div onClick={setBkash} className={`card h-100 col-6 ${orderDetail?.city === 'Sylhet' ? '' : 'd-block mx-auto'}`}>
-                                        <div className={`${paymentOption === 'bkash' ? 'payment-card-after' : 'payment-card-before'} card-body text-center`}>
+                                    <div className={`card h-100 col-6 ${orderDetail?.city === 'Sylhet' ? '' : 'd-block mx-auto'}`}>
+                                        <div className={`${orderDetail?.paymentMethod === 'Bkash' ? 'payment-card-after' : 'payment-card-before'} card-body text-center`}>
                                             <div>
                                                 <img className="w-25 my-4 pay" src={bkash} alt="" />
                                             </div>
                                             <h5 className="card-title">Bkash</h5>
+                                            <button onClick={setBkash} className='w-75 d-block mx-auto btn btn-danger'>Pay</button>
                                         </div>
                                     </div>
                                 </div>
@@ -217,15 +238,15 @@ const Checkout = () => {
                                 <div className='p-2 mt-5'>
                                     {
                                         showStep ?
-                                            (paymentOption === 'cash' ?
+                                            (orderDetail?.paymentMethod === 'Cash On' ?
                                                 <>
-                                                    <h3 class='text-danger text-center mb-3'>Cash On Delivery</h3>
+                                                    <h3 className='text-danger text-center mb-3'>Cash On Delivery</h3>
                                                     <h5 className='text-center'>You can pay the Delivery Man at your doorstep!</h5>
                                                     <button className='btn btn-success d-block w-50 my-5 mx-auto'>Place Order</button>
                                                 </>
 
                                                 :
-                                                paymentOption === 'bkash' ?
+                                                orderDetail?.paymentMethod === 'Bkash' ?
                                                     <>
                                                         <h3 className='text-danger text-center mb-3'>Bkash Payment</h3>
                                                         <h5>Follow this steps to pay via Bkash:</h5>
@@ -240,15 +261,15 @@ const Checkout = () => {
 
                                                         <div className='mt-4'>
                                                             <h5>After successful payment You will get a <span className='text-danger'>Transaction ID </span> via SMS. Enter your Transaction ID.</h5>
-                                                            <div class="form-group mt-5 w-75">
+                                                            <div className="form-group mt-5 w-75">
                                                                 <label for="transaction" className='font-weight-bold h5'>Transaction ID</label>
-                                                                <input type="text" onChange={handleOnChange} class="form-control" name='transaction' id="transaction" placeholder="Transaction Id.." required />
+                                                                <input type="text" onChange={handleOnChange} className="form-control" name='txId' id="transaction" placeholder="Transaction Id.." required />
                                                             </div>
                                                             <h6 className='text-danger mt-3'>Wrong Transaction ID may result in unsuccessful order!!</h6>
                                                         </div>
                                                         {
-                                                            orderDetail?.transaction ?
-                                                                <button className='btn btn-success d-block w-50 my-4'>Place Order</button>
+                                                            orderDetail?.txId ?
+                                                                <button onClick={placeOrder} className='btn btn-success d-block w-50 my-4'>Place Order</button>
                                                                 :
                                                                 <button className='btn btn-secondary d-block w-50 my-4 disabled'>Place Order</button>
                                                         }

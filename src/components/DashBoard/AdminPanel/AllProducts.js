@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AllProducts = () => {
     const [allProduct, setAllProduct] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:1812/products')
+        fetch('https://tonus-creation.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setAllProduct(data);
@@ -11,18 +11,20 @@ const AllProducts = () => {
     }, [])
 
     const removeItem = id => {
-        fetch(`http://localhost:1812/delete/${id}`, {
-            method: "DELETE"
+        fetch(`https://tonus-creation.herokuapp.com/deleteProduct/${id}`, {
+            method: "DELETE",
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+               }
         })
-            .then(res => res.json())
             .then(result => {
-                if (result) {
-                    alert('One Product removed')
-                }
+                console.log(result)
             })
             const updatedList = allProduct.filter(product => product._id !== id)
             setAllProduct(updatedList);
     }
+
     return (
         <>
             {
@@ -32,16 +34,16 @@ const AllProducts = () => {
                             <tbody>
                                 {
                                     allProduct?.map(pd =>
-                                        <tr>
+                                        <tr key={pd?._id}>
                                             <td className='img-td '><img src={`data:image/png;base64,${pd?.image.img}`} draggable="false" className='w-100' alt="" /></td>
                                             <td className='w-50 text-center'>
                                                 <h4 className='productName'>{pd?.name}</h4>
                                                 <p>{pd?.paper}</p>
-                                                <p>{pd?.frameSize}</p>
+                                                <p>{pd?.size}</p>
                                             </td>
-                                            <td className='h5 text-center text-danger'>BDT {pd?.price}</td>
+                                            <td className='h5 text-center text-success'><span className='h2 font-weight-bold text-success'>৳</span>{pd?.price}</td>
                                             <td >
-                                                <button onClick={() => removeItem(`${pd._id}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
+                                                <button onClick={() => removeItem(`${pd?._id}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                             </td>
                                         </tr>
                                     )
