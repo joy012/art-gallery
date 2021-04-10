@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import '../DashBoard.css'
 
 const AllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
     const options = [
-        { value: 'Pending', label: 'Pending' },
-        { value: 'In Progress', label: 'In Progress' },
-        { value: 'Shipped', label: 'Shipped' },
+        { value: 'PENDING', label: 'PENDING' },
+        { value: 'APPROVED', label: 'APPROVE' },
+        { value: 'SHIPPED', label: 'SHIPPED' },
+        { value: 'DONE', label: 'DONE' },
     ];
 
     useEffect(() => {
-        fetch('https://creative-agency-spa.herokuapp.com/orders')
+        fetch('https://tonus-creation.herokuapp.com/allOrder')
             .then(res => res.json())
             .then(data => {
-                sessionStorage.setItem('allOrder', JSON.stringify(data));
-                setAllOrder(JSON.parse(sessionStorage.getItem('allOrder')));
-
+                setAllOrder(data);
             })
     }, [])
 
-    const removeItem = key => {
-        console.log(key, typeof(key))
-        const savedOrder = JSON.parse(sessionStorage.getItem('allOrder'));
-        const updateStore = savedOrder.filter(order => order.key !== key);
-        sessionStorage.setItem('allOrder', JSON.stringify(updateStore));
-        setAllOrder(updateStore);
+    const removeItem = txId => {
+        fetch(`https://tonus-creation.herokuapp.com/deleteOrder?txId=` + txId, {
+            method: 'DELETE'
+        })
+            .then(result => {
+                alert('Order has been removed successfully!')
+            })
+            const updatedList = allOrder.filter(product => product.txId !== txId)
+            setAllOrder(updatedList);
     }
 
     const handleStatusChange = (e,txId) => {
-        console.log(e.value)
-        fetch(`https://tonus-creation.herokuapp.com/allOrder`, {
+        fetch(`https://tonus-creation.herokuapp.com/updateOrder?txId=`+ txId, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: e.value })
@@ -44,15 +46,16 @@ const AllOrder = () => {
     }
 
     return (
-        <div className="table-container table-responsive  mt-3 mb-5 mr-4 p-3">
+        <div className="full-height table-container table-responsive  mt-3 mb-5 mr-4 p-3">
             <table className="table">
                 <thead id='thead' className="bg-light">
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email ID</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Transaction ID</th>
+                        <th scope="col">No of Product</th>
+                        <th scope="col">TX ID</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,13 +71,13 @@ const AllOrder = () => {
                             <tr>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
-                                <td>{user?.product?.name}</td>
+                                <td>{user?.cart.length}</td>
                                 <td>{user?.txId}</td>
                                 <td >
                                     <Dropdown options={options} onChange={(e) => { handleStatusChange(e,`${user.txId}`) }} value={{value: user?.status, label: user?.status}} placeholder="Select an option" />
                                 </td>
                                 <td>
-                                    <button onClick={() => removeItem(user?.product?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
+                                    <button onClick={() => removeItem(`${user.txId}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                 </td>
                             </tr>
                         )

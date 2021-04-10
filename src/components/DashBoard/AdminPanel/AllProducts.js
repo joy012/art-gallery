@@ -11,15 +11,11 @@ const AllProducts = () => {
     }, [])
 
     const removeItem = id => {
-        fetch(`https://tonus-creation.herokuapp.com/deleteProduct/${id}`, {
-            method: "DELETE",
-            headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-               }
+        fetch(`https://tonus-creation.herokuapp.com/deleteProduct?id=` + id, {
+            method: 'DELETE'
         })
             .then(result => {
-                console.log(result)
+                alert('Product has been removed from database!')
             })
             const updatedList = allProduct.filter(product => product._id !== id)
             setAllProduct(updatedList);

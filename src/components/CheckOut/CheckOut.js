@@ -13,7 +13,7 @@ const Checkout = () => {
     const [showStep, setShowStep] = useState(false);
     const location = useLocation();
     const history = useHistory();
-    const subtotal = cart.reduce((total, current) => total + parseInt(current?.price), 0);
+    const subtotal = cart?.length !== 0 ? cart.reduce((total, current) => total + parseInt(current?.price), 0) : parseInt(0);
     const shippingCost = orderDetail?.city === 'Sylhet' ? 60 : 150
     const totalPayment = shippingCost + subtotal;
 
@@ -68,11 +68,11 @@ const Checkout = () => {
             .then(result => {
                 if (result) {
                     alert('one new service added successfully!');
-                    setCart({});
+                    setCart([]);
                     setOrderDetail({});
                     sessionStorage.removeItem('cart');
                     sessionStorage.removeItem('orderDetail')
-                    history.replace('/dashboard/myOrder')
+                    history.push('/dashboard/myOrder')
                 }
             })
     }
