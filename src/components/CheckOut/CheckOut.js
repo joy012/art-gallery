@@ -59,7 +59,7 @@ const Checkout = () => {
 
     const placeOrder = () => {
         console.log(orderDetail);
-        fetch('http://localhost:2152/addOrder', {
+        fetch('https://tonus-creation.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderDetail)
