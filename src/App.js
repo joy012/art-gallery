@@ -39,7 +39,7 @@ function App() {
   })
 
   useEffect(() => {
-    fetch('http://localhost:1812/products')
+    fetch('https://tonus-creation.herokuapp.com/products')
         .then(res => res.json())
         .then(data => {
             sessionStorage.setItem('databaseProduct', JSON.stringify(data))

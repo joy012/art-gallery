@@ -30,9 +30,9 @@ const NavBar = () => {
                         <div className="nav-item dropdown" >
                             <li className={`nav-link dropdown-toggle ${isLocation ? 'color-white' : ''}`} id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Art Works</li>
                             <div className="dropdown-menu" aria-labelledby="dropDownLink">
-                                <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/arabic caligraphy'>Arabic Calligraphy</Link>
+                                <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/arabic calligraphy'>Arabic Calligraphy</Link>
                                 <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/illustration'>Illustration</Link>
-                                <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/landscape'>Landscape</Link>
+                                <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/portrait'>Portrait</Link>
                                 <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/quote card'>Quote Card</Link>
                                 <Link className={`nav-link dropdown-item text-center `} to='/products/lyric card'>Lyric Card</Link>
                             </div>

@@ -3,7 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import { store } from 'react-notifications-component';
+import InnerImageZoom from 'react-inner-image-zoom';
 import Footer from '../Home/Footer/Footer';
 
 const ProductDetail = () => {
@@ -93,7 +95,7 @@ const ProductDetail = () => {
                 <div className="row align-items-center justify-content-center">
 
                     <div class="col-md-6 col-md-offset">
-                        <img src={`data:image/png;base64,${product?.image?.img}`} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
+                        <InnerImageZoom src={`data:image/png;base64,${product?.image?.img}`} zoomSrc={`data:image/png;base64,${product?.image?.img}`} zoomScale={0.5} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
                     </div>
 
                     <div class="col-md-5">
@@ -101,24 +103,24 @@ const ProductDetail = () => {
                         <h3 className='text-danger'><span className='h1 font-weight-bold text-danger'>৳</span>{product?.price}</h3>
 
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
-                            <label className='h5'>ArtWork:</label>
+                            <label className='h6 font-weight-bold'>ArtWork:</label>
                             <h6>{product?.artType}</h6>
                         </div>
 
                         <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
-                            <label className='h5'>Paper:</label>
+                            <label className='h6 font-weight-bold'>Paper:</label>
                             <h6>{product?.paper}</h6>
                         </div>
 
                         <div className='my-4'>
-                            <h4 className='mb-3'>Frame Details</h4>
+                            <h5 className='mb-3'>Frame Details</h5>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold h5'>Material:</span> Fiber Stick</h6>
+                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Material:</span> Fiber Stick</h6>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold h5'>Color:</span> Black</h6>
+                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Color:</span> Black</h6>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect1" className='h5 font-weight-bold'>Size: </label>
+                                <label className='h5 font-weight-bold'>Size: </label>
                                 <h6>{product?.size}</h6>
                             </div>
                         </div>
@@ -127,12 +129,12 @@ const ProductDetail = () => {
                             <h4 className='mb-3'>Inside Border:</h4>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect2" className='h5 font-weight-bold'>Color: </label>
+                                <label className='h6 font-weight-bold'>Color: </label>
                                 <h6>{product?.borderSize}</h6>
                             </div>
 
                             <div class="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label for="exampleFormControlSelect3" className='h5 font-weight-bold'>Size: </label>
+                                <label className='h6 font-weight-bold'>Size: </label>
                                 <h6>{product?.borderColor}</h6>
                             </div>
                         </div>
