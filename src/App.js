@@ -29,7 +29,6 @@ function App() {
     isSignedIn: false,
     firstName: '',
     lastName: '',
-    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -37,6 +36,7 @@ function App() {
     error: '',
     newUser: false
   })
+  console.log(loggedInUser)
 
   useEffect(() => {
     fetch('https://tonus-creation.herokuapp.com/products')
@@ -50,9 +50,6 @@ function App() {
   useEffect(() => {
     sessionStorage.getItem('login') &&
     setLoggedInUser(JSON.parse(sessionStorage.getItem('login')))
-    if (user.firstName && user.lastName) {
-      user.name = user.firstName + ' ' + user.lastName;
-    }
   }, [user])
 
   return (

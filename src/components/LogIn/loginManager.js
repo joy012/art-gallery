@@ -44,7 +44,7 @@ export const handleFbSignIn = () => {
         .catch(error => error);
 }
 
-export const createUserWithEmailAndPassword = (name,email, password) => {
+export const createUserWithEmailAndPassword = (userName, email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(res => {
             const { displayName,email } = res.user;
@@ -56,7 +56,7 @@ export const createUserWithEmailAndPassword = (name,email, password) => {
                 error: '',
                 newUser: true
             }
-            updateUserInfo(name);
+            updateUserName(userName)
             verifyEmail();
             return signedInUser;
         })
@@ -85,13 +85,11 @@ export const handleSignOut = () => {
         .catch(err => handleError(err));
 }
 
-const updateUserInfo = name => {
+const updateUserName = name => {
     let user = firebase.auth().currentUser;
-
     user.updateProfile({
-        displayName: name
+        name: name
     }).then(() => {
-        // Update successful.
     }).catch(error => {
         // An error happened.
     });

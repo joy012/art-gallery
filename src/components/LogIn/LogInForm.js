@@ -16,7 +16,6 @@ const LogInForm = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     initializeLogInFrameWork();
-
     const handleResponse = async (response) => {
         const fetchData = await fetch('https://tonus-creation.herokuapp.com/getAdmin?email=' + response.email);
         const responseData = await fetchData.json();
@@ -35,13 +34,13 @@ const LogInForm = () => {
             sessionStorage.setItem('role', JSON.stringify('user'));
         }
 
-        const updatedLoggedInUser = { ...loggedInUser, ...response }
+        const updatedLoggedInUser = { ...loggedInUser, 'displayName': user.firstName, ...response }
         updatedLoggedInUser['role'] = JSON.parse(sessionStorage.getItem('role'));
         sessionStorage.setItem('login', JSON.stringify(updatedLoggedInUser));
-        setUser(response);
+        setUser({...response});
         setLoggedInUser(updatedLoggedInUser);
         !newUser && storeAuthToken();
-        !response.error && history.replace(from);
+        (!response.error && !newUser) && history.replace(from);
     }
     const googleSignIn = () => {
         handleGoogleSignIn()
@@ -59,9 +58,11 @@ const LogInForm = () => {
     const handleSubmit = (e) => {
         if (newUser && user.email && user.password) {
             if (user.password === user.confirmPassword) {
-                const userName = user.name;
-                createUserWithEmailAndPassword(userName, user.email, user.password)
-                    .then(res => handleResponse(res));
+                createUserWithEmailAndPassword(user.firstName, user.email, user.password)
+                    .then(res => {
+                        handleResponse(res);
+                        setNewUser(false);
+                    });
             }
         }
         if (!newUser && user.email && user.password) {

@@ -47,14 +47,14 @@ const NavBar = () => {
                             </Link>
                         }
                         {
-                            user?.email ?
+                            (user?.email || user?.name ) ?
                             (user?.role === 'user'? 
                             <Link className="nav-link" to='/dashboard/myOrder'>
-                                <button className="btn btn-success rounded-pill px-4">{user.name}</button>
+                                <button className="btn btn-success rounded-pill px-4">DashBoard</button>
                             </Link>
                             :
                             <Link className="nav-link" to='/dashboard'>
-                                <button className="btn btn-success rounded-pill px-4">{user.name}</button>
+                                <button className="btn btn-success rounded-pill px-4">Admin Panel</button>
                             </Link>)
                                 :
                                 location.pathname !== '/login' ?

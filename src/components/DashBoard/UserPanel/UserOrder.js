@@ -5,6 +5,7 @@ import './UserOrder.css';
 
 const UserOrder = () => {
     const [myOrder, setMyOrder] = useState([]);
+    const [serverError, setServerError] = useState('')
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
@@ -16,12 +17,14 @@ const UserOrder = () => {
             }
         })
             .then(res => res.json())
-            .then(data => setMyOrder(data));
+            .then(data => {
+                setMyOrder(data)
+            });
     }, [loggedInUser.email])
 
     return (
         <div className="container">
-            <div className="row mb-4">
+            <div className="row mb-4 justify-content-center">
                 {
                     !myOrder?.length &&
                     <div className="text-center mt-5 pt-5">
