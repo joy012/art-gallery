@@ -58,7 +58,6 @@ const Checkout = () => {
     }
 
     const placeOrder = () => {
-        console.log(orderDetail);
         fetch('https://tonus-creation.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

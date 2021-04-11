@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const AddProduct = () => {
     const [newProduct, setNewProduct] = useState({});
     const [image, setImage] = useState(null);
-    console.log(newProduct)
     const handleSubmit = e => {
         const formData = new FormData();
         if (image !== null) {
@@ -15,7 +14,6 @@ const AddProduct = () => {
             formData.append('borderSize', newProduct.borderSize);
             formData.append('artType', newProduct.artType);
             formData.append('borderColor', newProduct.borderColor);
-            console.log(formData)
             fetch('https://tonus-creation.herokuapp.com/addProduct', {
                 method: 'POST',
                 body: formData

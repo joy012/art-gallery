@@ -19,8 +19,6 @@ const UserOrder = () => {
             .then(data => setMyOrder(data));
     }, [loggedInUser.email])
 
-    console.log(myOrder)
-
     return (
         <div className="container">
             <div className="row mb-4">

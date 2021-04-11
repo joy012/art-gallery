@@ -7,7 +7,6 @@ import { UserContext } from '../../App';
 
 const Products = () => {
     const { name }  = useParams();
-    console.log(name);
     const [, , , , , , , , , , databaseData] = useContext(UserContext);
     const [products, setProducts] = useState([]);
 
