@@ -143,7 +143,7 @@ const ProductDetail = () => {
                                 : loggedInUser?.role !== 'admin' ?
                                     <>
                                         <h5 className='text-danger font-weight-bold'>Already Added</h5>
-                                        <button onClick={() => history.push('/cart')} className='btn btn-info w-50'>Go To Cart</button>
+                                        <button onClick={() => history.push('/cart')} className='btn shipped w-50'>Go To Cart</button>
                                     </>
                                     : <h4 className='text-warning'>You are viewing as an admin.</h4>
                         }
