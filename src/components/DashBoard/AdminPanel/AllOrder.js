@@ -7,6 +7,7 @@ const AllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
     const options = [
         { value: 'PENDING', label: 'PENDING' },
+        { value: 'CANCELED', label: 'CANCELED' },
         { value: 'APPROVED', label: 'APPROVE' },
         { value: 'SHIPPED', label: 'SHIPPED' },
         { value: 'DONE', label: 'DONE' },
@@ -72,7 +73,7 @@ const AllOrder = () => {
                                             <td>{user?.cart.length}</td>
                                             <td>{user?.txId}</td>
                                             <td >
-                                                <Dropdown options={options} onChange={(e) => { handleStatusChange(e, `${user.txId}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
+                                                <Dropdown placeholderClassName='Select Status' options={options} onChange={(e) => { handleStatusChange(e, `${user.txId}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
                                             </td>
                                             <td>
                                                 <button onClick={() => removeItem(`${user.txId}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>

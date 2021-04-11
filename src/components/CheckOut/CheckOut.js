@@ -179,9 +179,12 @@ const Checkout = () => {
                                                 <select className="form-control" onChange={handleOnChange} name='city' id="city">
                                                     <option selected disabled>Select Your City</option>
                                                     {
+                                                        districts?.length ?
                                                         districts.map(districtData =>
                                                             <option>{districtData.district}</option>
                                                         )
+                                                        :
+                                                        <option>Loading...</option>
                                                     }
                                                 </select>
                                             </div>

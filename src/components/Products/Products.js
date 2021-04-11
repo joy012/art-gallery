@@ -18,7 +18,7 @@ const Products = () => {
     
     return (
         <>
-            <main className='mt-3'>
+            <main className='cart mt-3'>
                 <h1 className='text-capitalize text-center py-5'>{name}</h1>
                 <div className="container pb-5">
                     <div className="row">
