@@ -21,14 +21,14 @@ const LogInForm = () => {
         const fetchData = await fetch('https://tonus-creation.herokuapp.com/getAdmin?email=' + response.email);
         const responseData = await fetchData.json();
         const isEmail = responseData.find(res => {
-            if(res.email === response.email){
+            if (res.email === response.email) {
                 return true
             }
-            else{
+            else {
                 return false;
             }
         })
-        if (isEmail){
+        if (isEmail) {
             sessionStorage.setItem('role', JSON.stringify('admin'));
         }
         else {
@@ -52,22 +52,9 @@ const LogInForm = () => {
             .then(res => handleResponse(res))
     }
     const handleChange = (e) => {
-        let isFieldValid = true;
-        if (e.target.name === 'email') {
-            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-        }
-        if (e.target.name === 'password') {
-            isFieldValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(e.target.value);
-            if (!isFieldValid) {
-                alert('Your password have to be 8 character long and must contain one letter and one number');
-                e.target.value = '';
-            }
-        }
-        if (isFieldValid) {
-            const newUserInfo = { ...user };
-            newUserInfo[e.target.name] = e.target.value;
-            setUser(newUserInfo);
-        }
+        const newUserInfo = { ...user };
+        newUserInfo[e.target.name] = e.target.value;
+        setUser(newUserInfo);
     }
     const handleSubmit = (e) => {
         if (newUser && user.email && user.password) {
