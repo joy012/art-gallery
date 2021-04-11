@@ -27,12 +27,12 @@ const AllOrder = () => {
             .then(result => {
                 alert('Order has been removed successfully!')
             })
-            const updatedList = allOrder.filter(product => product.txId !== txId)
-            setAllOrder(updatedList);
+        const updatedList = allOrder.filter(product => product.txId !== txId)
+        setAllOrder(updatedList);
     }
 
-    const handleStatusChange = (e,txId) => {
-        fetch(`https://tonus-creation.herokuapp.com/updateOrder?txId=`+ txId, {
+    const handleStatusChange = (e, txId) => {
+        fetch(`https://tonus-creation.herokuapp.com/updateOrder?txId=` + txId, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: e.value })
@@ -61,10 +61,7 @@ const AllOrder = () => {
                 <tbody>
                     {
                         !allOrder?.length &&
-                        <div className="d-flex align-items-center">
-                            <strong>Loading...</strong>
-                            <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-                        </div>
+                        <h2 className='text-center text-danger'>You Don't have any order yet</h2>
                     }
                     {
                         allOrder?.map(user =>
@@ -74,7 +71,7 @@ const AllOrder = () => {
                                 <td>{user?.cart.length}</td>
                                 <td>{user?.txId}</td>
                                 <td >
-                                    <Dropdown options={options} onChange={(e) => { handleStatusChange(e,`${user.txId}`) }} value={{value: user?.status, label: user?.status}} placeholder="Select an option" />
+                                    <Dropdown options={options} onChange={(e) => { handleStatusChange(e, `${user.txId}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
                                 </td>
                                 <td>
                                     <button onClick={() => removeItem(`${user.txId}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
