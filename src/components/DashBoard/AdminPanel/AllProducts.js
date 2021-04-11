@@ -11,11 +11,14 @@ const AllProducts = () => {
     }, [])
 
     const removeItem = id => {
-        fetch(`https://tonus-creation.herokuapp.com/deleteProduct?id=` + id, {
+        fetch(`https://tonus-creation.herokuapp.com/deleteProduct/${id}`, {
             method: 'DELETE'
         })
+            .then(res => res.json())
             .then(result => {
-                alert('Product has been removed from database!')
+                if(result){
+                    alert('One product has removed successfully!')
+                }
             })
             const updatedList = allProduct.filter(product => product._id !== id)
             setAllProduct(updatedList);
@@ -34,8 +37,6 @@ const AllProducts = () => {
                                             <td className='img-td '><img src={`data:image/png;base64,${pd?.image.img}`} draggable="false" className='w-100' alt="" /></td>
                                             <td className='w-50 text-center'>
                                                 <h4 className='productName'>{pd?.name}</h4>
-                                                <p>{pd?.paper}</p>
-                                                <p>{pd?.size}</p>
                                             </td>
                                             <td className='h5 text-center text-success'><span className='h2 font-weight-bold text-success'>৳</span>{pd?.price}</td>
                                             <td >

@@ -36,7 +36,6 @@ function App() {
     error: '',
     newUser: false
   })
-  console.log(loggedInUser)
 
   useEffect(() => {
     fetch('https://tonus-creation.herokuapp.com/products')
