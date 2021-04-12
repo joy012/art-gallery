@@ -11,7 +11,7 @@ const Collection = () => {
 
     return (
         <main className='container pt-5 mb-5'>
-            <h2 className='text-center mb-2 pb-4'>Trending Now</h2>
+            <h2 className='text-center mb-4 pb-4'>Trending Now</h2>
             {
                 databaseData.length === 0 ?
                     <div className='text-center'>

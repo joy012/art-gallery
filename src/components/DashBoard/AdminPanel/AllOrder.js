@@ -7,8 +7,9 @@ const AllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
     const options = [
         { value: 'PENDING', label: 'PENDING' },
-        { value: 'CANCELED', label: 'CANCELED' },
         { value: 'APPROVED', label: 'APPROVE' },
+        { value: 'CANCELED', label: 'CANCELED' },
+        { value: 'ON GOING', label: 'ON GOING' },
         { value: 'SHIPPED', label: 'SHIPPED' },
         { value: 'DONE', label: 'DONE' },
     ];

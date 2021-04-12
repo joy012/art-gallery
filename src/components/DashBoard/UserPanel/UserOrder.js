@@ -50,8 +50,8 @@ const UserOrder = () => {
                                                     <button className="w-75 btn btn-secondary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
                                                     : order?.status === 'APPROVED' ?
                                                     <button className="w-75 btn btn-primary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
-                                                    : order?.status === 'IN PROGRESS' ?
-                                                    <button className="w-75 btn progress d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
+                                                    : order?.status === 'ON GOING' ?
+                                                    <button className="w-75 going btn d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
                                                     : order?.status === 'SHIPPED' ?
                                                     <button className="w-75 btn shipped d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
                                                     : order?.status === 'DONE' ? 

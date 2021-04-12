@@ -14,7 +14,8 @@ import NavBar from './components/NavBar/NavBar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Products from './components/Products/Products';
-import DashBoard from './components/DashBoard/DashBoard'
+import DashBoard from './components/DashBoard/DashBoard';
+import './App.css'
 
 
 export const UserContext = createContext();
