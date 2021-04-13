@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { UserContext } from '../../App';
+import ReCAPTCHA from "react-google-recaptcha";
 import money from '../../images/money.png';
 import bkash from '../../images/bkash.png';
 import './Checkout.css'
@@ -11,6 +12,8 @@ const Checkout = () => {
     const [, , , , cart, setCart, orderDetail, setOrderDetail] = useContext(UserContext);
     const [districts, setDistricts] = useState([]);
     const [showStep, setShowStep] = useState(false);
+    const [reCaptcha, setReCaptcha] = useState();
+    const [showCaptcha, setShowCaptcha] = useState(true);
     const location = useLocation();
     const history = useHistory();
     const subtotal = cart?.length !== 0 ? cart.reduce((total, current) => total + parseInt(current?.price), 0) : parseInt(0);
@@ -74,6 +77,11 @@ const Checkout = () => {
                     history.push('/dashboard/myOrder')
                 }
             })
+    }
+
+    const handleCaptcha = (data) => {
+        setReCaptcha(data)
+        setShowCaptcha(false)
     }
 
 
@@ -180,11 +188,11 @@ const Checkout = () => {
                                                     <option selected disabled>Select Your City</option>
                                                     {
                                                         districts?.length ?
-                                                        districts.map(districtData =>
-                                                            <option>{districtData.district}</option>
-                                                        )
-                                                        :
-                                                        <option>Loading...</option>
+                                                            districts.map(districtData =>
+                                                                <option>{districtData.district}</option>
+                                                            )
+                                                            :
+                                                            <option>Loading...</option>
                                                     }
                                                 </select>
                                             </div>
@@ -244,7 +252,18 @@ const Checkout = () => {
                                                 <>
                                                     <h3 className='text-danger text-center mb-3'>Cash On Delivery</h3>
                                                     <h5 className='text-center'>You can pay the Delivery Man at your doorstep!</h5>
-                                                    <button className='btn btn-success d-block w-50 my-5 mx-auto'>Place Order</button>
+                                                    {
+                                                        showCaptcha ?
+                                                            <div className='container d-block mx-auto'>
+                                                                <ReCAPTCHA
+                                                                    sitekey="6LcRa6gaAAAAAEHMErHCOmMjB7URhgHzCJMuopz_"
+                                                                    onChange={handleCaptcha}
+                                                                />
+                                                            </div>
+                                                            :
+                                                            <button className='btn btn-success d-block w-50 my-5 mx-auto'>Place Order</button>
+                                                    }
+
                                                 </>
 
                                                 :
@@ -270,10 +289,18 @@ const Checkout = () => {
                                                             <h6 className='text-danger mt-3'>Wrong Transaction ID may result in unsuccessful order!!</h6>
                                                         </div>
                                                         {
-                                                            orderDetail?.txId ?
-                                                                <button onClick={placeOrder} className='btn btn-success d-block w-50 my-4'>Place Order</button>
-                                                                :
-                                                                <button className='btn btn-secondary d-block w-50 my-4 disabled'>Place Order</button>
+                                                            showCaptcha && !orderDetail?.txId ?
+                                                                <div className='container d-block mx-auto'>
+                                                                    <ReCAPTCHA
+                                                                        sitekey="6LcRa6gaAAAAAEHMErHCOmMjB7URhgHzCJMuopz_"
+                                                                        onChange={handleCaptcha}
+                                                                    />
+                                                                </div>
+                                                                : orderDetail?.txId ?
+                                                                    <button onClick={placeOrder} className='btn btn-success d-block w-50 my-4'>Place Order</button>
+                                                                    :
+                                                                    <button onClick={placeOrder} className='btn btn-secondary d-block w-50 my-4 disabled'>Place Order</button>
+
                                                         }
                                                     </>
                                                     : "")

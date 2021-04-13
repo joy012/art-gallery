@@ -24,7 +24,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>Tonu's Creation</title>
-  
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" charset="UTF-8"
@@ -57,6 +57,25 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/09f13ccbaa.js" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAr5Wxjz4n1pf6sBF53OtVfYP8Lw-WVSxY",
+      authDomain: "tonu-s-creation.firebaseapp.com",
+      databaseURL: "https://tonu-s-creation.firebaseio.com",
+      projectId: "tonu-s-creation",
+      storageBucket: "tonu-s-creation.appspot.com",
+      messagingSenderId: "593498436572",
+      appId: "1:593498436572:web:6fbbc930b3dd9b45651519",
+      measurementId: "G-DYRLTL5S1X"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 </body>
 
 </html>
