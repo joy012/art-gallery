@@ -47,6 +47,7 @@ const AllOrder = () => {
             })
     }
 
+
     return (
         <>
             {
@@ -68,11 +69,11 @@ const AllOrder = () => {
                             <tbody>
                                 {
                                     allOrder?.map(user =>
-                                        <tr>
+                                        <tr key={user._id}>
                                             <td>{user?.name}</td>
                                             <td>{user?.email}</td>
                                             <td>{user?.cart.length}</td>
-                                            <td>{user?.txId}</td>
+                                            <td>{`${user.txId !== " " ? user.txId : 'Cash On'}`}</td>
                                             <td >
                                                 <Dropdown placeholderClassName='Select Status' options={options} onChange={(e) => { handleStatusChange(e, `${user.txId}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
                                             </td>
