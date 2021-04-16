@@ -13,7 +13,7 @@ const Checkout = () => {
     const [districts, setDistricts] = useState([]);
     const [showStep, setShowStep] = useState(false);
     const [reCaptcha, setReCaptcha] = useState();
-    const [showCaptcha, setShowCaptcha] = useState(true);
+    const [dbInitiate, setDbInitiate] = useState(false);
     const location = useLocation();
     const history = useHistory();
     const subtotal = cart?.length !== 0 ? cart.reduce((total, current) => total + parseInt(current?.price), 0) : parseInt(0);
@@ -61,6 +61,7 @@ const Checkout = () => {
     }
 
     const placeOrder = () => {
+        setDbInitiate(true);
         fetch('https://tonus-creation.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -69,19 +70,19 @@ const Checkout = () => {
             .then(res => res.json())
             .then(result => {
                 if (result) {
+                    setDbInitiate(false);
                     alert('one new service added successfully!');
                     setCart([]);
                     setOrderDetail({});
                     sessionStorage.removeItem('cart');
                     sessionStorage.removeItem('orderDetail')
-                    history.push('/dashboard/myOrder')
+                    history.replace('/dashboard/myOrder')
                 }
             })
     }
 
     const handleCaptcha = (data) => {
         setReCaptcha(data)
-        setShowCaptcha(false)
     }
 
 
@@ -123,26 +124,26 @@ const Checkout = () => {
                                             <small className="font-weight-bold col-6">Border Color:  </small>
                                             <small className='col-6'>{pd?.borderColor}</small>
                                         </div>
-                                        <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {pd?.price}</h5>
+                                        <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {pd?.price}</h5>
                                     </li>
                                 )
                             }
                             <li className="list-group-item">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h5>Subtotal: </h5>
-                                    <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {subtotal}</h5>
+                                    <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {subtotal}</h5>
                                 </div>
                                 {
                                     location.pathname === '/payment' &&
                                     <>
                                         <div className="d-flex justify-content-between align-items-center">
                                             <h5>Shipping Cost: </h5>
-                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {shippingCost}</h5>
+                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {shippingCost}</h5>
                                         </div>
 
                                         <div className="d-flex justify-content-between align-items-center">
                                             <h5>Total: </h5>
-                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h2 font-weight-bold'>৳ </span> {totalPayment}</h5>
+                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {totalPayment}</h5>
                                         </div>
                                     </>
                                 }
@@ -192,7 +193,7 @@ const Checkout = () => {
                                                                 <option>{districtData.district}</option>
                                                             )
                                                             :
-                                                            <option>Loading...</option>
+                                                            <option className='text-danger'>Loading...</option>
                                                     }
                                                 </select>
                                             </div>
@@ -253,15 +254,22 @@ const Checkout = () => {
                                                     <h3 className='text-danger text-center mb-3'>Cash On Delivery</h3>
                                                     <h5 className='text-center'>You can pay the Delivery Man at your doorstep!</h5>
                                                     {
-                                                        showCaptcha ?
-                                                            <div className='container d-block mx-auto'>
+                                                        !reCaptcha ?
+                                                            <div className='d-flex justify-content-center align-items-center my-4'>
                                                                 <ReCAPTCHA
                                                                     sitekey="6LcRa6gaAAAAAEHMErHCOmMjB7URhgHzCJMuopz_"
                                                                     onChange={handleCaptcha}
                                                                 />
                                                             </div>
                                                             :
-                                                            <button className='btn btn-success d-block w-50 my-5 mx-auto'>Place Order</button>
+                                                            (dbInitiate ?
+                                                                    <button className='btn btn-success d-block w-50 my-4 mx-auto'>
+                                                                        <div class="spinner-border text-white" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </button>
+                                                                    :
+                                                                    <button onClick={placeOrder} className='btn btn-success d-block w-50 mx-auto my-4'>Place Order</button>)  
                                                     }
 
                                                 </>
@@ -275,7 +283,7 @@ const Checkout = () => {
                                                             <h6><span className='font-weight-bold'>Step 1: </span> Dial *247#</h6>
                                                             <h6><span className='font-weight-bold'>Step 2: </span> Select Send Money.</h6>
                                                             <h6><span className='font-weight-bold'>Step 3: </span> Enter <span className='h5 text-danger'>01756463229</span> as Receiver account number.</h6>
-                                                            <h6><span className='font-weight-bold'>Step 4: </span> Enter <span className='h2 text-danger'>৳</span><span className='h5 text-danger'>{subtotal + shippingCost}</span> to pay.</h6>
+                                                            <h6><span className='font-weight-bold'>Step 4: </span> Enter <span className='h3 text-danger'>৳</span><span className='h5 text-danger'>{subtotal + shippingCost}</span> to pay.</h6>
                                                             <h6><span className='font-weight-bold'>Step 5: </span> Enter <span className='h5 text-danger'>{orderDetail?.mobile.slice(7, 11)}</span> as reference.</h6>
                                                             <h6><span className='font-weight-bold'>Step 6: </span>Enter your PIN Number and pay.</h6>
                                                         </div>
@@ -286,20 +294,29 @@ const Checkout = () => {
                                                                 <label for="transaction" className='font-weight-bold h5'>Transaction ID</label>
                                                                 <input type="text" onChange={handleOnChange} className="form-control" name='txId' id="transaction" placeholder="Transaction Id.." required />
                                                             </div>
-                                                            <h6 className='text-danger mt-3'>Wrong Transaction ID may result in unsuccessful order!!</h6>
                                                         </div>
                                                         {
-                                                            showCaptcha && !orderDetail?.txId ?
-                                                                <div className='container d-block mx-auto'>
+                                                            orderDetail?.txId ?
+                                                                (!reCaptcha ?
                                                                     <ReCAPTCHA
                                                                         sitekey="6LcRa6gaAAAAAEHMErHCOmMjB7URhgHzCJMuopz_"
                                                                         onChange={handleCaptcha}
                                                                     />
-                                                                </div>
-                                                                : orderDetail?.txId ?
-                                                                    <button onClick={placeOrder} className='btn btn-success d-block w-50 my-4'>Place Order</button>
+                                                                    : '')
+                                                                : <h6 className='text-danger mt-3'>Wrong Transaction ID may result in unsuccessful order!!</h6>
+                                                        }
+                                                        {
+                                                            orderDetail?.txId && reCaptcha ?
+                                                                (dbInitiate ?
+                                                                    <button className='btn btn-success d-block w-50 my-4'>
+                                                                        <div class="spinner-border text-white" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </button>
                                                                     :
-                                                                    <button onClick={placeOrder} className='btn btn-secondary d-block w-50 my-4 disabled'>Place Order</button>
+                                                                    <button onClick={placeOrder} className='btn btn-success d-block w-50 my-4'>Place Order</button>)
+                                                                :
+                                                                <button className='btn btn-secondary d-block w-50 my-4 disabled'>Place Order</button>
 
                                                         }
                                                     </>

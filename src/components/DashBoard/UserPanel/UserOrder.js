@@ -28,10 +28,7 @@ const UserOrder = () => {
                 {
                     !myOrder?.length &&
                     <div className="text-center mt-5 pt-5">
-                    <h2>Loading Data...</h2>
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
+                        <h2 className='text-danger'>You haven't placed any order yet!</h2>
                     </div>
                 }
                 {
@@ -47,17 +44,17 @@ const UserOrder = () => {
                                             <div className="col-lg-5 px-0 text-right">
                                                 {
                                                     order?.status === 'PENDING' ?
-                                                    <button className="w-75 btn btn-secondary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
-                                                    : order?.status === 'APPROVED' ?
-                                                    <button className="w-75 btn btn-primary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
-                                                    : order?.status === 'ON GOING' ?
-                                                    <button className="w-75 going btn d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
-                                                    : order?.status === 'SHIPPED' ?
-                                                    <button className="w-75 btn shipped d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
-                                                    : order?.status === 'DONE' ? 
-                                                    <button className="w-75 btn btn-success d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
-                                                    :
-                                                    <button className="w-75 btn btn-danger d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button> 
+                                                        <button className="w-75 btn btn-secondary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
+                                                        : order?.status === 'APPROVED' ?
+                                                            <button className="w-75 btn btn-primary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
+                                                            : order?.status === 'ON GOING' ?
+                                                                <button className="w-75 going btn d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
+                                                                : order?.status === 'SHIPPED' ?
+                                                                    <button className="w-75 btn shipped d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
+                                                                    : order?.status === 'DONE' ?
+                                                                        <button className="w-75 btn btn-success d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
+                                                                        :
+                                                                        <button className="w-75 btn btn-danger d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
                                                 }
                                             </div>
                                         </div>

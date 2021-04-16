@@ -42,7 +42,7 @@ const Cart = () => {
                                                         <h4 className='productName'>{pd?.name}</h4>
                                                         <p>{pd?.size}</p>
                                                     </td>
-                                                    <td className='h5 text-center text-success'><span className='h2 font-weight-bold text-success'>৳</span>{pd?.price}</td>
+                                                    <td className='h5 text-center text-success'><span className='h3 font-weight-bold text-success'>৳</span>{pd?.price}</td>
                                                     <td >
                                                         <button onClick={() => removeItem(pd?.key)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                                     </td>
