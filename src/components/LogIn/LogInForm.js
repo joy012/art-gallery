@@ -16,6 +16,7 @@ const LogInForm = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     initializeLogInFrameWork();
+
     const handleResponse = async (response) => {
         const fetchData = await fetch('https://tonus-creation.herokuapp.com/getAdmin?email=' + response.email);
         const responseData = await fetchData.json();
@@ -34,7 +35,7 @@ const LogInForm = () => {
             sessionStorage.setItem('role', JSON.stringify('user'));
         }
 
-        const updatedLoggedInUser = { ...loggedInUser, 'displayName': user.firstName, ...response }
+        const updatedLoggedInUser = { ...loggedInUser, ...response }
         updatedLoggedInUser['role'] = JSON.parse(sessionStorage.getItem('role'));
         sessionStorage.setItem('login', JSON.stringify(updatedLoggedInUser));
         setUser({...response});

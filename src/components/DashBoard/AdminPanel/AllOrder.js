@@ -22,19 +22,19 @@ const AllOrder = () => {
             })
     }, [])
 
-    const removeItem = txId => {
-        fetch(`https://tonus-creation.herokuapp.com/deleteOrder?txId=` + txId, {
+    const removeItem = id => {
+        fetch(`https://tonus-creation.herokuapp.com/deleteOrder?id=` + id, {
             method: 'DELETE'
         })
             .then(result => {
                 alert('Order has been removed successfully!')
             })
-        const updatedList = allOrder.filter(product => product.txId !== txId)
+        const updatedList = allOrder.filter(product => product._id !== id)
         setAllOrder(updatedList);
     }
 
-    const handleStatusChange = (e, txId) => {
-        fetch(`https://tonus-creation.herokuapp.com/updateOrder?txId=` + txId, {
+    const handleStatusChange = (e, id) => {
+        fetch(`https://tonus-creation.herokuapp.com/updateOrder?id=` + id, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: e.value })
@@ -75,10 +75,10 @@ const AllOrder = () => {
                                             <td>{user?.cart.length}</td>
                                             <td>{`${user.txId !== " " ? user.txId : 'Cash On'}`}</td>
                                             <td >
-                                                <Dropdown placeholderClassName='Select Status' options={options} onChange={(e) => { handleStatusChange(e, `${user.txId}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
+                                                <Dropdown placeholderClassName='Select Status' options={options} onChange={(e) => { handleStatusChange(e, `${user._id}`) }} value={{ value: user?.status, label: user?.status }} placeholder="Select an option" />
                                             </td>
                                             <td>
-                                                <button onClick={() => removeItem(`${user.txId}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
+                                                <button onClick={() => removeItem(`${user._id}`)} className="btn btn-sm btn-danger d-block mx-auto">Remove</button>
                                             </td>
                                         </tr>
                                     )

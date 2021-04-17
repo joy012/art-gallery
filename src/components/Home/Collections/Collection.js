@@ -20,7 +20,7 @@ const Collection = () => {
                         </div>
                     </div>
                     :
-                    <di className="row align-items-center justify-content-center">
+                    <div className="row align-items-center justify-content-center">
                         {
                             databaseData.map(collection =>
                                 <Bounce key={collection.name} left duration={2500}>
@@ -39,7 +39,7 @@ const Collection = () => {
                                 </Bounce>
                             )
                         }
-                    </di>
+                    </div>
             }
 
         </main>
