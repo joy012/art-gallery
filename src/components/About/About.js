@@ -6,7 +6,7 @@ import Particles from 'react-particles-js';
 
 const About = () => {
     return (
-        <section className='background py-5 container'>
+        <section className='background py-3 container'>
             <Particles
                 params={{
                     "particles": {
@@ -42,7 +42,7 @@ const About = () => {
                         }
                     }
                 }} />
-            <img src={dp} className='dp mx-auto d-block rounded-circle py-4' alt="" />
+            <img src={dp} className='dp mx-auto d-block rounded-circle py-3' alt="" />
             <h1 className='text-center' style={{color:'#01c9ad'}}>Jannatul Ferdous Tonny</h1>
             <Typical
                 className="text-center text-white h4 mb-3"

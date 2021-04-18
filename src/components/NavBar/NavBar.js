@@ -36,8 +36,7 @@ const NavBar = () => {
                                         <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/arabic calligraphy'>Arabic Calligraphy</Link>
                                         <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/illustration'>Illustration</Link>
                                         <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/portrait'>Portrait</Link>
-                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/quote card'>Quote Card</Link>
-                                        <Link className={`nav-link dropdown-item text-center `} to='/products/lyric card'>Lyric Card</Link>
+                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/accessories'>Accessories</Link>
                                     </div>
                                 </div>
                                 <Link className={`nav-link ${isLocation ? 'color-white' : ''}`} to='/about'>About</Link>

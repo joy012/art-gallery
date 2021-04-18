@@ -17,11 +17,11 @@
 
 @media screen and (max-width:575px){
     .dp{
-        width: 40%;
+        width: 50%;
    }
 }
 @media screen and (max-width:360px){
     .dp{
-        width: 60%;
+        width: 80%;
    }
 }

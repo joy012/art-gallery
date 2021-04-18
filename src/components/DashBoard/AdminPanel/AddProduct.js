@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
 const AddProduct = () => {
     const [newProduct, setNewProduct] = useState({});
     const [image, setImage] = useState(null);
+    const history = useHistory();
+
     const handleSubmit = e => {
         const formData = new FormData();
-        if (image !== null) {
-            formData.append('productImg', image);
-            formData.append('name', newProduct.name);
-            formData.append('price', newProduct.price);
-            formData.append('size', newProduct.size);
-            formData.append('paper', newProduct.paper);
-            formData.append('borderSize', newProduct.borderSize);
-            formData.append('artType', newProduct.artType);
-            formData.append('borderColor', newProduct.borderColor);
-            fetch('https://tonus-creation.herokuapp.com/addProduct', {
-                method: 'POST',
-                body: formData
+        formData.append('productImg', image);
+        formData.append('name', newProduct.name);
+        formData.append('price', newProduct.price);
+        formData.append('size', newProduct.size);
+        formData.append('paper', newProduct.paper);
+        formData.append('borderSize', newProduct.borderSize);
+        formData.append('artType', newProduct.artType);
+        formData.append('borderColor', newProduct.borderColor);
+        fetch('https://tonus-creation.herokuapp.com/addProduct', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                alert('One product has added successfully')
             })
-                .then(res => res.json())
-                .then(result => {
-                    if (result) {
-                        alert('one new service added successfully!');
-                    }
-                })
-        }
+        e.preventDefault();
     }
     const handleChange = e => {
         const newInfo = { ...newProduct };
@@ -90,8 +94,7 @@ const AddProduct = () => {
                             <option value='Illustration'>Illustration</option>
                             <option value='Arabic Calligraphy'>Arabic Calligraphy</option>
                             <option value='Portrait'>Portrait</option>
-                            <option value='Lyric Card'>Lyric Card</option>
-                            <option value='Quote Card'>Quote Card</option>
+                            <option value='Accessories'>Accessories</option>
                         </select>
                     </div>
                 </div>
