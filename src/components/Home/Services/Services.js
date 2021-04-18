@@ -15,7 +15,7 @@ const Services = () => {
                 <div className="row justify-content-center align-items-center py-4">
                     {
                         services.map(service =>
-                            <div key={service.name} className="col-md-4 col-6 my-4">
+                            <div key={service.name} className="col-md-3 col-6 my-4">
                                 <Zoom right duration={2000}>
                                     <Link to={`/products/${service.name.toLocaleLowerCase()}`}>
                                         <div className="card h-100 card-bg">
