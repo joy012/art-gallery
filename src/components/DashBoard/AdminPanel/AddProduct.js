@@ -26,7 +26,10 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result)
-                alert('One product has added successfully')
+                if(result){
+                    alert('One product has added successfully')
+                    history.push('/admin/allProduct')
+                }
             })
         e.preventDefault();
     }
