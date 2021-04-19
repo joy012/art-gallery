@@ -96,12 +96,12 @@ const ProductDetail = () => {
 
                         <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label className='h6 font-weight-bold'>ArtWork:</label>
-                            <h6>{product?.artType}</h6>
+                            <h6 className='mb-0'>{product?.artType}</h6>
                         </div>
 
                         <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label className='h6 font-weight-bold'>Paper:</label>
-                            <h6>{product?.paper}</h6>
+                            <h6 className='mb-0'>{product?.paper}</h6>
                         </div>
 
                         <div className='my-4'>
@@ -113,7 +113,7 @@ const ProductDetail = () => {
 
                             <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label className='h6 font-weight-bold'>Size: </label>
-                                <h6>{product?.size}</h6>
+                                <h6 className='mb-0'>{product?.size}</h6>
                             </div>
                         </div>
 
@@ -122,12 +122,12 @@ const ProductDetail = () => {
 
                             <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label className='h6 font-weight-bold'>Color: </label>
-                                <h6>{product?.borderSize}</h6>
+                                <h6 className='mb-0'>{product?.borderSize}</h6>
                             </div>
 
                             <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label className='h6 font-weight-bold'>Size: </label>
-                                <h6>{product?.borderColor}</h6>
+                                <h6 className='mb-0'>{product?.borderColor}</h6>
                             </div>
                         </div>
 

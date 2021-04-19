@@ -7,7 +7,7 @@ const AddProduct = () => {
     const history = useHistory();
 
     const handleSubmit = e => {
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append('productImg', image);
         formData.append('name', newProduct.name);
         formData.append('price', newProduct.price);
@@ -17,7 +17,7 @@ const AddProduct = () => {
         formData.append('artType', newProduct.artType);
         formData.append('borderColor', newProduct.borderColor);
 
-        fetch('https://tonuscreation.herokuapp.com/addProduct', {
+        fetch('https://tonuscreation.herokuapp.com/addArtWork', {
             method: 'POST',
             body: formData,
         })
@@ -90,7 +90,7 @@ const AddProduct = () => {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label htmlFor="artType">Artwork Type</label>
-                        <select onChange={handleChange} name='artType' defaultValue='Artwork Type' className="form-control w-50" id="artType" required>
+                        <select onChange={handleChange} name='artType' defaultValue='Artwork Type' className="form-control" id="artType" required>
                             <option value='Artwork Type' disabled>ArtWork Type</option>
                             <option value='Illustration'>Illustration</option>
                             <option value='Arabic Calligraphy'>Arabic Calligraphy</option>

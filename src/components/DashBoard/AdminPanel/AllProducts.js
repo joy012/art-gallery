@@ -16,12 +16,12 @@ const AllProducts = () => {
         })
             .then(res => res.json())
             .then(result => {
-                if(result){
+                if (result) {
                     alert('One product has removed successfully!')
                 }
             })
-            const updatedList = allProduct.filter(product => product._id !== id)
-            setAllProduct(updatedList);
+        const updatedList = allProduct.filter(product => product._id !== id)
+        setAllProduct(updatedList);
     }
 
     return (
@@ -49,7 +49,7 @@ const AllProducts = () => {
                         </table>
                     </div>
                     :
-                    ''
+                    <h2 className='text-center text-danger'>You haven't added any product yet!</h2>
             }
         </>
     );
