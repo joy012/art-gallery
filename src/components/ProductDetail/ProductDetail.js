@@ -50,12 +50,6 @@ const ProductDetail = () => {
         }
     }, [product, setCart])
 
-    // const handleChange = (e) => {
-    //     const updatedDetail = { ...detail }
-    //     updatedDetail[e.target.name] = e.target.value;
-    //     setDetail(updatedDetail)
-    // }
-
 
     const addProduct = e => {
         sessionStorage.removeItem('productDetail')
@@ -92,46 +86,46 @@ const ProductDetail = () => {
             <main className='container py-5'>
                 <div className="row align-items-center justify-content-center">
 
-                    <div className="col-md-6 col-md-offset">
-                        <InnerImageZoom src={`data:image/png;base64,${product?.image?.img}`} zoomSrc={`data:image/png;base64,${product?.image?.img}`} zoomScale={0.5} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
+                    <div className="col-lg-7 col-md-offset">
+                        <InnerImageZoom src={`data:image/png;base64,${product?.image?.img}`} zoomSrc={`data:image/png;base64,${product?.image?.img}`} zoomScale={0.7} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
                     </div>
 
-                    <div className="col-md-5">
-                        <h2 className='my-3 text-danger'>{product?.name}</h2>
-                        <h3 className='text-success'><span className='h1 font-weight-bold text-success'>৳</span>{product?.price}</h3>
+                    <div className="col-lg-5">
+                        <h2 className='my-3 text-danger text-center text-lg-left'>{product?.name}</h2>
+                        <h3 className='text-success text-center text-lg-left'><span className='h1 font-weight-bold text-success'>৳</span>{product?.price}</h3>
 
-                        <div className="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
+                        <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label className='h6 font-weight-bold'>ArtWork:</label>
                             <h6>{product?.artType}</h6>
                         </div>
 
-                        <div className="w-75 form-inline d-flex flex-row justify-content-between align-items-center my-3">
+                        <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center my-3">
                             <label className='h6 font-weight-bold'>Paper:</label>
                             <h6>{product?.paper}</h6>
                         </div>
 
                         <div className='my-4'>
-                            <h5 className='mb-3'>Frame Details</h5>
+                            <h5 className='mb-2 w-75 mx-auto mx-lg-0'>Frame Details</h5>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Material:</span> Fiber Stick</h6>
+                            <h6 className='w-75 mx-auto mx-lg-0 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Material:</span> Fiber Stick</h6>
 
-                            <h6 className='w-75 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Color:</span> Black</h6>
+                            <h6 className='w-75 mx-auto mx-lg-0 d-flex flex-row justify-content-between align-items-center'><span className='font-weight-bold'>Color:</span> Black</h6>
 
-                            <div className="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
-                                <label className='h5 font-weight-bold'>Size: </label>
+                            <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
+                                <label className='h6 font-weight-bold'>Size: </label>
                                 <h6>{product?.size}</h6>
                             </div>
                         </div>
 
                         <div className='my-4'>
-                            <h4 className='mb-3'>Inside Border:</h4>
+                            <h5 className='mb-2 w-75 mx-auto mx-lg-0'>Inside Border:</h5>
 
-                            <div className="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
+                            <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label className='h6 font-weight-bold'>Color: </label>
                                 <h6>{product?.borderSize}</h6>
                             </div>
 
-                            <div className="w-75 form-inline d-flex flex-row justify-content-between align-items-center">
+                            <div className="w-75 mx-auto mx-lg-0 form-inline d-flex flex-row justify-content-between align-items-center">
                                 <label className='h6 font-weight-bold'>Size: </label>
                                 <h6>{product?.borderColor}</h6>
                             </div>
@@ -139,13 +133,13 @@ const ProductDetail = () => {
 
                         {
                             showAdd & loggedInUser?.role !== 'admin' ?
-                                <button onClick={addProduct} className='btn btn-success  w-50'>Add To Cart</button>
+                                <button onClick={addProduct} className='btn btn-success d-block w-50 mx-auto mx-lg-0'>Add To Cart</button>
                                 : loggedInUser?.role !== 'admin' ?
                                     <>
-                                        <h5 className='text-danger font-weight-bold'>Added to Cart</h5>
-                                        <button onClick={() => history.push('/cart')} className='btn btn-primary w-50'>Go To Cart</button>
+                                        <h5 className='text-danger font-weight-bold text-center text-lg-left'>Added to Cart</h5>
+                                        <button onClick={() => history.push('/cart')} className='btn btn-primary d-block w-50 mx-auto mx-lg-0'>Go To Cart</button>
                                     </>
-                                    : <h4 className='text-warning'>You are viewing as an admin.</h4>
+                                    : <h4 className='text-danger text-center'>You are viewing as an admin!</h4>
                         }
                     </div>
                 </div>

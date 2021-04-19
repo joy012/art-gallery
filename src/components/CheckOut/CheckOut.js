@@ -130,16 +130,18 @@ const Checkout = () => {
                             }
                             <li className="list-group-item">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <h5>Subtotal: </h5>
-                                    <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {subtotal}</h5>
+                                    <h6>Subtotal: </h6>
+                                    <h6 className='d-flex justify-content-between align-items-center'><span className='h4 font-weight-bold'>৳ </span> {subtotal}</h6>
                                 </div>
                                 {
                                     location.pathname === '/payment' &&
                                     <>
                                         <div className="d-flex justify-content-between align-items-center">
-                                            <h5>Shipping Cost: </h5>
-                                            <h5 className='d-flex justify-content-between align-items-center'><span className='h3 font-weight-bold'>৳ </span> {shippingCost}</h5>
+                                            <h6>Shipping Cost: </h6>
+                                            <h6 className='d-flex justify-content-between align-items-center'><span className='h4 font-weight-bold'>৳ </span> {shippingCost}</h6>
                                         </div>
+                                        
+                                        <hr className='mb-2 mt-0'/>
 
                                         <div className="d-flex justify-content-between align-items-center">
                                             <h5>Total: </h5>
@@ -150,14 +152,23 @@ const Checkout = () => {
 
                             </li>
                         </ul>
-
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-success">Apply</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
                     <div className="col-md-8 order-md-1">
                         {
                             location.pathname === '/checkout' &&
                             <>
                                 <h4 className="mb-4">Billing address</h4>
-                                <form onSubmit={handleSubmit} className="needs-validation" novalidate autocomplete="off">
+                                <form className="needs-validation" novalidate autocomplete="off">
                                     <div className='row justify-content-between'>
                                         <div className='col-md-6'>
                                             <div className="from-group mb-4">
@@ -185,7 +196,7 @@ const Checkout = () => {
                                         <div className='col-md-6'>
                                             <div className="from-group mb-4">
                                                 <label for="city">City</label>
-                                                <select className="form-control" onChange={handleOnChange} name='city' id="city">
+                                                <select className="form-control" onChange={handleOnChange} name='city' id="city" required>
                                                     <option selected disabled>Select Your City</option>
                                                     {
                                                         districts?.length ?
@@ -205,10 +216,9 @@ const Checkout = () => {
                                         <input type="text" onChange={handleOnChange} className="form-control" id="address" name='address' placeholder="Enter Your Full Address" autocomplete="off" required />
                                     </div>
 
-                                    <hr className="mb-4" />
                                     {
                                         orderDetail.name && orderDetail.email && orderDetail.city && orderDetail.address && orderDetail.mobile ?
-                                            <button className="btn btn-success btn-lg d-block mx-auto" type="submit">Continue to Payment</button>
+                                            <button onClick={handleSubmit} className="btn btn-success btn-lg d-block mx-auto">Continue to Payment</button>
                                             :
                                             <button className="btn btn-secondary btn-lg d-block mx-auto disabled">Continue to Payment</button>
                                     }
@@ -220,7 +230,12 @@ const Checkout = () => {
                         {
                             location.pathname === '/payment' &&
                             <>
-                                <h4 className="mb-4">Select Your Payment Option</h4>
+                                {
+                                    orderDetail?.city === 'Sylhet' ? 
+                                    <h4 className="mb-4">Select Your Payment Option</h4>
+                                    :
+                                    <h4 className="mb-4 text-center">We only accept BKASH payment outside of Sylhet City</h4>
+                                }
                                 <div className={`row align-items-center justify-content-between mb-4`}>
                                     {
                                         orderDetail?.city === 'Sylhet' &&
@@ -263,13 +278,13 @@ const Checkout = () => {
                                                             </div>
                                                             :
                                                             (dbInitiate ?
-                                                                    <button className='btn btn-success d-block w-50 my-4 mx-auto'>
-                                                                        <div class="spinner-border text-white" role="status">
-                                                                            <span class="sr-only">Loading...</span>
-                                                                        </div>
-                                                                    </button>
-                                                                    :
-                                                                    <button onClick={placeOrder} className='btn btn-success d-block w-50 mx-auto my-4'>Place Order</button>)  
+                                                                <button className='btn btn-success d-block w-50 my-4 mx-auto'>
+                                                                    <div class="spinner-border text-white" role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </button>
+                                                                :
+                                                                <button onClick={placeOrder} className='btn btn-success d-block w-50 mx-auto my-4'>Place Order</button>)
                                                     }
 
                                                 </>

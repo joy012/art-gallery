@@ -8,7 +8,6 @@ const AddProduct = () => {
 
     const handleSubmit = e => {
         const formData = new FormData();
-        console.log(newProduct, image)
         formData.append('productImg', image);
         formData.append('name', newProduct.name);
         formData.append('price', newProduct.price);
@@ -26,7 +25,7 @@ const AddProduct = () => {
             .then(result => {
                 console.log(result)
                 if(result){
-                    // alert('One product has added successfully')
+                    alert('One product has added successfully')
                     history.push('/admin/allProduct')
                 }
             })

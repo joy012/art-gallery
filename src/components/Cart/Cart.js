@@ -53,7 +53,7 @@ const Cart = () => {
                                 </table>
                             </div>
                             <Link to='/checkout'>
-                                <button className='d-block mx-auto btn-lg btn-primary mb-5'>Proceed To Checkout</button>
+                                <button className='d-block mx-auto btn-lg btn-primary mb-2'>Proceed To Checkout</button>
                             </Link>
                         </>
                         :
