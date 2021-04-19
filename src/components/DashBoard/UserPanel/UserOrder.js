@@ -9,7 +9,7 @@ const UserOrder = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch('https://tonus-creation.herokuapp.com/userOrder?email=' + loggedInUser.email, {
+        fetch('https://tonuscreation.herokuapp.com/userOrder?email=' + loggedInUser.email, {
             method: "GET",
             headers: {
                 authorization: `Bearer ${sessionStorage.getItem('token')}`,

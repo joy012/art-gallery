@@ -10,7 +10,7 @@ const AddAdmin = () => {
     }
     const handleService = e => {
 
-        fetch('https://tonus-creation.herokuapp.com/addAdmin', {
+        fetch('https://tonuscreation.herokuapp.com/addAdmin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(admin)

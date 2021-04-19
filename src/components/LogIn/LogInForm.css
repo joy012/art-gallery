@@ -57,10 +57,7 @@
 .social-login:hover{
     background-color: lightgrey;
 }
-.logo{
-    width:37px;
-    height: 37px;
-}
+
 
 
 @media screen and (min-width: 992px){
@@ -85,6 +82,9 @@
 }
 @media screen and (max-width: 430px){
     .login-form{
+        width: 100%;
+    }
+    .social-login{
         width: 100%;
     }
 }

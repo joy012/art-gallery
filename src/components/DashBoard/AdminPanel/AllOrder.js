@@ -15,15 +15,19 @@ const AllOrder = () => {
     ];
 
     useEffect(() => {
-        fetch('https://tonus-creation.herokuapp.com/allOrder')
+        fetch('https://tonuscreation.herokuapp.com/allOrder')
             .then(res => res.json())
             .then(data => {
                 setAllOrder(data);
             })
+
+            return () => {
+                setAllOrder([])
+            }
     }, [])
 
     const removeItem = id => {
-        fetch(`https://tonus-creation.herokuapp.com/deleteOrder?id=` + id, {
+        fetch(`https://tonuscreation.herokuapp.com/deleteOrder?id=` + id, {
             method: 'DELETE'
         })
             .then(result => {
@@ -34,7 +38,7 @@ const AllOrder = () => {
     }
 
     const handleStatusChange = (e, id) => {
-        fetch(`https://tonus-creation.herokuapp.com/updateOrder?id=` + id, {
+        fetch(`https://tonuscreation.herokuapp.com/updateOrder?id=` + id, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: e.value })

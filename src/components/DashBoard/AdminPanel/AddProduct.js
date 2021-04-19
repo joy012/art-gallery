@@ -8,6 +8,7 @@ const AddProduct = () => {
 
     const handleSubmit = e => {
         const formData = new FormData();
+        console.log(newProduct, image)
         formData.append('productImg', image);
         formData.append('name', newProduct.name);
         formData.append('price', newProduct.price);
@@ -16,18 +17,16 @@ const AddProduct = () => {
         formData.append('borderSize', newProduct.borderSize);
         formData.append('artType', newProduct.artType);
         formData.append('borderColor', newProduct.borderColor);
-        fetch('https://tonus-creation.herokuapp.com/addProduct', {
+
+        fetch('https://tonuscreation.herokuapp.com/addProduct', {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-type': 'application/json',
-            }
         })
             .then(res => res.json())
             .then(result => {
                 console.log(result)
                 if(result){
-                    alert('One product has added successfully')
+                    // alert('One product has added successfully')
                     history.push('/admin/allProduct')
                 }
             })
@@ -92,8 +91,8 @@ const AddProduct = () => {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label htmlFor="artType">Artwork Type</label>
-                        <select onChange={handleChange} name='artType' className="form-control w-50" id="artType" required>
-                            <option value='' disabled selected></option>
+                        <select onChange={handleChange} name='artType' defaultValue='Artwork Type' className="form-control w-50" id="artType" required>
+                            <option value='Artwork Type' disabled>ArtWork Type</option>
                             <option value='Illustration'>Illustration</option>
                             <option value='Arabic Calligraphy'>Arabic Calligraphy</option>
                             <option value='Portrait'>Portrait</option>

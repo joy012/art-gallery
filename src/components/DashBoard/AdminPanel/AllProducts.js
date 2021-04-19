@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AllProducts = () => {
     const [allProduct, setAllProduct] = useState([]);
     useEffect(() => {
-        fetch('https://tonus-creation.herokuapp.com/products')
+        fetch('https://tonuscreation.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setAllProduct(data);
@@ -11,7 +11,7 @@ const AllProducts = () => {
     }, [])
 
     const removeItem = id => {
-        fetch(`https://tonus-creation.herokuapp.com/deleteProduct/${id}`, {
+        fetch(`https://tonuscreation.herokuapp.com/deleteProduct/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

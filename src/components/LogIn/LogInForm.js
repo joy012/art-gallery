@@ -18,7 +18,7 @@ const LogInForm = () => {
     initializeLogInFrameWork();
 
     const handleResponse = async (response) => {
-        const fetchData = await fetch('https://tonus-creation.herokuapp.com/getAdmin?email=' + response.email);
+        const fetchData = await fetch('https://tonuscreation.herokuapp.com/getAdmin?email=' + response.email);
         const responseData = await fetchData.json();
         const isEmail = responseData.find(res => {
             if (res.email === response.email) {
@@ -157,11 +157,11 @@ const LogInForm = () => {
                     <>
                         <div className="Separator"><i>or</i></div>
                         <div onClick={fbSignIn} className="social-login d-flex justify-content-around align-items-center">
-                            <img className='d-inline logo' src={fbLogo} alt="" />
+                            <img className='d-inline mx-4' src={fbLogo} alt="" />
                             <span>Continue With Facebook</span>
                         </div>
-                        <div onClick={googleSignIn} className="social-login d-flex justify-content-around align-items-center mt-3">
-                            <img className='d-inline logo' src={googleLogo} alt="" />
+                        <div onClick={googleSignIn} className="social-login d-flex justify-content-around align-items-center mt-3 px-3">
+                            <img className='d-inline mx-4' src={googleLogo} alt="" />
                             <span>Continue With Google</span>
                         </div>
                     </>

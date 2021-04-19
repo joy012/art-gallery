@@ -6,22 +6,22 @@ import Particles from 'react-particles-js';
 
 const About = () => {
     return (
-        <section className='background py-3 container'>
+        <section className='background py-2 container'>
             <Particles
                 params={{
                     "particles": {
                         "number": {
-                            "value": 180,
+                            "value": 200,
                             "density": {
                                 "enable": false
                             }
                         },
                         "size": {
-                            "value": 12,
+                            "value": 9,
                             "random": true
                         },
                         "move": {
-                            "direction": "bottom",
+                            "direction": "top",
                             "out_mode": "out"
                         },
                         "line_linked": {
@@ -37,13 +37,13 @@ const About = () => {
                         },
                         "modes": {
                             "remove": {
-                                "particles_nb": 6
+                                "particles_nb": 3
                             }
                         }
                     }
                 }} />
             <img src={dp} className='dp mx-auto d-block rounded-circle py-3' alt="" />
-            <h1 className='text-center' style={{color:'#01c9ad'}}>Jannatul Ferdous Tonny</h1>
+            <h2 className='text-center' style={{color:'#01c9ad'}}>Jannatul Ferdous Tonny</h2>
             <Typical
                 className="text-center text-white h4 mb-3"
                 steps={['Artist', 3500, 'Entrepreneur', 3500, 'Medical Student', 3500]}

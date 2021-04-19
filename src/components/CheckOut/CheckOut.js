@@ -62,7 +62,7 @@ const Checkout = () => {
 
     const placeOrder = () => {
         setDbInitiate(true);
-        fetch('https://tonus-creation.herokuapp.com/addOrder', {
+        fetch('https://tonuscreation.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderDetail)

@@ -16,7 +16,7 @@ const NavBar = () => {
     const isLocation = location.pathname === '/about';
 
     return (
-        <nav className={`navbar navbar-expand-md navbar-light ${isLocation ? '' : 'nav-bg'}`}>
+        <nav className={`navbar navbar-expand-md  ${isLocation ? 'navbar-dark' : 'nav-bg navbar-light'}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img draggable="false" className="nav-logo rounded-circle" src={logo} alt="" />
@@ -25,7 +25,7 @@ const NavBar = () => {
                     location.pathname !== '/login' &&
                     <>
                         <button className="navbar-toggler" type="button" onClick={handleExpand} data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                            <span className="text-white navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav ml-auto">
@@ -33,10 +33,10 @@ const NavBar = () => {
                                 <div className="nav-item dropdown" >
                                     <li className={`nav-link dropdown-toggle ${isLocation ? 'color-white' : ''}`} id='dropDownLink' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Art Works</li>
                                     <div className="dropdown-menu" aria-labelledby="dropDownLink">
-                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/arabic calligraphy'>Arabic Calligraphy</Link>
-                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/illustration'>Illustration</Link>
                                         <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/portrait'>Portrait</Link>
                                         <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/accessories'>Accessories</Link>
+                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/illustration'>Illustration</Link>
+                                        <Link className={`nav-link dropdown-item text-center ${isLocation ? 'color-white' : ''}`} to='/products/arabic calligraphy'>Arabic Calligraphy</Link>
                                     </div>
                                 </div>
                                 <Link className={`nav-link ${isLocation ? 'color-white' : ''}`} to='/about'>About</Link>

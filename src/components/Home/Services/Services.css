@@ -5,13 +5,13 @@
     background: #ebf3fd;
 }
 .service-card{
+    min-height: 208px!important;
     box-shadow: -6px -6px 20px rgba(255,255,255,1), 6px 6px 20px rgba(0,0,0,0.1);
     border-radius: 25%;
-    height:100%!important;
     text-align: center!important;
 }
 .service-logo{
-    width: 26%!important;
+    width: 40%!important;
 }
 
 .service-card:hover {
@@ -43,6 +43,9 @@
 }
 @media screen and (max-width:400px){
     .service-logo{
-        width: 48%!important;
+        width: 60%!important;
+    }
+    .service-card{
+        min-height: 198px!important;
     }
 }
