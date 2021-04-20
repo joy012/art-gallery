@@ -2,20 +2,20 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+
+  Route, Switch
 } from "react-router-dom";
+import './App.css';
 import About from './components/About/About';
 import Cart from './components/Cart/Cart';
 import CheckOut from './components/CheckOut/Checkout';
+import DashBoard from './components/DashBoard/DashBoard';
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import NavBar from './components/NavBar/NavBar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Products from './components/Products/Products';
-import DashBoard from './components/DashBoard/DashBoard';
-import './App.css'
 
 
 export const UserContext = createContext();

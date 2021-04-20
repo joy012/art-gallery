@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
-import './ImageSlider.css';
+import React, { useContext } from 'react';
 import Slider from "react-slick";
 import { UserContext } from '../../../App';
-import { database } from 'firebase';
+import './ImageSlider.css';
 
 const ImageSlider = () => {
     const [, , , , , , , , , , databaseData] = useContext(UserContext);

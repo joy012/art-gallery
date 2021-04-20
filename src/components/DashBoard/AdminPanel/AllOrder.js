@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import '../DashBoard.css'
+import '../DashBoard.css';
 
 const AllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Bounce from 'react-reveal/Bounce';
-import './Collection.css';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
+import './Collection.css';
 
 
 const Collection = () => {

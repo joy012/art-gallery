@@ -1,22 +1,21 @@
-.margin-top{
-    margin-top: 6rem!important;
+.margin-top {
+  margin-top: 6rem !important;
 }
 .slick-dots li button:before {
-    color: grey;
-    font-size: 0.6rem!important;
+  color: grey;
+  font-size: 0.6rem !important;
 }
 .slick-dots li.slick-active button:before {
-    color:orange !important;
+  color: orange !important;
 }
-.img-container img{
-    border-radius: 20px;
+.img-container img {
+  border-radius: 20px;
 }
-.img-container:focus{
-    border: none;
-    outline: none!important;
+.img-container:focus {
+  border: none;
+  outline: none !important;
 }
-.slick-arrow::before{
-    color:#eee!important;
-    font-size: 1.8rem!important;
-    
+.slick-arrow::before {
+  color: #eee !important;
+  font-size: 1.8rem !important;
 }

@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect, useState } from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
 import { useHistory, useLocation } from 'react-router';
 import { UserContext } from '../../App';
-import ReCAPTCHA from "react-google-recaptcha";
-import money from '../../images/money.png';
 import bkash from '../../images/bkash.png';
-import './Checkout.css'
+import money from '../../images/money.png';
 import Footer from '../Home/Footer/Footer';
+import './Checkout.css';
 
 const Checkout = () => {
     const [, , , , cart, setCart, orderDetail, setOrderDetail] = useContext(UserContext);

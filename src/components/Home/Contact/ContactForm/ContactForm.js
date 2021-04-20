@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import emailjs, { init } from 'emailjs-com';
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import { store } from 'react-notifications-component';
+import React, { useState } from 'react';
+import ReactNotification, { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 
 init('user_541YLqgHK4Edya8LvhMAY');
 

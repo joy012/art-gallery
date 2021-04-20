@@ -1,18 +1,18 @@
-.serviceList-card{
-    border: none;
-    border-radius: 20px;
+.serviceList-card {
+  border: none;
+  border-radius: 20px;
 }
-.card-container{
-    border: none;
+.card-container {
+  border: none;
 }
-.card-footer{
-    border: none;
-    background: #fff;
-    border-radius: 20px!important;
+.card-footer {
+  border: none;
+  background: #fff;
+  border-radius: 20px !important;
 }
-.shipped{
-    background-color: orangered!important;
+.shipped {
+  background-color: orangered !important;
 }
-.going{
-    background-color: #f49025!important;
+.going {
+  background-color: #f49025 !important;
 }

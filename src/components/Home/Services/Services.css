@@ -1,51 +1,52 @@
-#service{
-    background-color: #ebf3fd;
+#service {
+  background-color: #ebf3fd;
 }
-.card-bg{
-    background: #ebf3fd;
+.card-bg {
+  background: #ebf3fd;
 }
-.service-card{
-    min-height: 208px!important;
-    box-shadow: -6px -6px 20px rgba(255,255,255,1), 6px 6px 20px rgba(0,0,0,0.1);
-    border-radius: 25%;
-    text-align: center!important;
+.service-card {
+  min-height: 208px !important;
+  box-shadow: -6px -6px 20px rgba(255, 255, 255, 1),
+    6px 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 25%;
+  text-align: center !important;
 }
-.service-logo{
-    width: 40%!important;
+.service-logo {
+  width: 40% !important;
 }
 
 .service-card:hover {
-    border: none;
-    background: #ebf3fd;
-    box-shadow: inset -6px -6px 10px rgba(255,255,255,0.5), inset 6px 6px 10px rgba(0,0,0,0.1);
-    color:black;
-    cursor: pointer;
+  border: none;
+  background: #ebf3fd;
+  box-shadow: inset -6px -6px 10px rgba(255, 255, 255, 0.5),
+    inset 6px 6px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+  cursor: pointer;
 }
 
-
-@media screen and (max-width:991px){
-    .service-logo{
-        width: 35%!important;
-    }
+@media screen and (max-width: 991px) {
+  .service-logo {
+    width: 35% !important;
+  }
 }
-@media screen and (max-width:767px){
-    .service-logo{
-        width: 42%!important;
-    }
+@media screen and (max-width: 767px) {
+  .service-logo {
+    width: 42% !important;
+  }
 }
-@media screen and (max-width:575px){
-    .service-logo{
-        width: 48%!important;
-    }
-    .service-card h4{
-        font-size: 1.3rem;
-    }
+@media screen and (max-width: 575px) {
+  .service-logo {
+    width: 48% !important;
+  }
+  .service-card h4 {
+    font-size: 1.3rem;
+  }
 }
-@media screen and (max-width:400px){
-    .service-logo{
-        width: 60%!important;
-    }
-    .service-card{
-        min-height: 198px!important;
-    }
+@media screen and (max-width: 400px) {
+  .service-logo {
+    width: 60% !important;
+  }
+  .service-card {
+    min-height: 198px !important;
+  }
 }

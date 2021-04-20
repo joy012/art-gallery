@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
-import AllOrder from './AdminPanel/AllOrder'
-import AddProduct from './AdminPanel/AddProduct';
-import AllProduct from './AdminPanel/AllProducts';
 import AddAdmin from './AdminPanel/AddAdmin';
+import AddProduct from './AdminPanel/AddProduct';
+import AllOrder from './AdminPanel/AllOrder';
+import AllProduct from './AdminPanel/AllProducts';
 import './DashBoard.css';
 import UserOrder from './UserPanel/UserOrder';
-import Footer from '../Home/Footer/Footer';
 
 
 const Customer = () => {

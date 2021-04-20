@@ -1,90 +1,88 @@
-  
 .login-form {
-    margin: 30px auto;
-    margin-bottom: 0!important;
+  margin: 30px auto;
+  margin-bottom: 0 !important;
 }
-.login-form form {        
-    margin-bottom: 15px;
-    color:black;
-    box-shadow: 5px 5px 10px lightgrey;
-    padding: 30px;
-    border: 1px solid lightgrey;
-    border-radius: 12px;
+.login-form form {
+  margin-bottom: 15px;
+  color: black;
+  box-shadow: 5px 5px 10px lightgrey;
+  padding: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 12px;
 }
 .login-form form input {
-    border: none;
-    border-bottom: 1px solid lightgrey;
+  border: none;
+  border-bottom: 1px solid lightgrey;
 }
 .login-form h2 {
-    margin: 0 0 15px;
+  margin: 0 0 15px;
 }
-.form-control, .login-btn {
-    border-radius: 2px;
+.form-control,
+.login-btn {
+  border-radius: 2px;
 }
 .Separator {
-    margin-top: 20px;
-    text-align: center;
-    border-top: 1px solid #ccc;
+  margin-top: 20px;
+  text-align: center;
+  border-top: 1px solid #ccc;
 }
 .Separator i {
-    padding: 0 10px;
-    background: #f7f7f7;
-    position: relative;
-    top: -11px;
-    z-index: 1;
-}   
-.orange-text{
-    color: #275a53;
+  padding: 0 10px;
+  background: #f7f7f7;
+  position: relative;
+  top: -11px;
+  z-index: 1;
 }
-.orange-text:hover{
-    text-decoration: underline;
-    cursor: pointer;
-    color: black;
+.orange-text {
+  color: #275a53;
 }
-.submit-btn{
-    background-color: #275a53!important;
-    color: #fff!important;
-    border: none!important;
+.orange-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: black;
 }
-.social-login{
-    border: 1px solid #C7C7C7;
-    border-radius:20px;
-    padding: 6px 0;
-    width: 80%;
-    margin: auto;
-    cursor: pointer;
+.submit-btn {
+  background-color: #275a53 !important;
+  color: #fff !important;
+  border: none !important;
 }
-.social-login:hover{
-    background-color: lightgrey;
+.social-login {
+  border: 1px solid #c7c7c7;
+  border-radius: 20px;
+  padding: 6px 0;
+  width: 80%;
+  margin: auto;
+  cursor: pointer;
+}
+.social-login:hover {
+  background-color: lightgrey;
 }
 
-
-
-@media screen and (min-width: 992px){
-    .login-form{
-        width: 40%;
-    }
+@media screen and (min-width: 992px) {
+  .login-form {
+    width: 40%;
+  }
 }
-@media screen and (max-width: 991px){
-    .login-form{
-        width: 60%;
-    }
+@media screen and (max-width: 991px) {
+  .login-form {
+    width: 60%;
+  }
 }
-@media screen and (max-width: 767px){
-    .login-form{
-        width: 75%;
-    }
+@media screen and (max-width: 767px) {
+  .login-form {
+    width: 75%;
+  }
 }
-@media screen and (max-width: 575px){
-    .login-form{
-        width: 90%;
-    }
+@media screen and (max-width: 575px) {
+  .login-form {
+    width: 90%;
+  }
 }
-@media screen and (max-width: 430px){
-    .login-form{
-        width: 100%;
-    }
-    .social-login{
-        width: 100%;
-    }
+@media screen and (max-width: 430px) {
+  .login-form {
+    width: 100%;
+  }
+  .social-login {
+    width: 100%;
+  }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import dp from './dp.jpg'
-import './About.css'
-import Typical from 'react-typical';
 import Particles from 'react-particles-js';
+import Typical from 'react-typical';
+import './About.css';
+import dp from './dp.jpg';
 
 const About = () => {
     return (

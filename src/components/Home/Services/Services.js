@@ -1,9 +1,9 @@
 import React from 'react';
-import services from '../../../DataBase/services';
-import Zoom from 'react-reveal/Zoom';
 import Bounce from 'react-reveal/Bounce';
-import './Services.css';
+import Zoom from 'react-reveal/Zoom';
 import { Link } from 'react-router-dom';
+import services from '../../../DataBase/services';
+import './Services.css';
 
 const Services = () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../Home/Footer/Footer';
-import LogInForm from '../LogIn/LogInForm'
+import LogInForm from '../LogIn/LogInForm';
 
 
 

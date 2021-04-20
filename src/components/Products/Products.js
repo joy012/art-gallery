@@ -1,9 +1,9 @@
 /* eslint-disable array-callback-return */
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import Bounce from 'react-reveal/Bounce';
-import Footer from '../Home/Footer/Footer';
+import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
+import Footer from '../Home/Footer/Footer';
 
 const Products = () => {
     const { name }  = useParams();

@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
 import './LogInForm.css';
+import { createUserWithEmailAndPassword, handleFbSignIn, handleGoogleSignIn, initializeLogInFrameWork, resetPassword, signInWithEmailAndPassword, storeAuthToken } from './loginManager';
 import fbLogo from './logos/fb.png';
 import googleLogo from './logos/google.png';
-import { useContext } from 'react';
-import { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { createUserWithEmailAndPassword, handleFbSignIn, handleGoogleSignIn, initializeLogInFrameWork, resetPassword, signInWithEmailAndPassword, storeAuthToken } from './loginManager';
-import { UserContext } from '../../App';
 
 const LogInForm = () => {
     const [loggedInUser, setLoggedInUser, user, setUser] = useContext(UserContext);

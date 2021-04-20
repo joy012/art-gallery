@@ -1,44 +1,43 @@
-.nav-bg{
-    background: #ebf3fd;
+.nav-bg {
+  background: #ebf3fd;
 }
-.navbar{
-    padding-top:0;
-    padding-bottom: 0;
-    z-index: 99999999!important;
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  z-index: 99999999 !important;
 }
 /* .navbar-bg{
     background-color: rgba(235, 233, 233, 0.7);
 } */
-.nav-logo{
-    width: 25%;
+.nav-logo {
+  width: 25%;
 }
-.nav-link{
-    font-weight: 600;
-    color: black!important;
-    font-size: 1.1rem!important;
-    padding: 1rem!important;
-    text-align: center;
-}
-
-.color-white{
-    color: white!important;
+.nav-link {
+  font-weight: 600;
+  color: black !important;
+  font-size: 1.1rem !important;
+  padding: 1rem !important;
+  text-align: center;
 }
 
+.color-white {
+  color: white !important;
+}
 
-.fa-shopping-cart{
-    font-size: 2rem;
-    color: black!important;
+.fa-shopping-cart {
+  font-size: 2rem;
+  color: black !important;
 }
-.fa-shopping-cart-dark{
-    font-size: 2rem;
-    color: white!important;
+.fa-shopping-cart-dark {
+  font-size: 2rem;
+  color: white !important;
 }
-.dropdown-item{
-    color: black!important;
+.dropdown-item {
+  color: black !important;
 }
-.dropdown-item:hover{
-    background-color: #eee;
+.dropdown-item:hover {
+  background-color: #eee;
 }
-.dropdown-menu{
-    border: none!important;
+.dropdown-menu {
+  border: none !important;
 }

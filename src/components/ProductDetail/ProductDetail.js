@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import ReactNotification, { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
-import { store } from 'react-notifications-component';
 import Footer from '../Home/Footer/Footer';
 
 const ProductDetail = () => {
