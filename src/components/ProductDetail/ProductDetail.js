@@ -5,7 +5,6 @@ import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import { store } from 'react-notifications-component';
-import InnerImageZoom from 'react-inner-image-zoom';
 import Footer from '../Home/Footer/Footer';
 
 const ProductDetail = () => {
@@ -13,7 +12,6 @@ const ProductDetail = () => {
     const history = useHistory();
     const [loggedInUser, , , , , , , , , , databaseData] = useContext(UserContext);
     const [product, setProduct] = useState({});
-    const [detail, setDetail] = useState({})
     const [, , , , cart, setCart] = useContext(UserContext);
     const [showAdd, setShowAdd] = useState(true);
 
@@ -55,10 +53,10 @@ const ProductDetail = () => {
         sessionStorage.removeItem('productDetail')
         let updatedCart;
         if (cart?.length) {
-            updatedCart = [...cart, { ...detail, ...product }];
+            updatedCart = [...cart, { ...product }];
         }
         else {
-            updatedCart = [{ ...detail, ...product }]
+            updatedCart = [{ ...product }]
         }
 
         sessionStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -87,7 +85,7 @@ const ProductDetail = () => {
                 <div className="row align-items-center justify-content-center">
 
                     <div className="col-lg-7 col-md-offset">
-                        <InnerImageZoom src={`data:image/png;base64,${product?.image?.img}`} zoomSrc={`data:image/png;base64,${product?.image?.img}`} zoomScale={0.7} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
+                        <img src={product?.img} draggable="false" className='not-draggable w-75 d-block mx-auto' alt="" />
                     </div>
 
                     <div className="col-lg-5">
@@ -139,7 +137,7 @@ const ProductDetail = () => {
                                         <h5 className='text-danger font-weight-bold text-center text-lg-left'>Added to Cart</h5>
                                         <button onClick={() => history.push('/cart')} className='btn btn-primary d-block w-50 mx-auto mx-lg-0'>Go To Cart</button>
                                     </>
-                                    : <h4 className='text-danger text-center'>You are viewing as an admin!</h4>
+                                    : <h4 className='text-danger text-center text-lg-left'>You are viewing as an admin!</h4>
                         }
                     </div>
                 </div>

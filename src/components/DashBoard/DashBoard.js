@@ -30,8 +30,6 @@ const Customer = () => {
                         loggedInUser?.role === 'admin' &&
                         <div className="col-md-2">
                             <nav className="nav flex-column  justify-content-start align-items-center  my-5 ml-auto">
-
-
                                 <Link to='/dashboard' className="my-4 text-dark"><i className="fas fa-suitcase"></i> All Order</Link>
                                 <Link to='/admin/addProduct' className="mb-4 text-dark"><i className="fas fa-plus"></i> Add Product</Link>
                                 <Link to='/admin/addAdmin' className="mb-4 text-dark"><i className="fas fa-user-plus"></i> Make Admin</Link>

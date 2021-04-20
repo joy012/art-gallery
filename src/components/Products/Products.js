@@ -24,13 +24,13 @@ const Products = () => {
                     <div className="row">
                         {
                             products.map(product =>
-                                <Bounce top duration={3000}>
+                                <Bounce top duration={2000}>
 
                                     <div className="col-lg-3 col-md-4 col-6 mb-5 collection-card">
                                         <Link to={`/productDetail/${product?._id}`}>
                                             <div className="card w-100">
                                                 <div className="card-body">
-                                                    <img className="card-img-top" src={`data:image/png;base64,${product?.image?.img}`} alt="" />
+                                                    <img className="card-img-top" src={product?.img} alt="" />
                                                 </div>
                                                 <div className="card-footer">
                                                     <h5 className='text-center card-title'>{product?.name}</h5>

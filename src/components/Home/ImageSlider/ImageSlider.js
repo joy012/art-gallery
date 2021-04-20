@@ -64,7 +64,7 @@ const ImageSlider = () => {
                             {
                                 databaseData.map(product =>
                                     <div key={product?._id} className='px-3 img-container'>
-                                        <img className='w-100' src={`data:image/png;base64,${product?.image.img}`} alt="" />
+                                        <img className='w-100' src={product?.img} alt="" />
                                     </div>
                                 )
                             }

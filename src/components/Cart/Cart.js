@@ -37,7 +37,7 @@ const Cart = () => {
                                         {
                                             cart?.map(pd =>
                                                 <tr>
-                                                    <td className='img-td '><img src={`data:image/png;base64,${pd?.image?.img}`} draggable="false" className='w-100' alt="" /></td>
+                                                    <td className='img-td '><img src={pd?.img} draggable="false" className='w-100' alt="" /></td>
                                                     <td className='w-50 text-center'>
                                                         <h4 className='productName'>{pd?.name}</h4>
                                                         <p>{pd?.size}</p>

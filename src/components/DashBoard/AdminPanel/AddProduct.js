@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -7,25 +8,26 @@ const AddProduct = () => {
     const history = useHistory();
 
     const handleSubmit = e => {
-        let formData = new FormData();
-        formData.append('productImg', image);
-        formData.append('name', newProduct.name);
-        formData.append('price', newProduct.price);
-        formData.append('size', newProduct.size);
-        formData.append('paper', newProduct.paper);
-        formData.append('borderSize', newProduct.borderSize);
-        formData.append('artType', newProduct.artType);
-        formData.append('borderColor', newProduct.borderColor);
+        const productDetail = {
+            img: image,
+            name: newProduct.name,
+            price: newProduct.price,
+            size: newProduct.size,
+            paper: newProduct.paper,
+            borderSize: newProduct.borderSize,
+            borderColor: newProduct.borderColor,
+            artType: newProduct.artType
+        }
 
         fetch('https://tonuscreation.herokuapp.com/addArtWork', {
             method: 'POST',
-            headers: { "Content-Type": "multipart/form-data" },
-            body: formData,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(productDetail),
         })
             .then(res => res.json())
             .then(result => {
                 console.log(result)
-                if(result){
+                if (result) {
                     alert('One product has added successfully!')
                     history.push('/admin/allProduct')
                 }
@@ -36,6 +38,15 @@ const AddProduct = () => {
         const newInfo = { ...newProduct };
         newInfo[e.target.name] = e.target.value;
         setNewProduct(newInfo);
+    }
+
+    const handleImageUpload = (event) => {
+        const imageData = new FormData()
+        imageData.set('key', '87015992ba8ff4ec487f63e035eb5e6c')
+        imageData.append('image', event.target.files[0])
+        axios.post('https://api.imgbb.com/1/upload', imageData)
+            .then(result => setImage(result.data.data.display_url))
+            .catch(err => console.log(err))
     }
 
     return (
@@ -104,7 +115,7 @@ const AddProduct = () => {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label htmlFor="img">Image</label>
-                        <input onChange={e => setImage(e.target.files[0])} type="file" name="file" className="form-control-file" id="img" />
+                        <input onChange={handleImageUpload} type="file" name="file" className="form-control-file" id="img" />
                     </div>
                 </div>
             </div>

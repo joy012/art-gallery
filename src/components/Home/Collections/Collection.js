@@ -28,7 +28,7 @@ const Collection = () => {
                                         <Link to={`/productDetail/${collection?._id}`}>
                                             <div className="card">
                                                 <div className="card-body">
-                                                    <img className="card-img-top w-100" src={`data:image/png;base64,${collection?.image.img}`} alt="" />
+                                                    <img className="card-img-top w-100" src={collection?.img} alt="" />
                                                 </div>
                                                 <div className="card-footer">
                                                     <h6 className='text-center card-title'>{collection?.name}</h6>

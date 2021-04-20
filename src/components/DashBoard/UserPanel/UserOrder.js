@@ -36,7 +36,7 @@ const UserOrder = () => {
                         order?.cart.map(singleOrder =>
                             <div className="col mb-4" key={order?._id}>
                                 <div className="card h-100">
-                                    <img className="w-100 my-2" src={`data:image/png;base64,${singleOrder?.image?.img}`} alt="" />
+                                    <img className="w-100 my-2" src={singleOrder?.img} alt="" />
                                     {
                                         order?.status === 'PENDING' ?
                                             <button className="w-75 btn btn-secondary d-block mx-auto text-center  text-white font-weight-bold my-4">Status: {order?.status}</button>
