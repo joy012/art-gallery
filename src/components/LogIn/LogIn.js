@@ -1,16 +1,13 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import Footer from '../Home/Footer/Footer';
-import LogInForm from '../LogIn/LogInForm';
+import LogInForm from './LogInForm';
 
-
-
-const LogIn = () => {
-    return (
-        <>
-            <LogInForm />
-            <Footer />
-        </>
-    );
-};
+const LogIn = () => (
+    <>
+        <LogInForm />
+        <Footer />
+    </>
+);
 
 export default LogIn;
