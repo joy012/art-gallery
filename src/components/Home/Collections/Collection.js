@@ -9,11 +9,12 @@ import './Collection.css';
 
 const Collection = () => {
     const [, , , , , , , , , , databaseData] = useContext(UserContext);
+    const trending = databaseData?.slice(0, 11);
 
     return (
         <main className="container pt-5 mb-5">
             <h2 className="text-center mb-4 pb-4">Trending Now</h2>
-            {databaseData.length === 0 ? (
+            {trending.length === 0 ? (
                 <div className="text-center">
                     <div className="spinner-border text-primary" role="status">
                         <span className="sr-only">Loading...</span>
@@ -21,7 +22,7 @@ const Collection = () => {
                 </div>
             ) : (
                 <div className="row align-items-center justify-content-center">
-                    {databaseData.map((collection) => (
+                    {trending.map((collection) => (
                         <Bounce key={collection.name} left duration={2500}>
                             <div className="col-lg-3 col-md-4 col-6 mb-4 collection-card">
                                 <Link to={`/productDetail/${collection?._id}`}>
