@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,9 +13,9 @@ const Cart = () => {
         setCart(JSON.parse(sessionStorage.getItem('cart')));
     }, [setCart]);
 
-    const removeItem = (key) => {
+    const removeItem = (id) => {
         const savedCart = JSON.parse(sessionStorage.getItem('cart'));
-        const updateStore = savedCart.filter((product) => product.key !== key);
+        const updateStore = savedCart.filter((product) => product._id !== id);
         sessionStorage.setItem('cart', JSON.stringify(updateStore));
         setCart(updateStore);
     };
@@ -58,7 +59,7 @@ const Cart = () => {
                                             <td>
                                                 <button
                                                     type="button"
-                                                    onClick={() => removeItem(pd?.key)}
+                                                    onClick={() => removeItem(pd?._id)}
                                                     className="btn btn-sm btn-danger d-block mx-auto"
                                                 >
                                                     Remove
