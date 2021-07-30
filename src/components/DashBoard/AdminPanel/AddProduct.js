@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
@@ -10,30 +11,39 @@ const AddProduct = () => {
     const history = useHistory();
 
     const handleSubmit = (e) => {
-        const productDetail = {
-            img: image,
-            name: newProduct.name,
-            price: newProduct.price,
-            size: newProduct.size,
-            paper: newProduct.paper,
-            borderSize: newProduct.borderSize,
-            borderColor: newProduct.borderColor,
-            artType: newProduct.artType,
-        };
-
-        fetch('https://tonuscreation.herokuapp.com/addArtWork', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(productDetail),
-        })
-            .then((res) => res.json())
+        const imageData = new FormData();
+        imageData.set('key', '87015992ba8ff4ec487f63e035eb5e6c');
+        imageData.append('image', image);
+        axios
+            .post('https://api.imgbb.com/1/upload', imageData)
             .then((result) => {
-                console.log(result);
-                if (result) {
-                    alert('One product has added successfully!');
-                    history.push('/admin/allProduct');
+                if (result?.data?.data?.display_url) {
+                    const productDetail = {
+                        img: result?.data?.data?.display_url,
+                        name: newProduct.name,
+                        price: newProduct.price,
+                        size: newProduct.size,
+                        paper: newProduct.paper,
+                        borderSize: newProduct.borderSize,
+                        borderColor: newProduct.borderColor,
+                        artType: newProduct.artType,
+                    };
+
+                    fetch('https://tonuscreation.herokuapp.com/addArtWork', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(productDetail),
+                    })
+                        .then((res) => res.json())
+                        .then((data) => {
+                            if (data) {
+                                alert('One product has added successfully!');
+                                history.push('/admin/allProduct');
+                            }
+                        });
                 }
-            });
+            })
+            .catch((err) => console.log(err));
         e.preventDefault();
     };
     const handleChange = (e) => {
@@ -42,14 +52,8 @@ const AddProduct = () => {
         setNewProduct(newInfo);
     };
 
-    const handleImageUpload = (event) => {
-        const imageData = new FormData();
-        imageData.set('key', '87015992ba8ff4ec487f63e035eb5e6c');
-        imageData.append('image', event.target.files[0]);
-        axios
-            .post('https://api.imgbb.com/1/upload', imageData)
-            .then((result) => setImage(result.data.data.display_url))
-            .catch((err) => console.log(err));
+    const handleImageUpload = (e) => {
+        setImage(e.target.files[0]);
     };
 
     return (

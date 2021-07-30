@@ -9,7 +9,7 @@ import './Collection.css';
 
 const Collection = () => {
     const [, , , , , , , , , , databaseData] = useContext(UserContext);
-    const trending = databaseData?.slice(0, 11);
+    const trending = databaseData?.slice(0, 7);
 
     return (
         <main className="container pt-5 mb-5">

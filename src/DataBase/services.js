@@ -12,7 +12,7 @@ const services = [
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, reprehenderit!',
     },
     {
-        name: 'Landscape',
+        name: 'Portrait',
         image:
             'https://github.com/joy012/art-gallery/blob/master/src/components/Home/Services/icons/landscape.jpg?raw=true',
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, reprehenderit!',
